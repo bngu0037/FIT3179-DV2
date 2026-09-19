@@ -1,0 +1,82 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "ABS 2021 Australian housing tenure waffle chart. Each square represents 1% of dwellings with a known tenure classification.",
+  "width": "container",
+  "height": 360,
+  "background": null,
+  "data": {
+    "sequence": {
+      "start": 0,
+      "stop": 100,
+      "as": "tile"
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.tile % 10",
+      "as": "col"
+    },
+    {
+      "calculate": "9 - floor(datum.tile / 10)",
+      "as": "row"
+    },
+    {
+      "calculate": "datum.tile < 31 ? 'Owned outright' : datum.tile < 67 ? 'Mortgage' : datum.tile < 98 ? 'Rented' : 'Other'",
+      "as": "tenure"
+    }
+  ],
+  "mark": {
+    "type": "rect",
+    "cornerRadius": 3,
+    "stroke": "#F7F2EC",
+    "strokeWidth": 2
+  },
+  "encoding": {
+    "x": {
+      "field": "col",
+      "type": "ordinal",
+      "axis": null
+    },
+    "y": {
+      "field": "row",
+      "type": "ordinal",
+      "axis": null
+    },
+    "color": {
+      "field": "tenure",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Owned outright",
+          "Mortgage",
+          "Rented",
+          "Other"
+        ],
+        "range": [
+          "#684055",
+          "#A86654",
+          "#D8B18A",
+          "#68757E"
+        ]
+      },
+      "legend": {
+        "title": null,
+        "orient": "bottom",
+        "columns": 2
+      }
+    },
+    "tooltip": [
+      {
+        "field": "tenure",
+        "type": "nominal",
+        "title": "Tenure"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Arial"
+  }
+}

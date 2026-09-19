@@ -1,38 +1,138 @@
 <!doctype html>
 <html>
   <head>
-    <title>Embedding Vega-Lite</title>
+    <title>Who Gets to Own?</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
     <script src="https://cdn.jsdelivr.net/npm/vega@6.2.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.3"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.1.0"></script>
   </head>
   <body>
-    <div id="vis"></div>
+
+    <header class="hero">
+      <div class="page-shell">
+        <h1>Who Gets to Own?</h1>
+        <p class="hero-subtitle">
+          How generation, household circumstances and place shape home ownership across Australia.
+        </p>
+      </div>
+    </header>
+
+    <main class="page-shell">
+
+      <section class="story-section">
+        <div class="section-heading">
+          <h2>Australia still owns but the balance is shifting</h2>
+          <p class="section-subheading">
+            How Australians live today and how housing tenure has changed over time.
+          </p>
+        </div>
+
+        <div class="viz-grid">
+          <div class="viz-slot" id="vis1"></div>
+          <div class="viz-slot"></div>
+        </div>
+      </section>
+
+
+      <section class="story-section">
+        <div class="section-heading">
+          <h2>The generational divide</h2>
+          <p class="section-subheading">
+            How home ownership differs across age groups and generations.
+          </p>
+        </div>
+
+        <div class="viz-grid">
+          <div class="viz-slot viz-slot--full"></div>
+          <div class="viz-slot"></div>
+          <div class="viz-slot"></div>
+        </div>
+      </section>
+
+
+      <section class="story-section">
+        <div class="section-heading">
+          <h2>Australia isn’t alone</h2>
+          <p class="section-subheading">
+            How Australia compares with similar countries.
+          </p>
+        </div>
+
+        <div class="viz-grid">
+          <div class="viz-slot viz-slot--full"></div>
+        </div>
+      </section>
+
+
+      <section class="story-section">
+        <div class="section-heading">
+          <h2>Household circumstances matter</h2>
+          <p class="section-subheading">
+            How tenure differs across household structures.
+          </p>
+        </div>
+
+        <div class="viz-grid">
+          <div class="viz-slot"></div>
+          <div class="viz-slot"></div>
+        </div>
+      </section>
+
+
+      <section class="story-section">
+        <div class="section-heading">
+          <h2>Place changes the odds</h2>
+          <p class="section-subheading">
+            How housing tenure varies across Australian regions.
+          </p>
+        </div>
+
+        <div class="viz-grid">
+          <div class="viz-slot viz-slot--full"></div>
+          <div class="viz-slot"></div>
+          <div class="viz-slot"></div>
+          <div class="viz-slot"></div>
+          <div class="viz-slot"></div>
+        </div>
+      </section>
+
+
+      <section class="story-section">
+        <div class="section-heading">
+          <h2>The divide beneath state averages</h2>
+          <p class="section-subheading">
+            How local housing patterns vary within states and territories.
+          </p>
+        </div>
+
+        <div class="viz-grid">
+          <div class="viz-slot viz-slot--full"></div>
+        </div>
+      </section>
+
+
+      <section class="story-section">
+        <div class="section-heading">
+          <h2>So, who gets to own?</h2>
+          <p class="section-subheading">
+            Bringing together generation, household circumstances and place.
+          </p>
+        </div>
+      </section>
+
+    </main>
 
     <script type="text/javascript">
-      var yourVlSpec = {
-        $schema: 'https://vega.github.io/schema/vega-lite/v6.json',
-        description: 'A simple bar chart with embedded data.',
-        data: {
-          values: [
-            {a: 'A', b: 28},
-            {a: 'B', b: 55},
-            {a: 'C', b: 43},
-            {a: 'D', b: 91},
-            {a: 'E', b: 81},
-            {a: 'F', b: 53},
-            {a: 'G', b: 19},
-            {a: 'H', b: 87},
-            {a: 'I', b: 52},
-          ],
-        },
-        mark: 'bar',
-        encoding: {
-          x: {field: 'a', type: 'ordinal'},
-          y: {field: 'b', type: 'quantitative'},
-        },
-      };
-      vegaEmbed('#vis', yourVlSpec);
+      var vis1 = "./visualisations/1_waffle.json";
+
+      vegaEmbed('#vis1', vis1, { "actions": false }).then(function (result) {}).catch(console.error);
     </script>
   </body>
 </html>
