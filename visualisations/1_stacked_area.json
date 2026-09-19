@@ -1,25 +1,21 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "description": "ABS 2021 Australian housing tenure waffle chart. Each square represents 1% of dwellings with a known tenure classification.",
+  "description": "Streamgraph showing how the composition of Australian housing tenure changed over time.",
   "padding": 0,
 
   "title": {
-    "text": "Housing Status of Private Dwellings",
-    "subtitle": "Share of occupied private dwellings by tenure, 2021",
-
+    "text": "Australia's Housing Tenure Mix Has Shifted",
+    "subtitle": "Share of households by tenure, 1994-95 to 2019-20",
     "anchor": "start",
     "align": "left",
-
     "font": "Roboto",
     "fontSize": 20,
     "fontWeight": 700,
     "color": "#03045e",
-
     "subtitleFont": "Roboto",
     "subtitleFontSize": 12,
     "subtitleFontWeight": 400,
     "subtitleColor": "#4f6f7f",
-
     "offset": 10
   },
 
@@ -28,48 +24,46 @@
   "background": null,
 
   "data": {
-    "sequence": {
-      "start": 0,
-      "stop": 100,
-      "as": "tile"
-    }
+    "url": "data/tenure_longrun_all_years.csv"
   },
 
   "transform": [
     {
-      "calculate": "datum.tile % 10",
-      "as": "col"
-    },
-    {
-      "calculate": "9 - floor(datum.tile / 10)",
-      "as": "row"
-    },
-    {
-      "calculate": "datum.tile < 31 ? 'Owned outright' : datum.tile < 67 ? 'Mortgage' : datum.tile < 98 ? 'Rented' : 'Other'",
-      "as": "tenure"
+      "calculate": "format(datum.pct, '.1f') + '%'",
+      "as": "pct_label"
     }
   ],
 
   "mark": {
-    "type": "rect",
-    "cornerRadius": 3,
+    "type": "area",
+    "interpolate": "monotone",
+    "opacity": 0.96,
     "stroke": "#f5fcff",
-    "strokeWidth": 2
+    "strokeWidth": 1
   },
 
   "encoding": {
     "x": {
-      "field": "col",
-      "type": "ordinal",
+      "field": "year_order",
+      "type": "quantitative",
+
+      "scale": {
+        "nice": false,
+        "zero": false,
+        "padding": 0
+      },
+
       "axis": {
         "title": null,
+        "values": [1, 4, 7, 10, 13, 16],
+        "labelExpr": "datum.value == 1 ? '1994-95' : datum.value == 4 ? '1999-00' : datum.value == 7 ? '2003-04' : datum.value == 10 ? '2009-10' : datum.value == 13 ? '2015-16' : datum.value == 16 ? '2019-20' : ''",
 
         "labelFont": "Roboto",
         "labelFontSize": 11,
-        "labelColor": "transparent",
+        "labelColor": "#4f6f7f",
 
-        "tickColor": "transparent",
-        "domainColor": "transparent",
+        "tickColor": "#b8cbd5",
+        "domainColor": "#b8cbd5",
 
         "grid": false,
         "offset": 0
@@ -77,8 +71,12 @@
     },
 
     "y": {
-      "field": "row",
-      "type": "ordinal",
+      "field": "pct",
+      "type": "quantitative",
+      "stack": "center",
+      "scale": {
+        "nice": false
+      },
       "axis": null
     },
 
@@ -99,30 +97,46 @@
           "#B07AA1"
         ]
       },
-
       "legend": {
         "title": null,
         "orient": "bottom",
         "columns": 2,
-
         "labelFont": "Roboto",
         "labelFontSize": 12,
         "labelFontWeight": 400,
         "labelColor": "#03045e",
-
         "symbolType": "square",
         "symbolSize": 120,
-
         "columnPadding": 18,
         "rowPadding": 6
       }
     },
 
+    "order": {
+      "field": "tenure",
+      "sort": [
+        "Owned outright",
+        "Mortgage",
+        "Rented",
+        "Other"
+      ]
+    },
+
     "tooltip": [
+      {
+        "field": "year",
+        "type": "nominal",
+        "title": "Year"
+      },
       {
         "field": "tenure",
         "type": "nominal",
         "title": "Tenure"
+      },
+      {
+        "field": "pct_label",
+        "type": "nominal",
+        "title": "Share"
       }
     ]
   },

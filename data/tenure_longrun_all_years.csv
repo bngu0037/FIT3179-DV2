@@ -1,0 +1,65 @@
+year,year_order,tenure,pct
+1994–95,1,Owned outright,41.8
+1994–95,1,Mortgage,29.6
+1994–95,1,Rented,25.7
+1994–95,1,Other,2.9
+1995–96,2,Owned outright,42.8
+1995–96,2,Mortgage,28.1
+1995–96,2,Rented,26.9
+1995–96,2,Other,2.2
+1996–97,3,Owned outright,41.3
+1996–97,3,Mortgage,28.3
+1996–97,3,Rented,27.9
+1996–97,3,Other,2.5
+1997–98,4,Owned outright,39.5
+1997–98,4,Mortgage,30.9
+1997–98,4,Rented,27.2
+1997–98,4,Other,2.4
+1999–00,5,Owned outright,38.6
+1999–00,5,Mortgage,32.1
+1999–00,5,Rented,27.2
+1999–00,5,Other,2.1
+2000–01,6,Owned outright,38.2
+2000–01,6,Mortgage,32.1
+2000–01,6,Rented,27.4
+2000–01,6,Other,2.3
+2002–03,7,Owned outright,36.4
+2002–03,7,Mortgage,33.1
+2002–03,7,Rented,28.2
+2002–03,7,Other,2.3
+2003–04,8,Owned outright,34.9
+2003–04,8,Mortgage,35.1
+2003–04,8,Rented,27.6
+2003–04,8,Other,2.4
+2005–06,9,Owned outright,34.3
+2005–06,9,Mortgage,35.0
+2005–06,9,Rented,28.5
+2005–06,9,Other,2.2
+2007–08,10,Owned outright,33.2
+2007–08,10,Mortgage,35.1
+2007–08,10,Rented,29.7
+2007–08,10,Other,2.0
+2009–10,11,Owned outright,32.6
+2009–10,11,Mortgage,36.2
+2009–10,11,Rented,28.7
+2009–10,11,Other,2.5
+2011–12,12,Owned outright,30.9
+2011–12,12,Mortgage,36.6
+2011–12,12,Rented,30.3
+2011–12,12,Other,2.2
+2013–14,13,Owned outright,31.4
+2013–14,13,Mortgage,35.8
+2013–14,13,Rented,31.0
+2013–14,13,Other,1.8
+2015–16,14,Owned outright,30.4
+2015–16,14,Mortgage,37.1
+2015–16,14,Rented,30.3
+2015–16,14,Other,2.2
+2017–18,15,Owned outright,29.5
+2017–18,15,Mortgage,36.7
+2017–18,15,Rented,32.0
+2017–18,15,Other,1.8
+2019–20,16,Owned outright,29.5
+2019–20,16,Mortgage,36.8
+2019–20,16,Rented,31.4
+2019–20,16,Other,2.3

@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Who Gets to Own?</title>
+    <title>DV2: Who Gets to Own?</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +36,7 @@
 
         <div class="viz-grid">
           <div class="viz-slot" id="vis1"></div>
-          <div class="viz-slot"></div>
+          <div class="viz-slot" id="vis2"></div>
         </div>
       </section>
 
@@ -131,8 +131,10 @@
 
     <script type="text/javascript">
       var vis1 = "./visualisations/1_waffle.json";
+      var vis2 = "./visualisations/1_stacked_area.json"
 
       vegaEmbed('#vis1', vis1, { "actions": false }).then(function (result) {}).catch(console.error);
+      vegaEmbed('#vis2', vis2, { "actions": false }).then(function (result) {}).catch(console.error);
     </script>
   </body>
 </html>
