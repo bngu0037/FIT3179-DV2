@@ -1,9 +1,32 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "description": "ABS 2021 Australian housing tenure waffle chart. Each square represents 1% of dwellings with a known tenure classification.",
+  "padding": 0,
+
+  "title": {
+    "text": "Housing Status of Private Dwellings",
+    "subtitle": "Share of occupied private dwellings by tenure, Australia, 2021",
+
+    "anchor": "start",
+    "align": "left",
+
+    "font": "Roboto",
+    "fontSize": 20,
+    "fontWeight": 700,
+    "color": "#03045e",
+
+    "subtitleFont": "Roboto",
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": 400,
+    "subtitleColor": "#4f6f7f",
+
+    "offset": 10
+  },
+
   "width": "container",
   "height": 360,
   "background": null,
+
   "data": {
     "sequence": {
       "start": 0,
@@ -11,6 +34,7 @@
       "as": "tile"
     }
   },
+
   "transform": [
     {
       "calculate": "datum.tile % 10",
@@ -25,23 +49,27 @@
       "as": "tenure"
     }
   ],
+
   "mark": {
     "type": "rect",
     "cornerRadius": 3,
-    "stroke": "#F7F2EC",
+    "stroke": "#f5fcff",
     "strokeWidth": 2
   },
+
   "encoding": {
     "x": {
       "field": "col",
       "type": "ordinal",
       "axis": null
     },
+
     "y": {
       "field": "row",
       "type": "ordinal",
       "axis": null
     },
+
     "color": {
       "field": "tenure",
       "type": "nominal",
@@ -53,18 +81,31 @@
           "Other"
         ],
         "range": [
-          "#684055",
-          "#A86654",
-          "#D8B18A",
-          "#68757E"
+          "#4E79A7",
+          "#F28E2B",
+          "#76B7B2",
+          "#B07AA1"
         ]
       },
+
       "legend": {
         "title": null,
         "orient": "bottom",
-        "columns": 2
+        "columns": 2,
+
+        "labelFont": "Roboto",
+        "labelFontSize": 12,
+        "labelFontWeight": 400,
+        "labelColor": "#03045e",
+
+        "symbolType": "square",
+        "symbolSize": 120,
+
+        "columnPadding": 18,
+        "rowPadding": 6
       }
     },
+
     "tooltip": [
       {
         "field": "tenure",
@@ -73,10 +114,26 @@
       }
     ]
   },
+
   "config": {
     "view": {
       "stroke": null
     },
-    "font": "Arial"
+
+    "font": "Roboto",
+
+    "axis": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto",
+      "labelColor": "#03045e",
+      "titleColor": "#03045e"
+    },
+
+    "legend": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto",
+      "labelColor": "#03045e",
+      "titleColor": "#03045e"
+    }
   }
 }

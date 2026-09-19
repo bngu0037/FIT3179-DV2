@@ -12,7 +12,7 @@
 
   --page-width: 1180px;
   --column-gap: 24px;
-  --section-gap: 48px;
+  --section-gap: 24px;
 }
 
 *,
@@ -52,7 +52,7 @@ body {
 }
 
 .hero {
-  padding: 48px 0 32px;
+  padding: 48px 0 16px;
 }
 
 .hero h1 {
@@ -175,7 +175,7 @@ body {
   }
 
   .hero {
-    padding: 40px 0 28px;
+    padding: 40px 0 16px;
   }
 
   .story-section {
