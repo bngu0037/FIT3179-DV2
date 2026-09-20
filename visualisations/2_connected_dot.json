@@ -1,0 +1,370 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Connected dot plot comparing home ownership rates for the youngest and oldest observable birth cohorts within each age group, Australia.",
+  "padding": 0,
+
+  "title": {
+    "text": "Younger Cohorts Are Less Likely to Own at the Same Age",
+    "subtitle": "Home ownership rate by age group, comparing the youngest and oldest observable birth cohorts.",
+    "anchor": "start",
+    "align": "left",
+    "font": "Roboto",
+    "fontSize": 20,
+    "fontWeight": 700,
+    "color": "#03045e",
+    "subtitleFont": "Roboto",
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": 400,
+    "subtitleColor": "#4f6f7f",
+    "offset": 10
+  },
+
+  "width": "container",
+  "height": 360,
+  "background": null,
+
+  "data": {
+    "url": "data/aihw_figure2_home_ownership_australia.csv"
+  },
+
+  "transform": [
+    {
+      "calculate": "toNumber(split(datum.birth_cohort, '–')[0])",
+      "as": "cohort_start"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "count",
+          "field": "birth_cohort",
+          "as": "n_cohorts"
+        }
+      ],
+      "groupby": ["age_group"]
+    },
+    {
+      "filter": "datum.n_cohorts > 1"
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank_oldest"
+        }
+      ],
+      "sort": [
+        {
+          "field": "cohort_start",
+          "order": "ascending"
+        }
+      ],
+      "groupby": ["age_group"]
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank_youngest"
+        }
+      ],
+      "sort": [
+        {
+          "field": "cohort_start",
+          "order": "descending"
+        }
+      ],
+      "groupby": ["age_group"]
+    },
+    {
+      "filter": "datum.rank_oldest == 1 || datum.rank_youngest == 1"
+    },
+    {
+      "calculate": "datum.rank_oldest == 1 ? 'Oldest generation' : 'Latest generation'",
+      "as": "cohort_type"
+    },
+    {
+      "calculate": "datum.rank_oldest == 1 ? 1 : 2",
+      "as": "cohort_type_order"
+    },
+    {
+      "calculate": "format(datum.home_ownership_rate_pct, '.1f') + '%'",
+      "as": "share_label"
+    }
+  ],
+
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "stroke": "#9bb9c9",
+        "strokeWidth": 2,
+        "opacity": 0.9
+      },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "ordinal",
+          "sort": [
+            "25–29",
+            "30–34",
+            "35–39",
+            "40–44",
+            "45–49",
+            "50–54",
+            "55–59",
+            "60–64",
+            "65–69"
+          ],
+          "axis": {
+            "title": "Age group",
+            "titleFont": "Roboto",
+            "titleFontSize": 12,
+            "titleFontWeight": 500,
+            "titleColor": "#03045e",
+            "titlePadding": 10,
+            "labelFont": "Roboto",
+            "labelFontSize": 12,
+            "labelColor": "#03045e",
+            "labelPadding": 8,
+            "ticks": false,
+            "domain": false
+          }
+        },
+        "x": {
+          "aggregate": "min",
+          "field": "home_ownership_rate_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100]
+          },
+          "axis": {
+            "title": "Home ownership rate (%)",
+            "titleFont": "Roboto",
+            "titleFontSize": 12,
+            "titleFontWeight": 500,
+            "titleColor": "#03045e",
+            "labelFont": "Roboto",
+            "labelFontSize": 11,
+            "labelColor": "#4f6f7f",
+            "tickColor": "#b8cbd5",
+            "domainColor": "#b8cbd5",
+            "grid": true,
+            "gridColor": "#d9eaf1",
+            "gridOpacity": 0.8,
+            "format": ".0f"
+          }
+        },
+        "x2": {
+          "aggregate": "max",
+          "field": "home_ownership_rate_pct"
+        }
+      }
+    },
+
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 110,
+        "stroke": "#f5fcff",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "ordinal",
+          "sort": [
+            "25–29",
+            "30–34",
+            "35–39",
+            "40–44",
+            "45–49",
+            "50–54",
+            "55–59",
+            "60–64",
+            "65–69"
+          ],
+          "axis": {
+            "title": "Age group",
+            "titleFont": "Roboto",
+            "titleFontSize": 12,
+            "titleFontWeight": 500,
+            "titleColor": "#03045e",
+            "titlePadding": 10,
+            "labelFont": "Roboto",
+            "labelFontSize": 12,
+            "labelColor": "#03045e",
+            "labelPadding": 8,
+            "ticks": false,
+            "domain": false
+          }
+        },
+        "x": {
+          "field": "home_ownership_rate_pct",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "cohort_type",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Latest generation",
+              "Oldest generation"
+              
+            ],
+            "range": [
+              "#F28E2B",
+              "#4E79A7"
+              
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 2,
+            "labelFont": "Roboto",
+            "labelFontSize": 12,
+            "labelFontWeight": 400,
+            "labelColor": "#03045e",
+            "symbolType": "circle",
+            "symbolSize": 120,
+            "columnPadding": 18,
+            "rowPadding": 6
+          }
+        },
+        "order": {
+          "field": "cohort_type_order",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "age_group",
+            "type": "nominal",
+            "title": "Age group"
+          },
+          {
+            "field": "birth_cohort",
+            "type": "nominal",
+            "title": "Birth cohort"
+          },
+          {
+            "field": "cohort_type",
+            "type": "nominal",
+            "title": "Comparison group"
+          },
+          {
+            "field": "share_label",
+            "type": "nominal",
+            "title": "Home ownership rate"
+          }
+        ]
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.cohort_type == 'Oldest generation'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": 40,
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 500,
+        "color": "#03045e"
+      },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "ordinal",
+          "sort": [
+            "25–29",
+            "30–34",
+            "35–39",
+            "40–44",
+            "45–49",
+            "50–54",
+            "55–59",
+            "60–64",
+            "65–69"
+          ]
+        },
+        "x": {
+          "field": "home_ownership_rate_pct",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "share_label",
+          "type": "nominal"
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.cohort_type == 'Latest generation'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": -40,
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 500,
+        "color": "#03045e"
+      },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "ordinal",
+          "sort": [
+            "25–29",
+            "30–34",
+            "35–39",
+            "40–44",
+            "45–49",
+            "50–54",
+            "55–59",
+            "60–64",
+            "65–69"
+          ]
+        },
+        "x": {
+          "field": "home_ownership_rate_pct",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "share_label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Roboto",
+    "axis": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto",
+      "labelColor": "#03045e",
+      "titleColor": "#03045e"
+    },
+    "legend": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto",
+      "labelColor": "#03045e",
+      "titleColor": "#03045e"
+    }
+  }
+}

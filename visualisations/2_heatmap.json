@@ -1,0 +1,310 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Heatmap showing Australian home ownership rates by age group and Census year.",
+  "padding": 0,
+
+  "title": {
+    "text": "Home Ownership Has Fallen for Younger Australians",
+    "subtitle": "Home ownership rate by age group across Census years.",
+    "anchor": "start",
+    "align": "left",
+    "font": "Roboto",
+    "fontSize": 20,
+    "fontWeight": 700,
+    "color": "#03045e",
+    "subtitleFont": "Roboto",
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": 400,
+    "subtitleColor": "#4f6f7f",
+    "offset": 10
+  },
+
+  "width": "container",
+  "height": 360,
+  "background": null,
+
+  "data": {
+    "url": "data/aihw_figure2_home_ownership_by_census_year.csv"
+  },
+
+  "transform": [
+    {
+      "calculate": "format(datum.home_ownership_rate_pct, '.1f') + '%'",
+      "as": "rate_label"
+    }
+  ],
+
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 2,
+        "stroke": "#f5fcff",
+        "strokeWidth": 1.5
+      },
+
+      "encoding": {
+        "x": {
+          "field": "census_year",
+          "type": "ordinal",
+          "sort": [
+            1976,
+            1981,
+            1986,
+            1991,
+            1996,
+            2001,
+            2006,
+            2011,
+            2016,
+            2021
+          ],
+          "axis": {
+            "title": "Census year",
+            "titleFont": "Roboto",
+            "titleFontSize": 12,
+            "titleFontWeight": 500,
+            "titleColor": "#03045e",
+            "titlePadding": 12,
+
+            "labelFont": "Roboto",
+            "labelFontSize": 11,
+            "labelColor": "#03045e",
+            "labelAngle": 0,
+            "labelPadding": 6,
+
+            "ticks": false,
+            "domain": false
+          }
+        },
+
+        "y": {
+          "field": "age_group",
+          "type": "ordinal",
+          "sort": [
+            "25–29",
+            "30–34",
+            "35–39",
+            "40–44",
+            "45–49",
+            "50–54",
+            "55–59",
+            "60–64",
+            "65–69",
+            "70–74"
+          ],
+          "axis": {
+            "title": "Age group",
+            "titleFont": "Roboto",
+            "titleFontSize": 12,
+            "titleFontWeight": 500,
+            "titleColor": "#03045e",
+            "titlePadding": 12,
+
+            "labelFont": "Roboto",
+            "labelFontSize": 12,
+            "labelFontWeight": 400,
+            "labelColor": "#03045e",
+            "labelPadding": 8,
+
+            "ticks": false,
+            "domain": false
+          }
+        },
+
+        "color": {
+          "field": "home_ownership_rate_pct",
+          "type": "quantitative",
+          "title": "Home ownership rate",
+          "scale": {
+            "domain": [30, 85],
+            "range": [
+              "#e6f4fa",
+              "#90cdf4",
+              "#0077b6",
+              "#03045e"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 220,
+            "gradientThickness": 12,
+
+            "titleFont": "Roboto",
+            "titleFontSize": 12,
+            "titleFontWeight": 500,
+            "titleColor": "#03045e",
+
+            "labelFont": "Roboto",
+            "labelFontSize": 11,
+            "labelColor": "#03045e",
+
+            "format": ".0f",
+            "labelExpr": "datum.label + '%'"
+          }
+        },
+
+        "tooltip": [
+          {
+            "field": "census_year",
+            "type": "ordinal",
+            "title": "Census year"
+          },
+          {
+            "field": "age_group",
+            "type": "nominal",
+            "title": "Age group"
+          },
+          {
+            "field": "birth_cohort",
+            "type": "nominal",
+            "title": "Birth cohort"
+          },
+          {
+            "field": "rate_label",
+            "type": "nominal",
+            "title": "Home ownership rate"
+          }
+        ]
+      }
+    },
+
+    {
+      "mark": {
+        "type": "text",
+        "font": "Roboto",
+        "fontSize": 10,
+        "fontWeight": 500
+      },
+
+      "encoding": {
+        "x": {
+          "field": "census_year",
+          "type": "ordinal",
+          "sort": [
+            1976,
+            1981,
+            1986,
+            1991,
+            1996,
+            2001,
+            2006,
+            2011,
+            2016,
+            2021
+          ],
+          "axis": {
+            "title": "Census year",
+            "titleFont": "Roboto",
+            "titleFontSize": 12,
+            "titleFontWeight": 500,
+            "titleColor": "#03045e",
+            "titlePadding": 12,
+
+            "labelFont": "Roboto",
+            "labelFontSize": 11,
+            "labelColor": "#03045e",
+            "labelAngle": 0,
+            "labelPadding": 6,
+
+            "ticks": false,
+            "domain": false
+          }
+        },
+
+        "y": {
+          "field": "age_group",
+          "type": "ordinal",
+          "sort": [
+            "25–29",
+            "30–34",
+            "35–39",
+            "40–44",
+            "45–49",
+            "50–54",
+            "55–59",
+            "60–64",
+            "65–69",
+            "70–74"
+          ],
+          "axis": {
+            "title": "Age group",
+            "titleFont": "Roboto",
+            "titleFontSize": 12,
+            "titleFontWeight": 500,
+            "titleColor": "#03045e",
+            "titlePadding": 12,
+
+            "labelFont": "Roboto",
+            "labelFontSize": 12,
+            "labelFontWeight": 400,
+            "labelColor": "#03045e",
+            "labelPadding": 8,
+
+            "ticks": false,
+            "domain": false
+          }
+        },
+
+        "text": {
+          "field": "rate_label",
+          "type": "nominal"
+        },
+
+        "color": {
+          "condition": {
+            "test": "datum.home_ownership_rate_pct >= 64",
+            "value": "#ffffff"
+          },
+          "value": "#03045e"
+        },
+
+        "tooltip": [
+          {
+            "field": "census_year",
+            "type": "ordinal",
+            "title": "Census year"
+          },
+          {
+            "field": "age_group",
+            "type": "nominal",
+            "title": "Age group"
+          },
+          {
+            "field": "birth_cohort",
+            "type": "nominal",
+            "title": "Birth cohort"
+          },
+          {
+            "field": "rate_label",
+            "type": "nominal",
+            "title": "Home ownership rate"
+          }
+        ]
+      }
+    }
+  ],
+
+  "config": {
+    "view": {
+      "stroke": null
+    },
+
+    "font": "Roboto",
+
+    "axis": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto",
+      "labelColor": "#03045e",
+      "titleColor": "#03045e"
+    },
+
+    "legend": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto",
+      "labelColor": "#03045e",
+      "titleColor": "#03045e"
+    }
+  }
+}

@@ -17,3 +17,7 @@ Investigate how Australians live by comparing home ownership, renting and other 
 2. Australian Bureau of Statistics (2020). Housing Occupancy and Costs, Australia, 2019–20 – Table 1.3: Housing tenure. [ABS Housing Occupancy and Costs 2019–20](https://www.abs.gov.au/statistics/people/housing/housing-occupancy-and-costs/2019-20?#data-downloads)
 
 3. Australian Bureau of Statistics (2020). Housing Occupancy and Costs, Australia, 2019–20 – Table 6.1: Housing tenure by age of household reference person. [ABS Housing Occupancy and Costs 2019–20](https://www.abs.gov.au/statistics/people/housing/housing-occupancy-and-costs/2019-20?#data-downloads)
+
+4. Australian Institute of Health and Welfare (2025). Home ownership and housing tenure - Figure 2: Home ownership rate by birth cohort and age group, 1947–1951 to 1992–1996. [AIHW analysis of ABS data](https://www.aihw.gov.au/reports/australias-welfare/home-ownership-and-housing-tenure)
+5. Australian Institute of Health and Welfare (2025). Home ownership and housing tenure - Figure 2: Home ownership rate by birth cohort and age group, 1947–1951 to 1992–1996. [AIHW analysis of ABS data](https://www.aihw.gov.au/reports/australias-welfare/home-ownership-and-housing-tenure)
+

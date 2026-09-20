@@ -53,7 +53,7 @@
             "order": "ascending"
           },
           "axis": {
-            "title": null,
+            "title": "Age group",
             "labelFont": "Roboto",
             "labelFontSize": 12,
             "labelColor": "#03045e",
@@ -71,7 +71,7 @@
             "nice": false
           },
           "axis": {
-            "title": null,
+            "title": "Share (%)",
             "values": [-100, -75, -50, -25, 0, 25, 50, 75, 100],
             "labelExpr": "datum.value == 0 ? '0%' : abs(datum.value) + '%'",
             "labelFont": "Roboto",
