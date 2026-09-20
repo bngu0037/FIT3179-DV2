@@ -7,3 +7,13 @@ FIT3179 Data Visualisation DV2
 
 ### Topic: 13. Housing Tenure
 Investigate how Australians live by comparing home ownership, renting and other housing arrangements across different age groups, household types or regions. Explore changes in housing tenure over time.
+
+
+### Data
+
+(Order of charts)
+1. Australian Bureau of Statistics (2021). 2021 Census of Population and Housing – General Community Profile, Table G37: Tenure and landlord type by dwelling structure. [ABS 2021 Census DataPacks](https://www.abs.gov.au/census/find-census-data/datapacks)
+
+2. Australian Bureau of Statistics (2020). Housing Occupancy and Costs, Australia, 2019–20 – Table 1.3: Housing tenure. [ABS Housing Occupancy and Costs 2019–20](https://www.abs.gov.au/statistics/people/housing/housing-occupancy-and-costs/2019-20?#data-downloads)
+
+3. Australian Bureau of Statistics (2020). Housing Occupancy and Costs, Australia, 2019–20 – Table 6.1: Housing tenure by age of household reference person. [ABS Housing Occupancy and Costs 2019–20](https://www.abs.gov.au/statistics/people/housing/housing-occupancy-and-costs/2019-20?#data-downloads)

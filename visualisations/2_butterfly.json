@@ -1,0 +1,241 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Butterfly chart showing owner and renter households by age of household reference person, Australia, 2019-20.",
+  "padding": 0,
+
+  "title": {
+    "text": "Ownership Rises Sharply With Age",
+    "subtitle": "Share of households by tenure and age, 2019-20",
+    "anchor": "start",
+    "align": "left",
+    "font": "Roboto",
+    "fontSize": 20,
+    "fontWeight": 700,
+    "color": "#03045e",
+    "subtitleFont": "Roboto",
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": 400,
+    "subtitleColor": "#4f6f7f",
+    "offset": 10
+  },
+
+  "width": "container",
+  "height": 360,
+  "background": null,
+
+  "data": {
+    "url": "data/tenure_by_age_butterfly.csv"
+  },
+
+  "transform": [
+    {
+      "calculate": "format(datum.pct, '.1f') + '%'",
+      "as": "pct_label"
+    }
+  ],
+
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 2,
+        "height": {
+          "band": 0.72
+        }
+      },
+
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "ordinal",
+          "sort": {
+            "field": "age_order",
+            "order": "ascending"
+          },
+          "axis": {
+            "title": null,
+            "labelFont": "Roboto",
+            "labelFontSize": 12,
+            "labelColor": "#03045e",
+            "labelPadding": 8,
+            "ticks": false,
+            "domain": false
+          }
+        },
+
+        "x": {
+          "field": "plot_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [-100, 100],
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "values": [-100, -75, -50, -25, 0, 25, 50, 75, 100],
+            "labelExpr": "datum.value == 0 ? '0%' : abs(datum.value) + '%'",
+            "labelFont": "Roboto",
+            "labelFontSize": 11,
+            "labelColor": "#4f6f7f",
+            "tickColor": "#b8cbd5",
+            "domainColor": "#b8cbd5",
+            "grid": true,
+            "gridColor": "#e2edf2",
+            "gridOpacity": 1
+          }
+        },
+
+        "color": {
+          "field": "tenure",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Rented",
+              "Owner"
+            ],
+            "range": [
+              "#76B7B2",
+              "#4E79A7"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "bottom",
+            "columns": 2,
+            "labelFont": "Roboto",
+            "labelFontSize": 12,
+            "labelFontWeight": 400,
+            "labelColor": "#03045e",
+            "symbolType": "square",
+            "symbolSize": 120,
+            "columnPadding": 18,
+            "rowPadding": 6
+          }
+        },
+
+        "tooltip": [
+          {
+            "field": "age_group",
+            "type": "nominal",
+            "title": "Age group"
+          },
+          {
+            "field": "tenure",
+            "type": "nominal",
+            "title": "Tenure"
+          },
+          {
+            "field": "pct_label",
+            "type": "nominal",
+            "title": "Share"
+          }
+        ]
+      }
+    },
+
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#b8cbd5",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {
+          "datum": 0
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.tenure == 'Rented'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -4,
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 500,
+        "color": "#03045e"
+      },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "ordinal",
+          "sort": {
+            "field": "age_order",
+            "order": "ascending"
+          }
+        },
+        "x": {
+          "field": "plot_pct",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "pct_label"
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.tenure == 'Owner'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 4,
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 500,
+        "color": "#03045e"
+      },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "ordinal",
+          "sort": {
+            "field": "age_order",
+            "order": "ascending"
+          }
+        },
+        "x": {
+          "field": "plot_pct",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "pct_label"
+        }
+      }
+    }
+  ],
+
+  "config": {
+    "view": {
+      "stroke": null
+    },
+
+    "font": "Roboto",
+
+    "axis": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto",
+      "labelColor": "#03045e",
+      "titleColor": "#03045e"
+    },
+
+    "legend": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto",
+      "labelColor": "#03045e",
+      "titleColor": "#03045e"
+    }
+  }
+}

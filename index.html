@@ -50,7 +50,7 @@
         </div>
 
         <div class="viz-grid">
-          <div class="viz-slot viz-slot--full"></div>
+          <div class="viz-slot viz-slot--full" id="vis3"></div>
           <div class="viz-slot"></div>
           <div class="viz-slot"></div>
         </div>
@@ -132,9 +132,12 @@
     <script type="text/javascript">
       var vis1 = "./visualisations/1_waffle.json";
       var vis2 = "./visualisations/1_stacked_area.json"
+      var vis3 = "./visualisations/2_butterfly.json"
 
       vegaEmbed('#vis1', vis1, { "actions": false }).then(function (result) {}).catch(console.error);
       vegaEmbed('#vis2', vis2, { "actions": false }).then(function (result) {}).catch(console.error);
+      vegaEmbed('#vis3', vis3, { "actions": true }).then(function (result) {}).catch(console.error);
+
     </script>
   </body>
 </html>

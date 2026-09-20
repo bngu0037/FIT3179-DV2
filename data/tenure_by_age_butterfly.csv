@@ -1,0 +1,15 @@
+age_group,age_order,tenure,pct,plot_pct
+15 to 24,1,Owner,10.4,10.4
+15 to 24,1,Rented,83.5,-83.5
+25 to 34,2,Owner,40.7,40.7
+25 to 34,2,Rented,55.7,-55.7
+35 to 44,3,Owner,56.7,56.7
+35 to 44,3,Rented,41.5,-41.5
+45 to 54,4,Owner,72.0,72.0
+45 to 54,4,Rented,26.3,-26.3
+55 to 64,5,Owner,79.1,79.1
+55 to 64,5,Rented,19.1,-19.1
+65 to 74,6,Owner,81.7,81.7
+65 to 74,6,Rented,16.0,-16.0
+75 and over,7,Owner,83.0,83.0
+75 and over,7,Rented,12.9,-12.9
