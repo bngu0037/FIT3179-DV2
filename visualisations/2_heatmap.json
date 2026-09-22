@@ -29,8 +29,34 @@
 
   "transform": [
     {
-      "calculate": "format(datum.home_ownership_rate_pct, '.1f') + '%'",
+      "impute": "home_ownership_rate_pct",
+      "key": "age_group",
+      "groupby": ["census_year"],
+      "keyvals": [
+        "25–29",
+        "30–34",
+        "35–39",
+        "40–44",
+        "45–49",
+        "50–54",
+        "55–59",
+        "60–64",
+        "65–69",
+        "70–74"
+      ],
+      "value": 0.1
+    },
+    {
+      "calculate": "datum.home_ownership_rate_pct == 0.1 ? 'Not observed' : format(datum.home_ownership_rate_pct, '.1f') + '%'",
       "as": "rate_label"
+    },
+    {
+      "calculate": "datum.home_ownership_rate_pct == 0.1 ? '' : format(datum.home_ownership_rate_pct, '.1f') + '%'",
+      "as": "cell_label"
+    },
+    {
+      "calculate": "datum.home_ownership_rate_pct == 0.1 ? 'Not observed' : datum.birth_cohort",
+      "as": "birth_cohort_label"
     }
   ],
 
@@ -113,6 +139,10 @@
         },
 
         "color": {
+          "condition": {
+            "test": "datum.home_ownership_rate_pct == 0.1",
+            "value": "#e9eef1"
+          },
           "field": "home_ownership_rate_pct",
           "type": "quantitative",
           "title": "Home ownership rate",
@@ -157,7 +187,7 @@
             "title": "Age group"
           },
           {
-            "field": "birth_cohort",
+            "field": "birth_cohort_label",
             "type": "nominal",
             "title": "Birth cohort"
           },
@@ -248,15 +278,21 @@
         },
 
         "text": {
-          "field": "rate_label",
+          "field": "cell_label",
           "type": "nominal"
         },
 
         "color": {
-          "condition": {
-            "test": "datum.home_ownership_rate_pct >= 64",
-            "value": "#ffffff"
-          },
+          "condition": [
+            {
+              "test": "datum.home_ownership_rate_pct == 0.1",
+              "value": "#e9eef1"
+            },
+            {
+              "test": "datum.home_ownership_rate_pct >= 64",
+              "value": "#ffffff"
+            }
+          ],
           "value": "#03045e"
         },
 
@@ -272,7 +308,7 @@
             "title": "Age group"
           },
           {
-            "field": "birth_cohort",
+            "field": "birth_cohort_label",
             "type": "nominal",
             "title": "Birth cohort"
           },
