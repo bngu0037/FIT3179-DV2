@@ -66,7 +66,11 @@
         </div>
 
         <div class="viz-grid">
-          <div class="viz-slot viz-slot--full"></div>
+          <div class="viz-slot viz-slot--full" id="vis6"></div>
+          <p class="chart-note">
+          Note: Observation years vary by country. “Recent year” refers to the latest
+          pre-COVID year, or 2022/23 where available.
+        </p>
         </div>
       </section>
 
@@ -135,12 +139,14 @@
       var vis3 = "./visualisations/2_butterfly.json"
       var vis4 = "./visualisations/2_connected_dot.json"
       var vis5 = "./visualisations/2_heatmap.json"
+      var vis6 = "./visualisations/3_connected_dot.json"
 
       vegaEmbed('#vis1', vis1, { "actions": false }).then(function (result) {}).catch(console.error);
       vegaEmbed('#vis2', vis2, { "actions": false }).then(function (result) {}).catch(console.error);
       vegaEmbed('#vis3', vis3, { "actions": false }).then(function (result) {}).catch(console.error);
       vegaEmbed('#vis4', vis4, { "actions": false }).then(function (result) {}).catch(console.error);
       vegaEmbed('#vis5', vis5, { "actions": false }).then(function (result) {}).catch(console.error);
+      vegaEmbed('#vis6', vis6, { "actions": false }).then(function (result) {}).catch(console.error);
 
     </script>
   </body>

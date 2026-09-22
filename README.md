@@ -21,3 +21,5 @@ Investigate how Australians live by comparing home ownership, renting and other 
 4. Australian Institute of Health and Welfare (2025). Home ownership and housing tenure - Figure 2: Home ownership rate by birth cohort and age group, 1947–1951 to 1992–1996. [AIHW analysis of ABS data](https://www.aihw.gov.au/reports/australias-welfare/home-ownership-and-housing-tenure)
 5. Australian Institute of Health and Welfare (2025). Home ownership and housing tenure - Figure 2: Home ownership rate by birth cohort and age group, 1947–1951 to 1992–1996. [AIHW analysis of ABS data](https://www.aihw.gov.au/reports/australias-welfare/home-ownership-and-housing-tenure)
 
+6. OECD (2025), OECD Employment Outlook 2025: Can We Get Through the Demographic Crunch?, OECD Publishing, Paris, [Figure 2.18](https://doi.org/10.1787/194a947b-en). Data underlying Figure 2.18: OECD calculations based on the LIS Database, [StatLink](https://stat.link/izdorb).
+

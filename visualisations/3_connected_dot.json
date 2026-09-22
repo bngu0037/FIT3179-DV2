@@ -1,0 +1,404 @@
+
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Connected dot plot comparing home ownership rates in the mid-1990s and recent year across selected countries.",
+  "padding": 0,
+
+  "title": {
+    "text": "Australia Is Not Alone in the Generational Ownership Decline",
+    "subtitle": "Share of people in their 30s who own their main residence, mid-1990s vs recent year.",
+    "anchor": "start",
+    "align": "left",
+    "font": "Roboto",
+    "fontSize": 20,
+    "fontWeight": 700,
+    "color": "#03045e",
+    "subtitleFont": "Roboto",
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": 400,
+    "subtitleColor": "#4f6f7f",
+    "offset": 10
+  },
+
+  "width": "container",
+  "height": 320,
+  "background": null,
+
+  "data": {
+    "url": "data/oecd_homeownership_connected_dot.csv"
+  },
+
+  "transform": [
+    {
+      "calculate": "format(datum.home_ownership_rate_pct, '.1f') + '%'",
+      "as": "rate_label"
+    },
+    {
+      "calculate": "datum.change_pp > 0 ? '+' + format(datum.change_pp, '.1f') + '%' : format(datum.change_pp, '.1f') + '%'",
+      "as": "change_label"
+    },
+    {
+      "calculate": "datum.period == 'Mid-1990s' ? 1 : 2",
+      "as": "period_order"
+    }
+  ],
+
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "stroke": "#9bb9c9",
+        "strokeWidth": 2,
+        "opacity": 0.9
+      },
+
+      "encoding": {
+        "y": {
+          "field": "country",
+          "type": "ordinal",
+          "sort": {
+            "field": "change_pp",
+            "order": "ascending"
+          },
+          "axis": {
+            "title": "Country",
+            "titleFont": "Roboto",
+            "titleFontSize": 12,
+            "titleFontWeight": 500,
+            "titleColor": "#03045e",
+            "titlePadding": 12,
+
+            "labelFont": "Roboto",
+            "labelFontSize": 12,
+            "labelFontWeight": 400,
+            "labelColor": "#03045e",
+            "labelPadding": 8,
+
+            "ticks": false,
+            "domain": false
+          }
+        },
+
+        "x": {
+          "aggregate": "min",
+          "field": "home_ownership_rate_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [50, 80]
+          },
+          "axis": {
+            "title": "Home ownership rate (%)",
+            "titleFont": "Roboto",
+            "titleFontSize": 12,
+            "titleFontWeight": 500,
+            "titleColor": "#03045e",
+
+            "labelFont": "Roboto",
+            "labelFontSize": 11,
+            "labelColor": "#4f6f7f",
+
+            "tickColor": "#b8cbd5",
+            "domainColor": "#b8cbd5",
+
+            "grid": true,
+            "gridColor": "#d9eaf1",
+            "gridOpacity": 0.8,
+
+            "format": ".0f"
+          }
+        },
+
+        "x2": {
+          "aggregate": "max",
+          "field": "home_ownership_rate_pct"
+        }
+      }
+    },
+
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 120,
+        "stroke": "#f5fcff",
+        "strokeWidth": 1.5
+      },
+
+      "encoding": {
+        "y": {
+          "field": "country",
+          "type": "ordinal",
+          "sort": {
+            "field": "change_pp",
+            "order": "ascending"
+          },
+          "axis": {
+            "title": null,
+
+            "labelFont": "Roboto",
+            "labelFontSize": 12,
+            "labelFontWeight": 500,
+            "labelColor": "#03045e",
+            "labelPadding": 10,
+
+            "labels": true,
+            "ticks": false,
+            "domain": false
+          }
+        },
+
+        "x": {
+          "field": "home_ownership_rate_pct",
+          "type": "quantitative"
+        },
+
+        "color": {
+          "field": "period",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Recent year",
+              "Mid-1990s"
+            ],
+            "range": [
+              "#F28E2B",
+              "#4E79A7"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 2,
+
+            "labelFont": "Roboto",
+            "labelFontSize": 12,
+            "labelFontWeight": 400,
+            "labelColor": "#03045e",
+
+            "symbolType": "circle",
+            "symbolSize": 120,
+
+            "columnPadding": 18,
+            "rowPadding": 6
+          }
+        },
+
+        "order": {
+          "field": "period_order",
+          "type": "quantitative"
+        },
+
+        "tooltip": [
+          {
+            "field": "country",
+            "type": "nominal",
+            "title": "Country"
+          },
+          {
+            "field": "period",
+            "type": "nominal",
+            "title": "Period"
+          },
+          {
+            "field": "rate_label",
+            "type": "nominal",
+            "title": "Home ownership rate"
+          },
+          {
+            "field": "change_label",
+            "type": "nominal",
+            "title": "Change"
+          }
+        ]
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.period == 'Recent year' && datum.change_pp < 0"
+        }
+      ],
+
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -8,
+
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 500,
+        "color": "#03045e"
+      },
+
+      "encoding": {
+        "y": {
+          "field": "country",
+          "type": "ordinal",
+          "sort": {
+            "field": "change_pp",
+            "order": "ascending"
+          }
+        },
+
+        "x": {
+          "field": "home_ownership_rate_pct",
+          "type": "quantitative"
+        },
+
+        "text": {
+          "field": "rate_label",
+          "type": "nominal"
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.period == 'Recent year' && datum.change_pp >= 0"
+        }
+      ],
+
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 8,
+
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 500,
+        "color": "#03045e"
+      },
+
+      "encoding": {
+        "y": {
+          "field": "country",
+          "type": "ordinal",
+          "sort": {
+            "field": "change_pp",
+            "order": "ascending"
+          }
+        },
+
+        "x": {
+          "field": "home_ownership_rate_pct",
+          "type": "quantitative"
+        },
+
+        "text": {
+          "field": "rate_label",
+          "type": "nominal"
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.period == 'Mid-1990s' && datum.change_pp < 0"
+        }
+      ],
+
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 8,
+
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 500,
+        "color": "#03045e"
+      },
+
+      "encoding": {
+        "y": {
+          "field": "country",
+          "type": "ordinal",
+          "sort": {
+            "field": "change_pp",
+            "order": "ascending"
+          }
+        },
+
+        "x": {
+          "field": "home_ownership_rate_pct",
+          "type": "quantitative"
+        },
+
+        "text": {
+          "field": "rate_label",
+          "type": "nominal"
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.period == 'Mid-1990s' && datum.change_pp >= 0"
+        }
+      ],
+
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -8,
+
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 500,
+        "color": "#03045e"
+      },
+
+      "encoding": {
+        "y": {
+          "field": "country",
+          "type": "ordinal",
+          "sort": {
+            "field": "change_pp",
+            "order": "ascending"
+          }
+        },
+
+        "x": {
+          "field": "home_ownership_rate_pct",
+          "type": "quantitative"
+        },
+
+        "text": {
+          "field": "rate_label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+
+  "config": {
+    "view": {
+      "stroke": null
+    },
+
+    "font": "Roboto",
+
+    "axis": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto",
+      "labelColor": "#03045e",
+      "titleColor": "#03045e"
+    },
+
+    "legend": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto",
+      "labelColor": "#03045e",
+      "titleColor": "#03045e"
+    }
+  }
+}

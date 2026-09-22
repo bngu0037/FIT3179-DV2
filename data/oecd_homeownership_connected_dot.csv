@@ -1,0 +1,11 @@
+country,iso3,period,cohort,home_ownership_rate_pct,change_pp
+United Kingdom,GBR,Mid-1990s,Older cohort,74.0,-18.0
+United Kingdom,GBR,Recent year,Newer cohort,56.0,-18.0
+Australia,AUS,Mid-1990s,Older cohort,73.0,-15.0
+Australia,AUS,Recent year,Newer cohort,58.0,-15.0
+United States,USA,Mid-1990s,Older cohort,64.0,-4.0
+United States,USA,Recent year,Newer cohort,60.0,-4.0
+Canada,CAN,Mid-1990s,Older cohort,67.0,1.0
+Canada,CAN,Recent year,Newer cohort,68.0,1.0
+Netherlands,NLD,Mid-1990s,Older cohort,62.0,9.0
+Netherlands,NLD,Recent year,Newer cohort,71.0,9.0

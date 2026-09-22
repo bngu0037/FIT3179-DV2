@@ -196,3 +196,12 @@ body {
     grid-column: auto;
   }
 }
+
+.chart-note {
+  margin-top: 0px;
+  margin-bottom: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #4f6f7f;
+}
