@@ -1,0 +1,29 @@
+household_type,tenure,count
+Couple with children,Owned outright,508486
+Couple with children,Mortgage,1638843
+Couple with children,Rented,630176
+Couple with children,Other,24373
+Couple with no children,Owned outright,1125384
+Couple with no children,Mortgage,695429
+Couple with no children,Rented,562463
+Couple with no children,Other,47744
+One parent family,Owned outright,216298
+One parent family,Mortgage,286093
+One parent family,Rented,451970
+One parent family,Other,11162
+Other family,Owned outright,30866
+Other family,Mortgage,21259
+Other family,Rented,49571
+Other family,Other,2534
+Multiple-family household,Owned outright,51720
+Multiple-family household,Mortgage,81812
+Multiple-family household,Rented,41974
+Multiple-family household,Other,1738
+Lone person,Owned outright,892648
+Lone person,Mortgage,461950
+Lone person,Rented,862355
+Lone person,Other,88617
+Group household,Owned outright,46920
+Group household,Mortgage,57052
+Group household,Rented,243871
+Group household,Other,5344

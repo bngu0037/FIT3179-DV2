@@ -1,0 +1,758 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "description": "Alluvial diagram showing Australian household composition and housing tenure, 2021.",
+
+  "width": 560,
+  "height": 415,
+
+  "padding": {
+    "top": 10,
+    "left": 5,
+    "right": 5,
+    "bottom": 5
+  },
+
+  "background": null,
+
+  "autosize": {
+    "type": "none",
+    "contains": "padding"
+  },
+
+  "signals": [
+    {
+      "name": "leftX",
+      "update": "width * 0.30"
+    },
+    {
+      "name": "rightX",
+      "update": "width * 0.72"
+    },
+    {
+      "name": "nodeWidth",
+      "value": 14
+    },
+    {
+      "name": "chartTop",
+      "value": 18
+    },
+    {
+      "name": "chartBottom",
+      "update": "height - 12"
+    },
+    {
+      "name": "totalCount",
+      "value": 9138652
+    },
+    {
+      "name": "sourceGap",
+      "value": 8
+    },
+    {
+      "name": "targetGap",
+      "value": 10
+    },
+    {
+      "name": "sourceUsableHeight",
+      "update": "(chartBottom - chartTop) - sourceGap * 6"
+    },
+    {
+      "name": "targetUsableHeight",
+      "update": "(chartBottom - chartTop) - targetGap * 3"
+    },
+
+    {
+      "name": "hoverHousehold",
+      "value": null,
+      "on": [
+        {
+          "events": "@householdNode:mouseover",
+          "update": "datum.household_type"
+        },
+        {
+          "events": "@householdNode:mouseout",
+          "update": "null"
+        },
+        {
+          "events": "@householdLabel:mouseover",
+          "update": "datum.household_type"
+        },
+        {
+          "events": "@householdLabel:mouseout",
+          "update": "null"
+        }
+      ]
+    },
+
+    {
+      "name": "hoverTenure",
+      "value": null,
+      "on": [
+        {
+          "events": "@tenureNode:mouseover",
+          "update": "datum.tenure"
+        },
+        {
+          "events": "@tenureNode:mouseout",
+          "update": "null"
+        },
+        {
+          "events": "@tenureLabel:mouseover",
+          "update": "datum.tenure"
+        },
+        {
+          "events": "@tenureLabel:mouseout",
+          "update": "null"
+        }
+      ]
+    }
+  ],
+
+  "data": [
+    {
+      "name": "links",
+      "url": "data/section4_alluvial_household_tenure.csv",
+
+      "format": {
+        "type": "csv",
+        "parse": {
+          "count": "number"
+        }
+      },
+
+      "transform": [
+        {
+          "type": "formula",
+          "as": "household_order",
+          "expr": "datum.household_type === 'Couple with children' ? 1 : datum.household_type === 'Couple with no children' ? 2 : datum.household_type === 'One parent family' ? 3 : datum.household_type === 'Lone person' ? 4 : datum.household_type === 'Group household' ? 5 : datum.household_type === 'Multiple-family household' ? 6 : 7"
+        },
+        {
+          "type": "formula",
+          "as": "tenure_order",
+          "expr": "datum.tenure === 'Owned outright' ? 1 : datum.tenure === 'Mortgage' ? 2 : datum.tenure === 'Rented' ? 3 : 4"
+        }
+      ]
+    },
+
+    {
+      "name": "household_nodes",
+      "source": "links",
+
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "household_type",
+            "household_order"
+          ],
+          "fields": [
+            "count"
+          ],
+          "ops": [
+            "sum"
+          ],
+          "as": [
+            "total"
+          ]
+        },
+        {
+          "type": "collect",
+          "sort": {
+            "field": "household_order",
+            "order": "ascending"
+          }
+        },
+        {
+          "type": "stack",
+          "field": "total",
+          "sort": {
+            "field": "household_order",
+            "order": "ascending"
+          },
+          "offset": "zero",
+          "as": [
+            "raw0",
+            "raw1"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "y0",
+          "expr": "chartTop + (datum.raw0 / totalCount) * sourceUsableHeight + (datum.household_order - 1) * sourceGap"
+        },
+        {
+          "type": "formula",
+          "as": "y1",
+          "expr": "chartTop + (datum.raw1 / totalCount) * sourceUsableHeight + (datum.household_order - 1) * sourceGap"
+        },
+        {
+          "type": "formula",
+          "as": "yc",
+          "expr": "(datum.y0 + datum.y1) / 2"
+        }
+      ]
+    },
+
+    {
+      "name": "tenure_nodes",
+      "source": "links",
+
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "tenure",
+            "tenure_order"
+          ],
+          "fields": [
+            "count"
+          ],
+          "ops": [
+            "sum"
+          ],
+          "as": [
+            "total"
+          ]
+        },
+        {
+          "type": "collect",
+          "sort": {
+            "field": "tenure_order",
+            "order": "ascending"
+          }
+        },
+        {
+          "type": "stack",
+          "field": "total",
+          "sort": {
+            "field": "tenure_order",
+            "order": "ascending"
+          },
+          "offset": "zero",
+          "as": [
+            "raw0",
+            "raw1"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "y0",
+          "expr": "chartTop + (datum.raw0 / totalCount) * targetUsableHeight + (datum.tenure_order - 1) * targetGap"
+        },
+        {
+          "type": "formula",
+          "as": "y1",
+          "expr": "chartTop + (datum.raw1 / totalCount) * targetUsableHeight + (datum.tenure_order - 1) * targetGap"
+        },
+        {
+          "type": "formula",
+          "as": "yc",
+          "expr": "(datum.y0 + datum.y1) / 2"
+        }
+      ]
+    },
+
+    {
+      "name": "flow_positions",
+      "source": "links",
+
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": [
+            "household_type"
+          ],
+          "field": "count",
+          "sort": {
+            "field": "tenure_order",
+            "order": "ascending"
+          },
+          "offset": "zero",
+          "as": [
+            "source0",
+            "source1"
+          ]
+        },
+        {
+          "type": "stack",
+          "groupby": [
+            "tenure"
+          ],
+          "field": "count",
+          "sort": {
+            "field": "household_order",
+            "order": "ascending"
+          },
+          "offset": "zero",
+          "as": [
+            "target0",
+            "target1"
+          ]
+        },
+        {
+          "type": "lookup",
+          "from": "household_nodes",
+          "key": "household_type",
+          "fields": [
+            "household_type"
+          ],
+          "values": [
+            "y0"
+          ],
+          "as": [
+            "household_y0"
+          ]
+        },
+        {
+          "type": "lookup",
+          "from": "tenure_nodes",
+          "key": "tenure",
+          "fields": [
+            "tenure"
+          ],
+          "values": [
+            "y0"
+          ],
+          "as": [
+            "tenure_y0"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "sourceY",
+          "expr": "datum.household_y0 + ((datum.source0 + datum.source1) / 2 / totalCount) * sourceUsableHeight"
+        },
+        {
+          "type": "formula",
+          "as": "targetY",
+          "expr": "datum.tenure_y0 + ((datum.target0 + datum.target1) / 2 / totalCount) * targetUsableHeight"
+        },
+        {
+          "type": "formula",
+          "as": "sourceWidth",
+          "expr": "max(1, datum.count / totalCount * sourceUsableHeight)"
+        },
+        {
+          "type": "formula",
+          "as": "targetWidth",
+          "expr": "max(1, datum.count / totalCount * targetUsableHeight)"
+        },
+        {
+          "type": "formula",
+          "as": "flowWidth",
+          "expr": "min(datum.sourceWidth, datum.targetWidth)"
+        },
+        {
+          "type": "linkpath",
+          "orient": "horizontal",
+          "shape": "diagonal",
+
+          "sourceX": {
+            "expr": "leftX + nodeWidth"
+          },
+          "sourceY": {
+            "field": "sourceY"
+          },
+          "targetX": {
+            "expr": "rightX"
+          },
+          "targetY": {
+            "field": "targetY"
+          }
+        }
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "householdColor",
+      "type": "ordinal",
+      "domain": [
+        "Couple with children",
+        "Couple with no children",
+        "One parent family",
+        "Other family",
+        "Multiple-family household",
+        "Lone person",
+        "Group household"
+      ],
+      "range": [
+        "#6B7280",
+        "#A67C52",
+        "#D4B04C",
+        "#8C7C8A",
+        "#C2B280",
+        "#525866",
+        "#B8A89A"
+      ]
+    },
+
+    {
+      "name": "tenureColor",
+      "type": "ordinal",
+
+      "domain": [
+        "Owned outright",
+        "Mortgage",
+        "Rented",
+        "Other"
+      ],
+
+      "range": [
+        "#4E79A7",
+        "#F28E2B",
+        "#76B7B2",
+        "#B07AA1"
+      ]
+    }
+  ],
+
+  "marks": [
+    {
+      "type": "text",
+
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "leftX"
+          },
+          "y": {
+            "value": 0
+          },
+
+          "text": {
+            "value": "Household type"
+          },
+
+          "align": {
+            "value": "right"
+          },
+
+          "font": {
+            "value": "Roboto"
+          },
+
+          "fontSize": {
+            "value": 12
+          },
+
+          "fontWeight": {
+            "value": 500
+          },
+
+          "fill": {
+            "value": "#03045e"
+          }
+        }
+      }
+    },
+
+    {
+      "type": "text",
+
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "rightX + nodeWidth"
+          },
+          "y": {
+            "value": 0
+          },
+
+          "text": {
+            "value": "Tenure"
+          },
+
+          "align": {
+            "value": "left"
+          },
+
+          "font": {
+            "value": "Roboto"
+          },
+
+          "fontSize": {
+            "value": 12
+          },
+
+          "fontWeight": {
+            "value": 600
+          },
+
+          "fill": {
+            "value": "#03045e"
+          }
+        }
+      }
+    },
+
+    {
+      "name": "flow",
+      "type": "path",
+
+      "from": {
+        "data": "flow_positions"
+      },
+
+      "encode": {
+        "enter": {
+          "path": {
+            "field": "path"
+          },
+
+          "stroke": {
+            "scale": "householdColor",
+            "field": "household_type"
+          },
+
+          "fill": {
+            "value": null
+          },
+
+          "tooltip": {
+            "signal": "{'Household type': datum.household_type, 'Tenure': datum.tenure, 'Dwellings': format(datum.count, ',')}"
+          }
+        },
+
+        "update": {
+          "strokeWidth": {
+            "signal": "(hoverHousehold === datum.household_type || hoverTenure === datum.tenure) ? datum.flowWidth * 1.08 : datum.flowWidth"
+          },
+
+          "strokeOpacity": {
+            "signal": "hoverHousehold === null && hoverTenure === null ? 0.34 : (hoverHousehold === datum.household_type || hoverTenure === datum.tenure) ? 0.82 : 0.045"
+          }
+        },
+
+        "hover": {
+          "strokeOpacity": {
+            "value": 0.9
+          }
+        }
+      }
+    },
+
+    {
+      "name": "householdNode",
+      "type": "rect",
+
+      "from": {
+        "data": "household_nodes"
+      },
+
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "leftX"
+          },
+
+          "x2": {
+            "signal": "leftX + nodeWidth"
+          },
+
+          "y": {
+            "field": "y0"
+          },
+
+          "y2": {
+            "field": "y1"
+          },
+
+          "fill": {
+            "scale": "householdColor",
+            "field": "household_type"
+          },
+
+          "cornerRadius": {
+            "value": 2
+          },
+
+          "cursor": {
+            "value": "pointer"
+          },
+
+          "tooltip": {
+            "signal": "{'Household type': datum.household_type, 'Dwellings': format(datum.total, ',')}"
+          }
+        },
+
+        "update": {
+          "fillOpacity": {
+            "signal": "hoverHousehold === null || datum.household_type === hoverHousehold ? 1 : 0.22"
+          }
+        }
+      }
+    },
+
+    {
+      "name": "householdLabel",
+      "type": "text",
+
+      "from": {
+        "data": "household_nodes"
+      },
+
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "leftX - 10"
+          },
+
+          "y": {
+            "field": "yc"
+          },
+
+          "text": {
+            "field": "household_type"
+          },
+
+          "align": {
+            "value": "right"
+          },
+
+          "baseline": {
+            "value": "middle"
+          },
+
+          "font": {
+            "value": "Roboto"
+          },
+
+          "fontSize": {
+            "value": 12
+          },
+
+          "fontWeight": {
+            "value": 400
+          },
+
+          "cursor": {
+            "value": "pointer"
+          },
+
+          "fill": {
+            "value": "#03045e"
+          }
+        },
+
+        "update": {
+          "fillOpacity": {
+            "signal": "hoverHousehold === null || datum.household_type === hoverHousehold ? 1 : 0.3"
+          }
+        }
+      }
+    },
+
+    {
+      "name": "tenureNode",
+      "type": "rect",
+
+      "from": {
+        "data": "tenure_nodes"
+      },
+
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "rightX"
+          },
+
+          "x2": {
+            "signal": "rightX + nodeWidth"
+          },
+
+          "y": {
+            "field": "y0"
+          },
+
+          "y2": {
+            "field": "y1"
+          },
+
+          "fill": {
+            "scale": "tenureColor",
+            "field": "tenure"
+          },
+
+          "cornerRadius": {
+            "value": 2
+          },
+
+          "cursor": {
+            "value": "pointer"
+          },
+
+          "tooltip": {
+            "signal": "{'Tenure': datum.tenure, 'Dwellings': format(datum.total, ',')}"
+          }
+        },
+
+        "update": {
+          "fillOpacity": {
+            "signal": "hoverTenure === null || datum.tenure === hoverTenure ? 1 : 0.22"
+          }
+        }
+      }
+    },
+
+    {
+      "name": "tenureLabel",
+      "type": "text",
+
+      "from": {
+        "data": "tenure_nodes"
+      },
+
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "rightX + nodeWidth + 10"
+          },
+
+          "y": {
+            "field": "yc"
+          },
+
+          "text": {
+            "field": "tenure"
+          },
+
+          "align": {
+            "value": "left"
+          },
+
+          "baseline": {
+            "value": "middle"
+          },
+
+          "font": {
+            "value": "Roboto"
+          },
+
+          "fontSize": {
+            "value": 12
+          },
+
+          "fontWeight": {
+            "value": 400
+          },
+
+          "cursor": {
+            "value": "pointer"
+          },
+
+          "fill": {
+            "value": "#03045e"
+          }
+        },
+
+        "update": {
+          "fillOpacity": {
+            "signal": "hoverTenure === null || datum.tenure === hoverTenure ? 1 : 0.3"
+          }
+        }
+      }
+    }
+  ]
+}

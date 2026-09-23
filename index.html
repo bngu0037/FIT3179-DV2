@@ -59,7 +59,7 @@
 
       <section class="story-section">
         <div class="section-heading">
-          <h2>Australia isn’t alone</h2>
+          <h2>Australia isn't alone</h2>
           <p class="section-subheading">
             How Australia compares with similar countries.
           </p>
@@ -84,8 +84,18 @@
         </div>
 
         <div class="viz-grid">
-          <div class="viz-slot"></div>
-          <div class="viz-slot"></div>
+          <div class="viz-slot">
+            <div class="chart-heading chart-heading--vega-match">
+              <h3>Household Structure Shapes Housing Tenure</h3>
+              <p>
+                Occupied private dwellings by household composition and tenure, 2021.
+              </p>
+            </div>
+
+            <div id="vis7"></div>
+          </div>
+
+          <div class="viz-slot" id="vis8"></div>
         </div>
       </section>
 
@@ -140,6 +150,7 @@
       var vis4 = "./visualisations/2_connected_dot.json"
       var vis5 = "./visualisations/2_heatmap.json"
       var vis6 = "./visualisations/3_connected_dot.json"
+      var vis7 = "./visualisations/4_alluvial.json"
 
       vegaEmbed('#vis1', vis1, { "actions": false }).then(function (result) {}).catch(console.error);
       vegaEmbed('#vis2', vis2, { "actions": false }).then(function (result) {}).catch(console.error);
@@ -147,6 +158,51 @@
       vegaEmbed('#vis4', vis4, { "actions": false }).then(function (result) {}).catch(console.error);
       vegaEmbed('#vis5', vis5, { "actions": false }).then(function (result) {}).catch(console.error);
       vegaEmbed('#vis6', vis6, { "actions": false }).then(function (result) {}).catch(console.error);
+      
+      fetch(vis7)
+        .then(response => response.json())
+        .then(spec => {
+          return vegaEmbed("#vis7", spec, {
+            actions: false,
+            renderer: "svg"
+          });
+        })
+        .then(result => {
+          const container = document.querySelector("#vis7");
+          const view = result.view;
+
+          function resizeAlluvial() {
+            const availableWidth = container.clientWidth;
+
+            const chartWidth = Math.max(
+              320,
+              availableWidth - 10
+            );
+
+            const chartHeight = Math.max(
+              380,
+              Math.min(425, chartWidth * 0.73)
+            );
+
+            view
+              .width(chartWidth)
+              .height(chartHeight)
+              .run();
+          }
+
+          resizeAlluvial();
+
+          const resizeObserver = new ResizeObserver(() => {
+            resizeAlluvial();
+          });
+
+          resizeObserver.observe(container);
+        })
+        .catch(error => {
+          console.error("Error loading Section 4 alluvial:", error);
+        });
+
+        
 
     </script>
   </body>
