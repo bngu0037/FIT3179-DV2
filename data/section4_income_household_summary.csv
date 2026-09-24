@@ -1,0 +1,8 @@
+household_type,household_order,Owned outright,Mortgage,Rented,Other,total_dwellings,ownership_rate_pct
+Couple with children,1,457030,1508026,579952,21745,2566753,76.6
+Couple with no children,2,1068814,655232,529817,44990,2298853,75.0
+One parent family,3,197083,260701,419394,9969,887147,51.6
+Lone person,4,864136,457284,840099,85531,2247050,58.8
+Group household,5,40843,48377,207186,4425,300831,29.7
+Multiple-family household,6,46152,72333,36692,1414,156591,75.7
+Other family,7,28993,20489,47266,2418,99166,49.9

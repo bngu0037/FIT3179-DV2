@@ -23,3 +23,7 @@ Investigate how Australians live by comparing home ownership, renting and other 
 
 6. OECD (2025), OECD Employment Outlook 2025: Can We Get Through the Demographic Crunch?, OECD Publishing, Paris, [Figure 2.18](https://doi.org/10.1787/194a947b-en). Data underlying Figure 2.18: OECD calculations based on the LIS Database, [StatLink](https://stat.link/izdorb).
 
+7. Australian Bureau of Statistics, 2021 Census of Population and Housing, TableBuilder - Family Household Composition (Dwelling) by Tenure Type.
+8. Australian Bureau of Statistics, 2021 Census of Population and Housing, TableBuilder - Family Household Composition (Dwelling), Tenure Type and Total Household Income (weekly)
+
+Note: ABS TableBuilder cells are randomly adjusted to protect confidentiality, so small cells and totals may differ slightly.

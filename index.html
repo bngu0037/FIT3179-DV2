@@ -151,6 +151,7 @@
       var vis5 = "./visualisations/2_heatmap.json"
       var vis6 = "./visualisations/3_connected_dot.json"
       var vis7 = "./visualisations/4_alluvial.json"
+      var vis8 = "./visualisations/4_heatmap_bar.json"
 
       vegaEmbed('#vis1', vis1, { "actions": false }).then(function (result) {}).catch(console.error);
       vegaEmbed('#vis2', vis2, { "actions": false }).then(function (result) {}).catch(console.error);
@@ -202,7 +203,7 @@
           console.error("Error loading Section 4 alluvial:", error);
         });
 
-        
+        vegaEmbed('#vis8', vis8, { "actions": false }).then(function (result) {}).catch(console.error);
 
     </script>
   </body>

@@ -1,0 +1,384 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+
+  "title": {
+    "text": "Income Changes the Ownership Picture",
+    "subtitle": "Home ownership rate by household type and weekly household income, 2021.",
+    "anchor": "start",
+    "align": "left",
+    "font": "Roboto",
+    "fontSize": 24,
+    "fontWeight": 700,
+    "color": "#03045e",
+    "subtitleFont": "Roboto",
+    "subtitleFontSize": 14,
+    "subtitleFontWeight": 400,
+    "subtitleColor": "#4f6f7f",
+    "offset": 10
+  },
+
+  "background": null,
+  "padding": 0,
+  "spacing": 14,
+
+  "hconcat": [
+    {
+      "width": 395,
+      "height": 415,
+
+      "data": {
+        "url": "data/section4_income_heatmap.csv"
+      },
+
+      "transform": [
+        {
+          "calculate": "format(datum.ownership_rate_pct, '.0f') + '%'",
+          "as": "ownership_label"
+        },
+        {
+          "calculate": "format(datum.ownership_rate_pct, '.1f') + '%'",
+          "as": "ownership_tooltip"
+        },
+        {
+          "calculate": "format(datum.rented_rate_pct, '.1f') + '%'",
+          "as": "rented_tooltip"
+        }
+      ],
+
+      "layer": [
+        {
+          "mark": {
+            "type": "rect",
+            "cornerRadius": 2,
+            "stroke": "#f5fcff",
+            "strokeWidth": 1.5
+          },
+
+          "encoding": {
+            "x": {
+              "field": "income_band",
+              "type": "ordinal",
+              "sort": [
+                "Under $800",
+                "$800–1,499",
+                "$1,500–2,499",
+                "$2,500–3,499",
+                "$3,500–4,499",
+                "$4,500+"
+              ],
+              "title": "Weekly household income",
+              "axis": {
+                "labelAngle": -35,
+                "labelAlign": "right",
+                "labelFont": "Roboto",
+                "labelFontSize": 12,
+                "labelColor": "#4f6f7f",
+                "labelPadding": 5,
+                "titleFont": "Roboto",
+                "titleFontSize": 13.5,
+                "titleFontWeight": 500,
+                "titleColor": "#03045e",
+                "titlePadding": 12,
+                "domain": false,
+                "ticks": false
+              }
+            },
+
+            "y": {
+              "field": "household_type",
+              "type": "ordinal",
+              "sort": [
+                "Couple with children",
+                "Couple with no children",
+                "One parent family",
+                "Lone person",
+                "Group household",
+                "Multiple-family household",
+                "Other family"
+              ],
+              "title": null,
+              "axis": {
+                "labelFont": "Roboto",
+                "labelFontSize": 14,
+                "labelColor": "#03045e",
+                "labelLimit": 180,
+                "labelPadding": 7,
+                "domain": false,
+                "ticks": false
+              }
+            },
+
+            "color": {
+              "field": "ownership_rate_pct",
+              "type": "quantitative",
+              "title": "Ownership rate",
+              "scale": {
+                "domain": [0, 100],
+                "range": [
+                  "#edf6f9",
+                  "#90e0ef",
+                  "#00b4d8",
+                  "#0077b6",
+                  "#03045e"
+                ]
+              },
+              "legend": {
+                "orient": "bottom",
+                "direction": "horizontal",
+                "gradientLength": 180,
+                "gradientThickness": 10,
+                "titleFont": "Roboto",
+                "titleFontSize": 14,
+                "titleFontWeight": 500,
+                "titleColor": "#03045e",
+                "labelFont": "Roboto",
+                "labelFontSize": 12,
+                "labelColor": "#4f6f7f",
+                "format": ".0f",
+                "title": "Ownership rate (%)"
+              }
+            },
+
+            "tooltip": [
+              {
+                "field": "household_type",
+                "type": "nominal",
+                "title": "Household type"
+              },
+              {
+                "field": "income_band",
+                "type": "ordinal",
+                "title": "Weekly income"
+              },
+              {
+                "field": "ownership_tooltip",
+                "type": "nominal",
+                "title": "Ownership rate"
+              },
+              {
+                "field": "rented_tooltip",
+                "type": "nominal",
+                "title": "Rented"
+              },
+              {
+                "field": "total_dwellings",
+                "type": "quantitative",
+                "title": "Dwellings",
+                "format": ","
+              }
+            ]
+          }
+        },
+
+        {
+          "mark": {
+            "type": "text",
+            "font": "Roboto",
+            "fontSize": 12,
+            "fontWeight": 500
+          },
+
+          "encoding": {
+            "x": {
+              "field": "income_band",
+              "type": "ordinal",
+              "sort": [
+                "Under $800",
+                "$800–1,499",
+                "$1,500–2,499",
+                "$2,500–3,499",
+                "$3,500–4,499",
+                "$4,500+"
+              ]
+            },
+
+            "y": {
+              "field": "household_type",
+              "type": "ordinal",
+              "sort": [
+                "Couple with children",
+                "Couple with no children",
+                "One parent family",
+                "Lone person",
+                "Group household",
+                "Multiple-family household",
+                "Other family"
+              ]
+            },
+
+            "text": {
+              "field": "ownership_label",
+              "type": "nominal"
+            },
+
+            "color": {
+              "condition": {
+                "test": "datum.ownership_rate_pct >= 60",
+                "value": "#ffffff"
+              },
+              "value": "#03045e"
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "width": 105,
+      "height": 415,
+
+      "data": {
+        "url": "data/section4_income_household_summary.csv"
+      },
+
+      "transform": [
+        {
+          "calculate": "format(datum.ownership_rate_pct, '.0f') + '%'",
+          "as": "ownership_label"
+        },
+        {
+          "calculate": "format(datum.ownership_rate_pct, '.1f') + '%'",
+          "as": "ownership_tooltip"
+        }
+      ],
+
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "cornerRadiusEnd": 3,
+            "color": "#0077b6",
+            "height": {
+              "band": 0.55
+            }
+          },
+
+          "encoding": {
+            "y": {
+              "field": "household_type",
+              "type": "ordinal",
+              "sort": [
+                "Couple with children",
+                "Couple with no children",
+                "One parent family",
+                "Lone person",
+                "Group household",
+                "Multiple-family household",
+                "Other family"
+              ],
+              "axis": null
+            },
+
+            "x": {
+              "field": "ownership_rate_pct",
+              "type": "quantitative",
+              "scale": {
+                "domain": [0, 100]
+              },
+              "title": "Overall",
+              "axis": {
+                "values": [0, 50, 100],
+                "labelExpr": "datum.value + '%'",
+                "labelFont": "Roboto",
+                "labelFontSize": 12,
+                "labelColor": "#4f6f7f",
+                "titleFont": "Roboto",
+                "titleFontSize": 13.5,
+                "titleFontWeight": 500,
+                "titleColor": "#03045e",
+                "titlePadding": 8,
+                "grid": true,
+                "gridColor": "#dce8ee",
+                "gridOpacity": 0.7,
+                "domain": false,
+                "ticks": false
+              }
+            },
+
+            "tooltip": [
+              {
+                "field": "household_type",
+                "type": "nominal",
+                "title": "Household type"
+              },
+              {
+                "field": "ownership_tooltip",
+                "type": "nominal",
+                "title": "Overall ownership rate"
+              },
+              {
+                "field": "total_dwellings",
+                "type": "quantitative",
+                "title": "Dwellings",
+                "format": ","
+              }
+            ]
+          }
+        },
+
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 4,
+            "font": "Roboto",
+            "fontSize": 12,
+            "fontWeight": 500,
+            "color": "#03045e"
+          },
+
+          "encoding": {
+            "y": {
+              "field": "household_type",
+              "type": "ordinal",
+              "sort": [
+                "Couple with children",
+                "Couple with no children",
+                "One parent family",
+                "Lone person",
+                "Group household",
+                "Multiple-family household",
+                "Other family"
+              ]
+            },
+
+            "x": {
+              "field": "ownership_rate_pct",
+              "type": "quantitative",
+              "scale": {
+                "domain": [0, 100]
+              }
+            },
+
+            "text": {
+              "field": "ownership_label",
+              "type": "nominal"
+            }
+          }
+        }
+      ]
+    }
+  ],
+
+  "resolve": {
+    "scale": {
+      "y": "shared"
+    }
+  },
+
+  "config": {
+    "font": "Roboto",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto"
+    },
+    "legend": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto"
+    }
+  }
+}

@@ -208,7 +208,6 @@ body {
 
 .chart-heading {
   width: 100%;
-  margin: 0;
 }
 
 .chart-heading h3 {
@@ -216,7 +215,7 @@ body {
 
   font-family: "Roboto", Arial, sans-serif;
   font-size: 20px;
-  line-height: 1.2;
+  line-height: 1;
   font-weight: 700;
 
   color: #03045e;
@@ -227,19 +226,14 @@ body {
 
   font-family: "Roboto", Arial, sans-serif;
   font-size: 12px;
-  line-height: 1.4;
+  line-height: 1;
   font-weight: 400;
 
   color: #4f6f7f;
 }
 
-/*
-  Reserves approximately the same vertical area used by
-  Vega-Lite's 20px title + 12px subtitle + title offset.
-*/
 .chart-heading--vega-match {
   min-height: 52px;
-  margin-bottom: 6px;
 }
 
 #vis7 {
