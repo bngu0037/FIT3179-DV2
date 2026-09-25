@@ -25,5 +25,6 @@ Investigate how Australians live by comparing home ownership, renting and other 
 
 7. Australian Bureau of Statistics, 2021 Census of Population and Housing, TableBuilder - Family Household Composition (Dwelling) by Tenure Type.
 8. Australian Bureau of Statistics, 2021 Census of Population and Housing, TableBuilder - Family Household Composition (Dwelling), Tenure Type and Total Household Income (weekly)
+9. Australian Bureau of Statistics, 2021 Census of Population and Housing, TableBuilder - Family Household Composition (Dwelling), Tenure Type and Total Household Income (weekly)
 
 Note: ABS TableBuilder cells are randomly adjusted to protect confidentiality, so small cells and totals may differ slightly.
