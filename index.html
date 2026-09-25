@@ -93,9 +93,12 @@
             </div>
 
             <div id="vis7"></div>
+            
           </div>
 
           <div class="viz-slot" id="vis8"></div>
+          <div class="viz-slot viz-slot--full" id="vis9"></div>
+
         </div>
       </section>
 
@@ -152,6 +155,7 @@
       var vis6 = "./visualisations/3_connected_dot.json"
       var vis7 = "./visualisations/4_alluvial.json"
       var vis8 = "./visualisations/4_heatmap_bar.json"
+      var vis9 = "./visualisations/4_bump.json"
 
       vegaEmbed('#vis1', vis1, { "actions": false }).then(function (result) {}).catch(console.error);
       vegaEmbed('#vis2', vis2, { "actions": false }).then(function (result) {}).catch(console.error);
@@ -204,6 +208,7 @@
         });
 
         vegaEmbed('#vis8', vis8, { "actions": false }).then(function (result) {}).catch(console.error);
+        vegaEmbed('#vis9', vis9, { "actions": false }).then(function (result) {}).catch(console.error);
 
     </script>
   </body>

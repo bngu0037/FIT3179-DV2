@@ -1,0 +1,21 @@
+income_band,income_order,tenure,count,share_pct,share_label,rank,rank_label
+Under $800,1,Owned outright,961963,49.9,49.9%,1,Rank 1
+Under $800,1,Rented,678728,35.2,35.2%,2,Rank 2
+Under $800,1,Mortgage,205406,10.7,10.7%,3,Rank 3
+Under $800,1,Other,81173,4.2,4.2%,4,Rank 4
+"$800-1,499",2,Owned outright,694700,38.1,38.1%,1,Rank 1
+"$800-1,499",2,Rented,659754,36.2,36.2%,2,Rank 2
+"$800-1,499",2,Mortgage,427416,23.4,23.4%,3,Rank 3
+"$800-1,499",2,Other,42452,2.3,2.3%,4,Rank 4
+"$1,500-2,499",3,Mortgage,846152,41.2,41.2%,1,Rank 1
+"$1,500-2,499",3,Rented,700557,34.1,34.1%,2,Rank 2
+"$1,500-2,499",3,Owned outright,481175,23.4,23.4%,3,Rank 3
+"$1,500-2,499",3,Other,26087,1.3,1.3%,4,Rank 4
+"$2,500-3,499",4,Mortgage,665450,53.7,53.7%,1,Rank 1
+"$2,500-3,499",4,Rented,326553,26.3,26.3%,2,Rank 2
+"$2,500-3,499",4,Owned outright,237020,19.1,19.1%,3,Rank 3
+"$2,500-3,499",4,Other,10849,0.9,0.9%,4,Rank 4
+"$3,500+",5,Mortgage,878018,58.1,58.1%,1,Rank 1
+"$3,500+",5,Owned outright,328193,21.7,21.7%,2,Rank 2
+"$3,500+",5,Rented,294814,19.5,19.5%,3,Rank 3
+"$3,500+",5,Other,9931,0.7,0.7%,4,Rank 4
