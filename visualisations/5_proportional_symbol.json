@@ -152,6 +152,44 @@
     },
     {
       "data": {
+        "url": "data/australia_natural_earth_metro.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "australia"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#E9EFF0",
+        "stroke": null,
+        "clip": true,
+        "tooltip": null
+      }
+    },
+    {
+      "data": {
+        "url": "data/sa2_2021_metro_context.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "sa2"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#E9EFF0",
+        "stroke": "#B5C7CC",
+        "clip": true,
+        "strokeWidth": 0.1,
+        "tooltip": null
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.state == (metroArea == '1GSYD' ? 'New South Wales' : metroArea == '2GMEL' ? 'Victoria' : metroArea == '3GBRI' ? 'Queensland' : metroArea == '4GADE' ? 'South Australia' : metroArea == '5GPER' ? 'Western Australia' : metroArea == '6GHOB' ? 'Tasmania' : 'Northern Territory')"
+        }
+      ]
+    },
+    {
+      "data": {
         "url": "data/sa2_2021_metros.topojson",
         "format": {
           "type": "topojson",
@@ -166,7 +204,7 @@
       "mark": {
         "type": "geoshape",
         "fill": "#F5FCFF",
-        "stroke": "#9BB9C9",
+        "stroke": "#03045e",
         "strokeWidth": 0.38,
         "clip": true
       },
@@ -183,6 +221,28 @@
             "title": "Metro area"
           }
         ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/sa2_2021_metro_outlines.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.metro_code == metroArea"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "#25536A",
+        "strokeWidth": 1.6,
+        "clip": true,
+        "tooltip": null
       }
     },
     {
