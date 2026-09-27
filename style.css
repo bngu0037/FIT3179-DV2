@@ -286,3 +286,7 @@ body {
   margin-top: 6px;
   margin-bottom: 3px;
 }
+
+#vis13 .vega-bindings {
+  margin-top: -45px;
+}

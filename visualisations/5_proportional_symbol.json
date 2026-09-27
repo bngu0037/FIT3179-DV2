@@ -1,0 +1,548 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "background": null,
+  "padding": 0,
+  "params": [
+    {
+      "name": "metroArea",
+      "value": "2GMEL",
+      "bind": {
+        "input": "select",
+        "name": "Metro area: ",
+        "options": [
+          "2GMEL",
+          "1GSYD",
+          "3GBRI",
+          "4GADE",
+          "5GPER",
+          "6GHOB",
+          "7GDAR"
+        ],
+        "labels": [
+          "Greater Melbourne",
+          "Greater Sydney",
+          "Greater Brisbane",
+          "Greater Adelaide",
+          "Greater Perth",
+          "Greater Hobart",
+          "Greater Darwin"
+        ]
+      }
+    },
+    {
+      "name": "mapZoom",
+      "value": 1,
+      "bind": {
+        "input": "range",
+        "name": "Zoom: ",
+        "min": 0.65,
+        "max": 1.8,
+        "step": 0.05
+      }
+    },
+    {
+      "name": "metroSpanX",
+      "expr": "metroArea == '2GMEL' ? 0.021051 : metroArea == '1GSYD' ? 0.025890 : metroArea == '3GBRI' ? 0.020615 : metroArea == '4GADE' ? 0.009033 : metroArea == '5GPER' ? 0.013932 : metroArea == '6GHOB' ? 0.012005 : 0.010092"
+    },
+    {
+      "name": "metroSpanY",
+      "expr": "metroArea == '2GMEL' ? 0.023186 : metroArea == '1GSYD' ? 0.022922 : metroArea == '3GBRI' ? 0.034714 : metroArea == '4GADE' ? 0.014644 : metroArea == '5GPER' ? 0.023568 : metroArea == '6GHOB' ? 0.007635 : 0.014752"
+    },
+    {
+      "name": "metroCenterX",
+      "expr": "metroArea == '2GMEL' ? 0.1816595 : metroArea == '1GSYD' ? 0.270715 : metroArea == '3GBRI' ? 0.3178095 : metroArea == '4GADE' ? 0.0960325 : metroArea == '5GPER' ? -0.235077 : metroArea == '6GHOB' ? 0.2040135 : -0.01551"
+    },
+    {
+      "name": "metroCenterY",
+      "expr": "metroArea == '2GMEL' ? 0.234612 : metroArea == '1GSYD' ? 0.172412 : metroArea == '3GBRI' ? 0.067802 : metroArea == '4GADE' ? 0.1774 : metroArea == '5GPER' ? 0.14113 : metroArea == '6GHOB' ? 0.3243185 : -0.219341"
+    },
+    {
+      "name": "metroFitScale",
+      "expr": "min(width * 0.9 / metroSpanX, (height - 150) * 0.9 / metroSpanY)"
+    }
+  ],
+  "config": {
+    "font": "Roboto",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto"
+    },
+    "legend": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto"
+    }
+  },
+  "width": "container",
+  "description": "2021 Census rented-dwelling counts per SA2 across seven greater capital cities. Circle area is proportional to dwelling count. Same seven-area metro selection and Albers projection as the bivariate map.",
+  "title": {
+    "text": {
+      "expr": "width < 480 ? ['Where Are Renter Households', 'Concentrated?'] : 'Where Are Renter Households Concentrated?'"
+    },
+    "subtitle": "Rented dwellings by SA2, 2021.",
+    "anchor": "start",
+    "align": "left",
+    "font": "Roboto",
+    "fontSize": 20,
+    "fontWeight": 700,
+    "color": "#03045e",
+    "subtitleFont": "Roboto",
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": 400,
+    "subtitleColor": "#4f6f7f",
+    "offset": 10,
+    "frame": "group",
+    "limit": {
+      "expr": "width - 4"
+    }
+  },
+  "height": 760,
+  "projection": {
+    "type": "albers",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ],
+    "center": [
+      0,
+      -25
+    ],
+    "scale": {
+      "expr": "mapZoom * metroFitScale"
+    },
+    "translate": {
+      "expr": "[width / 2 - mapZoom * metroFitScale * metroCenterX, (height - 150) / 2 - mapZoom * metroFitScale * metroCenterY]"
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#009DC4"
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "x2": {
+          "value": {
+            "expr": "width"
+          }
+        },
+        "y": {
+          "value": 0
+        },
+        "y2": {
+          "value": {
+            "expr": "height - 150"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/sa2_2021_metros.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "metros"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.metro_code == metroArea"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#F5FCFF",
+        "stroke": "#9BB9C9",
+        "strokeWidth": 0.38,
+        "clip": true
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "properties.sa2_name",
+            "type": "nominal",
+            "title": "SA2"
+          },
+          {
+            "field": "properties.metro_name",
+            "type": "nominal",
+            "title": "Metro area"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/sa2_renter_symbols_2021.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "sa2_code": "string",
+            "longitude": "number",
+            "latitude": "number",
+            "renter_dwellings": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.metro_code == metroArea && datum.renter_dwellings > 0"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "fill": "#E9A35C",
+        "stroke": "#03045e",
+        "strokeWidth": 0.65,
+        "opacity": 0.82,
+        "clip": true
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "renter_dwellings",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              7000
+            ],
+            "range": [
+              0,
+              440
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "sa2_name",
+            "type": "nominal",
+            "title": "SA2"
+          },
+          {
+            "field": "metro_name",
+            "type": "nominal",
+            "title": "Metro area"
+          },
+          {
+            "field": "renter_dwellings",
+            "type": "quantitative",
+            "format": ",.0f",
+            "title": "Rented dwellings"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#f5fcff"
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "x2": {
+          "value": {
+            "expr": "width"
+          }
+        },
+        "y": {
+          "value": {
+            "expr": "height - 150"
+          }
+        },
+        "y2": {
+          "value": {
+            "expr": "height"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "Rented dwellings per SA2",
+        "font": "Roboto",
+        "fontSize": 12,
+        "fontWeight": 500,
+        "color": "#03045e",
+        "align": "left",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "y": {
+          "value": {
+            "expr": "height - 138"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "Circle area represents count",
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 400,
+        "color": "#4f6f7f",
+        "align": "left",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "y": {
+          "value": {
+            "expr": "height - 125"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "count": 500
+          }
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "fill": "#E9A35C",
+        "stroke": "#03045e",
+        "strokeWidth": 0.65,
+        "opacity": 0.82
+      },
+      "encoding": {
+        "x": {
+          "value": 50
+        },
+        "y": {
+          "value": {
+            "expr": "height - 90"
+          }
+        },
+        "size": {
+          "field": "count",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              7000
+            ],
+            "range": [
+              0,
+              440
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "500",
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 400,
+        "color": "#03045e",
+        "align": "center",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "value": 50
+        },
+        "y": {
+          "value": {
+            "expr": "height - 60"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "count": 2000
+          }
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "fill": "#E9A35C",
+        "stroke": "#03045e",
+        "strokeWidth": 0.65,
+        "opacity": 0.82
+      },
+      "encoding": {
+        "x": {
+          "value": 120
+        },
+        "y": {
+          "value": {
+            "expr": "height - 90"
+          }
+        },
+        "size": {
+          "field": "count",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              7000
+            ],
+            "range": [
+              0,
+              440
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "2,000",
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 400,
+        "color": "#03045e",
+        "align": "center",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "value": 120
+        },
+        "y": {
+          "value": {
+            "expr": "height - 60"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "count": 6000
+          }
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "fill": "#E9A35C",
+        "stroke": "#03045e",
+        "strokeWidth": 0.65,
+        "opacity": 0.82
+      },
+      "encoding": {
+        "x": {
+          "value": 190
+        },
+        "y": {
+          "value": {
+            "expr": "height - 90"
+          }
+        },
+        "size": {
+          "field": "count",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              7000
+            ],
+            "range": [
+              0,
+              440
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "6,000",
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 400,
+        "color": "#03045e",
+        "align": "center",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "value": 190
+        },
+        "y": {
+          "value": {
+            "expr": "height - 60"
+          }
+        }
+      }
+    }
+  ]
+}

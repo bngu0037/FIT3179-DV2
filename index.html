@@ -116,7 +116,7 @@
           <div class="viz-slot" id="vis11"></div>
           <!-- <div class="viz-slot viz-slot--full" id="vis10"></div> -->
           <div class="viz-slot" id="vis12"></div>
-          <div class="viz-slot"></div>
+          <div class="viz-slot" id="vis13"></div>
           <div class="viz-slot"></div>
           <div class="viz-slot"></div>
         </div>
@@ -161,6 +161,7 @@
       var vis10 = "./visualisations/5_choropleth.json"
       var vis11 = "./visualisations/5_choropleth_metro.json"
       var vis12 = "./visualisations/5_bivariate_choropleth.json"
+      var vis13 = "./visualisations/5_proportional_symbol.json"
 
       vegaEmbed('#vis1', vis1, { "actions": false }).then(function (result) {}).catch(console.error);
       vegaEmbed('#vis2', vis2, { "actions": false }).then(function (result) {}).catch(console.error);
@@ -217,6 +218,7 @@
         vegaEmbed('#vis10', vis10, { "actions": false }).then(function (result) {}).catch(console.error);
         vegaEmbed('#vis11', vis11, { "actions": false }).then(function (result) {}).catch(console.error);
         vegaEmbed('#vis12', vis12, { "actions": false }).then(function (result) {}).catch(console.error);
+        vegaEmbed('#vis13', vis13, { "actions": false }).then(function (result) {}).catch(console.error);
 
     </script>
   </body>
