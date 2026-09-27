@@ -1,0 +1,9 @@
+state,state_name,state_y,owner_dwellings,known_tenure_dwellings,sa2_count,ownership_pct
+NSW,New South Wales,7,1873853,2889975,623,64.84
+VIC,Victoria,6,1643591,2376713,511,69.154
+QLD,Queensland,5,1210383,1880810,530,64.354
+WA,Western Australia,4,679199,973655,241,69.758
+SA,South Australia,3,478125,691404,165,69.153
+TAS,Tasmania,2,154808,218183,96,70.953
+NT,Northern Territory,1,36815,76701,62,47.998
+ACT,Australian Capital Territory,0,113097,168276,107,67.209

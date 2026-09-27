@@ -1,0 +1,170 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Each point is one valid 2021 Census SA2. Orange diamonds show the pooled dwelling-weighted rate for the plotted SA2s in each state or territory.",
+  "padding": 0,
+  "background": null,
+  "title": {
+    "text": "State Averages Conceal Wide Local Differences",
+    "subtitle": [
+      "Each purple dot is an SA2 ownership rate; the orange diamond is its state's pooled rate, 2021.",
+      "SA2s with fewer than 50 dwellings with stated tenure are excluded."
+    ],
+    "anchor": "start",
+    "align": "left",
+    "font": "Roboto",
+    "fontSize": 20,
+    "fontWeight": 700,
+    "color": "#03045e",
+    "subtitleFont": "Roboto",
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": 400,
+    "subtitleColor": "#4f6f7f",
+    "offset": 10
+  },
+  "width": "container",
+  "height": 480,
+  "layer": [
+    {
+      "data": {
+        "url": "data/sa2_ownership_jitter_2021.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "sa2_code": "string",
+            "ownership_pct": "number",
+            "jitter_y": "number",
+            "owner_dwellings": "number",
+            "known_tenure_dwellings": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "circle",
+        "size": 29,
+        "opacity": 0.37,
+        "color": "#513B83"
+      },
+      "encoding": {
+        "x": {
+          "field": "ownership_pct",
+          "type": "quantitative",
+          "scale": {"domain": [0, 100]},
+          "axis": {
+            "title": "SA2 owner-occupation rate (%)",
+            "values": [0, 20, 40, 60, 80, 100],
+            "format": ".0f",
+            "titleFont": "Roboto",
+            "titleFontSize": 12,
+            "titleFontWeight": 500,
+            "titleColor": "#03045e",
+            "titlePadding": 13,
+            "labelFont": "Roboto",
+            "labelFontSize": 11,
+            "labelColor": "#4f6f7f",
+            "tickColor": "#b8cbd5",
+            "domainColor": "#b8cbd5",
+            "grid": true,
+            "gridColor": "#d9eaf1",
+            "gridOpacity": 0.8
+          }
+        },
+        "y": {
+          "field": "jitter_y",
+          "type": "quantitative",
+          "scale": {"domain": [-0.5, 7.5], "nice": false},
+          "axis": {
+            "title": null,
+            "values": [0, 1, 2, 3, 4, 5, 6, 7],
+            "labelExpr": "['ACT','NT','TAS','SA','WA','QLD','VIC','NSW'][datum.value]",
+            "labelFont": "Roboto",
+            "labelFontSize": 12,
+            "labelFontWeight": 500,
+            "labelColor": "#03045e",
+            "labelPadding": 10,
+            "ticks": false,
+            "domain": false,
+            "grid": false
+          }
+        },
+        "tooltip": [
+          {"field": "sa2_name", "type": "nominal", "title": "SA2"},
+          {"field": "state_name", "type": "nominal", "title": "State / territory"},
+          {"field": "ownership_pct", "type": "quantitative", "format": ".1f", "title": "Owner-occupied (%)"},
+          {"field": "owner_dwellings", "type": "quantitative", "format": ",.0f", "title": "Owner-occupied dwellings"},
+          {"field": "known_tenure_dwellings", "type": "quantitative", "format": ",.0f", "title": "Dwellings with stated tenure"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/state_ownership_summary_2021.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "state_y": "number",
+            "ownership_pct": "number",
+            "owner_dwellings": "number",
+            "known_tenure_dwellings": "number",
+            "sa2_count": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "point",
+        "shape": "diamond",
+        "filled": true,
+        "size": 205,
+        "color": "#F28E2B",
+        "stroke": "#03045e",
+        "strokeWidth": 0.9
+      },
+      "encoding": {
+        "x": {"field": "ownership_pct", "type": "quantitative"},
+        "y": {"field": "state_y", "type": "quantitative"},
+        "tooltip": [
+          {"field": "state_name", "type": "nominal", "title": "State / territory"},
+          {"field": "ownership_pct", "type": "quantitative", "format": ".1f", "title": "Pooled owner-occupied (%)"},
+          {"field": "sa2_count", "type": "quantitative", "format": ",.0f", "title": "Included SA2s"},
+          {"field": "known_tenure_dwellings", "type": "quantitative", "format": ",.0f", "title": "Dwellings with stated tenure"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/state_ownership_summary_2021.csv",
+        "format": {
+          "type": "csv",
+          "parse": {"state_y": "number", "ownership_pct": "number"}
+        }
+      },
+      "transform": [
+        {"calculate": "format(datum.ownership_pct, '.1f') + '%'", "as": "state_rate_label"}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 12,
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#03045e"
+      },
+      "encoding": {
+        "x": {"field": "ownership_pct", "type": "quantitative"},
+        "y": {"field": "state_y", "type": "quantitative"},
+        "text": {"field": "state_rate_label", "type": "nominal"}
+      }
+    }
+  ],
+  "config": {
+    "font": "Roboto",
+    "view": {"stroke": null},
+    "axis": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto",
+      "labelColor": "#03045e",
+      "titleColor": "#03045e"
+    }
+  }
+}
