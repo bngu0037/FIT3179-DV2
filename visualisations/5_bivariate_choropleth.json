@@ -181,7 +181,7 @@
         "fill": "#E9EFF0",
         "stroke": "#B5C7CC",
         "clip": true,
-        "strokeWidth": 0.1,
+        "strokeWidth": 0.15,
         "tooltip": null
       },
       "transform": [
