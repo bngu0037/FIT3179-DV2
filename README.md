@@ -46,6 +46,7 @@ Investigate how Australians live by comparing home ownership, renting and other 
     - Chart 5.2
     - Chart 5.3
     - Chart 5.4
+    - Chart 6.1
 
 11. Australian Bureau of Statistics, 2021 Census General Community Profile, SA2 DataPack, Table G02 - Median weekly rent. [ABS DataPacks](https://www.abs.gov.au/census/find-census-data/datapacks).  
     - Chart 5.3
