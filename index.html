@@ -112,11 +112,13 @@
         </div>
 
         <div class="viz-grid">
-          <div class="viz-slot viz-slot--full"></div>
+          <div class="viz-slot" id="vis10"></div>
+          <div class="viz-slot" id="vis11"></div>
+          <!-- <div class="viz-slot viz-slot--full" id="vis10"></div> -->
+          <!-- <div class="viz-slot"></div>
           <div class="viz-slot"></div>
           <div class="viz-slot"></div>
-          <div class="viz-slot"></div>
-          <div class="viz-slot"></div>
+          <div class="viz-slot"></div> -->
         </div>
       </section>
 
@@ -156,6 +158,8 @@
       var vis7 = "./visualisations/4_alluvial.json"
       var vis8 = "./visualisations/4_heatmap_bar.json"
       var vis9 = "./visualisations/4_bump.json"
+      var vis10 = "./visualisations/5_choropleth.json"
+      var vis11 = "./visualisations/5_choropleth_metro.json"
 
       vegaEmbed('#vis1', vis1, { "actions": false }).then(function (result) {}).catch(console.error);
       vegaEmbed('#vis2', vis2, { "actions": false }).then(function (result) {}).catch(console.error);
@@ -209,6 +213,8 @@
 
         vegaEmbed('#vis8', vis8, { "actions": false }).then(function (result) {}).catch(console.error);
         vegaEmbed('#vis9', vis9, { "actions": false }).then(function (result) {}).catch(console.error);
+        vegaEmbed('#vis10', vis10, { "actions": false }).then(function (result) {}).catch(console.error);
+        vegaEmbed('#vis11', vis11, { "actions": false }).then(function (result) {}).catch(console.error);
 
     </script>
   </body>

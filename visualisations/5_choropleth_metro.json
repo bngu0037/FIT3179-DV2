@@ -1,0 +1,314 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "2021 owner-occupied share by SA2 within a selected ABS Greater Capital City Statistical Area; default Greater Melbourne.",
+  "background": null,
+  "padding": 0,
+  "title": {
+    "text": "Home Ownership in the Metro Areas",
+    "subtitle": "Select a greater capital-city region to compare its SA2s, 2021.",
+    "anchor": "start",
+    "align": "left",
+    "font": "Roboto",
+    "fontSize": 20,
+    "fontWeight": 700,
+    "color": "#03045e",
+    "subtitleFont": "Roboto",
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": 400,
+    "subtitleColor": "#4f6f7f",
+    "offset": 10
+  },
+  "width": "container",
+  "height": 610,
+  "projection": {
+    "type": "albers",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ],
+    "center": [
+      0,
+      -25
+    ],
+    "scale": {
+      "expr": "mapZoom * metroFitScale"
+    },
+    "translate": {
+      "expr": "[width / 2 - mapZoom * metroFitScale * metroCenterX, height / 2 - mapZoom * metroFitScale * metroCenterY]"
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#009DC4"
+      }
+    },
+    {
+      "data": {
+        "url": "data/sa2_2021_metros.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "metros"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.sa2_code",
+          "from": {
+            "data": {
+              "url": "data/sa2_ownership_2021.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "sa2_code": "string",
+                  "ownership_pct": "number",
+                  "owner_dwellings": "number",
+                  "known_tenure_dwellings": "number"
+                }
+              }
+            },
+            "key": "sa2_code",
+            "fields": [
+              "owner_dwellings",
+              "known_tenure_dwellings",
+              "ownership_pct",
+              "coverage"
+            ]
+          }
+        },
+        {
+          "filter": "datum.properties.metro_code == metroArea"
+        },
+        {
+          "filter": "!(datum.known_tenure_dwellings >= 50 && isValid(datum.ownership_pct))"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#aebbc5",
+        "stroke": "#f4f7f8",
+        "strokeWidth": 0.15,
+        "clip": true
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "properties.sa2_name",
+            "type": "nominal",
+            "title": "SA2"
+          },
+          {
+            "field": "properties.metro_name",
+            "type": "nominal",
+            "title": "Metro area"
+          },
+          {
+            "field": "coverage",
+            "type": "nominal",
+            "title": "Data"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/sa2_2021_metros.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "metros"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.sa2_code",
+          "from": {
+            "data": {
+              "url": "data/sa2_ownership_2021.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "sa2_code": "string",
+                  "ownership_pct": "number",
+                  "owner_dwellings": "number",
+                  "known_tenure_dwellings": "number"
+                }
+              }
+            },
+            "key": "sa2_code",
+            "fields": [
+              "owner_dwellings",
+              "known_tenure_dwellings",
+              "ownership_pct",
+              "coverage"
+            ]
+          }
+        },
+        {
+          "filter": "datum.properties.metro_code == metroArea"
+        },
+        {
+          "filter": "datum.known_tenure_dwellings >= 50 && isValid(datum.ownership_pct)"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#f4f7f8",
+        "strokeWidth": 0.15,
+        "clip": true
+      },
+      "encoding": {
+        "color": {
+          "field": "ownership_pct",
+          "type": "quantitative",
+          "title": "Owner-occupied dwellings (%)",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "range": [
+              "#fff5df",
+              "#f8ddb0",
+              "#f0bb75",
+              "#dd924c",
+              "#bf6532",
+              "#954125",
+              "#64261d"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 330,
+            "gradientThickness": 12,
+            "values": [
+              0,
+              20,
+              40,
+              60,
+              80,
+              100
+            ],
+            "format": ".0f",
+            "titleFont": "Roboto",
+            "titleFontSize": 12,
+            "titleFontWeight": 500,
+            "titleColor": "#03045e",
+            "labelFont": "Roboto",
+            "labelFontSize": 11,
+            "labelColor": "#4f6f7f"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.sa2_name",
+            "type": "nominal",
+            "title": "SA2"
+          },
+          {
+            "field": "properties.metro_name",
+            "type": "nominal",
+            "title": "Metro area"
+          },
+          {
+            "field": "ownership_pct",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Owner-occupied (%)"
+          },
+          {
+            "field": "owner_dwellings",
+            "type": "quantitative",
+            "format": ",.0f",
+            "title": "Owner-occupied dwellings"
+          },
+          {
+            "field": "known_tenure_dwellings",
+            "type": "quantitative",
+            "format": ",.0f",
+            "title": "Dwellings with stated tenure"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "font": "Roboto",
+    "view": {
+      "stroke": null
+    },
+    "legend": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto"
+    }
+  },
+  "params": [
+    {
+      "name": "metroArea",
+      "value": "2GMEL",
+      "bind": {
+        "input": "select",
+        "name": "Metro area: ",
+        "options": [
+          "2GMEL",
+          "1GSYD",
+          "3GBRI",
+          "4GADE",
+          "5GPER",
+          "6GHOB",
+          "7GDAR"
+        ],
+        "labels": [
+          "Greater Melbourne",
+          "Greater Sydney",
+          "Greater Brisbane",
+          "Greater Adelaide",
+          "Greater Perth",
+          "Greater Hobart",
+          "Greater Darwin"
+        ]
+      }
+    },
+    {
+      "name": "mapZoom",
+      "value": 1,
+      "bind": {
+        "input": "range",
+        "name": "Zoom: ",
+        "min": 0.65,
+        "max": 1.8,
+        "step": 0.05
+      }
+    },
+    {
+      "name": "metroSpanX",
+      "expr": "metroArea == '2GMEL' ? 0.021051 : metroArea == '1GSYD' ? 0.025890 : metroArea == '3GBRI' ? 0.020615 : metroArea == '4GADE' ? 0.009033 : metroArea == '5GPER' ? 0.013932 : metroArea == '6GHOB' ? 0.012005 : 0.010092"
+    },
+    {
+      "name": "metroSpanY",
+      "expr": "metroArea == '2GMEL' ? 0.023186 : metroArea == '1GSYD' ? 0.022922 : metroArea == '3GBRI' ? 0.034714 : metroArea == '4GADE' ? 0.014644 : metroArea == '5GPER' ? 0.023568 : metroArea == '6GHOB' ? 0.007635 : 0.014752"
+    },
+    {
+      "name": "metroCenterX",
+      "expr": "metroArea == '2GMEL' ? 0.1816595 : metroArea == '1GSYD' ? 0.270715 : metroArea == '3GBRI' ? 0.3178095 : metroArea == '4GADE' ? 0.0960325 : metroArea == '5GPER' ? -0.235077 : metroArea == '6GHOB' ? 0.2040135 : -0.01551"
+    },
+    {
+      "name": "metroCenterY",
+      "expr": "metroArea == '2GMEL' ? 0.234612 : metroArea == '1GSYD' ? 0.172412 : metroArea == '3GBRI' ? 0.067802 : metroArea == '4GADE' ? 0.1774 : metroArea == '5GPER' ? 0.14113 : metroArea == '6GHOB' ? 0.3243185 : -0.219341"
+    },
+    {
+      "name": "metroFitScale",
+      "expr": "min(width * 0.9 / metroSpanX, height * 0.9 / metroSpanY)"
+    }
+  ]
+}

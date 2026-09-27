@@ -256,3 +256,33 @@ body {
   display: block;
   max-width: 100%;
 }
+
+.vega-bind label {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #03045e;
+}
+
+.vega-bind input[type="range"] {
+  margin: 0;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.vega-bind select {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #03045e;
+  background-color: #f8fafc;
+  border: 1px solid #03045e;
+  border-radius: 4px;
+  padding: 4px 8px;
+  outline: none;
+}
+
+.vega-bind {
+  margin-top: 12px;
+  margin-bottom: 3px;
+}

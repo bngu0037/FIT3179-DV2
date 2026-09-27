@@ -1,0 +1,277 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "2021 Census owner-occupied share of dwellings with known tenure, joined by SA2 code from a separate CSV to ABS SA2 TopoJSON; Natural Earth outline.",
+  "background": null,
+  "padding": 0,
+  "title": {
+    "text": "Home Ownership Varies Sharply Across Australia",
+    "subtitle": "Owner-occupied dwellings as a share of dwellings with stated tenure, by SA2, 2021 Census.",
+    "anchor": "start",
+    "align": "left",
+    "font": "Roboto",
+    "fontSize": 20,
+    "fontWeight": 700,
+    "color": "#03045e",
+    "subtitleFont": "Roboto",
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": 400,
+    "subtitleColor": "#4f6f7f",
+    "offset": 10
+  },
+  "width": "container",
+  "height": 610,
+  "projection": {
+    "type": "albers",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ],
+    "center": [
+      0,
+      -25
+    ],
+    "scale": {
+      "expr": "mapZoom * min(width * 1.25, height * 1.55)"
+    },
+    "translate": {
+      "expr": "[width * 0.455, height * 0.41]"
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#009DC4"
+      }
+    },
+    {
+      "data": {
+        "url": "data/australia_natural_earth.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "australia"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#fffaf1",
+        "stroke": null,
+        "clip": true
+      }
+    },
+    {
+      "data": {
+        "url": "data/sa2_2021_australia.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "sa2"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.sa2_code",
+          "from": {
+            "data": {
+              "url": "data/sa2_ownership_2021.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "sa2_code": "string",
+                  "ownership_pct": "number",
+                  "owner_dwellings": "number",
+                  "known_tenure_dwellings": "number"
+                }
+              }
+            },
+            "key": "sa2_code",
+            "fields": [
+              "owner_dwellings",
+              "known_tenure_dwellings",
+              "ownership_pct",
+              "coverage"
+            ]
+          }
+        },
+        {
+          "filter": "!(datum.known_tenure_dwellings >= 50 && isValid(datum.ownership_pct))"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#aebbc5",
+        "stroke": "#f4f7f8",
+        "strokeWidth": 0.15,
+        "clip": true
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "properties.sa2_name",
+            "type": "nominal",
+            "title": "SA2"
+          },
+          {
+            "field": "properties.state",
+            "type": "nominal",
+            "title": "State/territory"
+          },
+          {
+            "field": "coverage",
+            "type": "nominal",
+            "title": "Data"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/sa2_2021_australia.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "sa2"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.sa2_code",
+          "from": {
+            "data": {
+              "url": "data/sa2_ownership_2021.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "sa2_code": "string",
+                  "ownership_pct": "number",
+                  "owner_dwellings": "number",
+                  "known_tenure_dwellings": "number"
+                }
+              }
+            },
+            "key": "sa2_code",
+            "fields": [
+              "owner_dwellings",
+              "known_tenure_dwellings",
+              "ownership_pct",
+              "coverage"
+            ]
+          }
+        },
+        {
+          "filter": "datum.known_tenure_dwellings >= 50 && isValid(datum.ownership_pct)"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#f4f7f8",
+        "strokeWidth": 0.15,
+        "clip": true
+      },
+      "encoding": {
+        "color": {
+          "field": "ownership_pct",
+          "type": "quantitative",
+          "title": "Owner-occupied dwellings (%)",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "range": [
+              "#fff5df",
+              "#f8ddb0",
+              "#f0bb75",
+              "#dd924c",
+              "#bf6532",
+              "#954125",
+              "#64261d"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 330,
+            "gradientThickness": 12,
+            "values": [
+              0,
+              20,
+              40,
+              60,
+              80,
+              100
+            ],
+            "format": ".0f",
+            "titleFont": "Roboto",
+            "titleFontSize": 12,
+            "titleFontWeight": 500,
+            "titleColor": "#03045e",
+            "labelFont": "Roboto",
+            "labelFontSize": 11,
+            "labelColor": "#4f6f7f"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.sa2_name",
+            "type": "nominal",
+            "title": "SA2"
+          },
+          {
+            "field": "properties.state",
+            "type": "nominal",
+            "title": "State/territory"
+          },
+          {
+            "field": "ownership_pct",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Owner-occupied (%)"
+          },
+          {
+            "field": "owner_dwellings",
+            "type": "quantitative",
+            "format": ",.0f",
+            "title": "Owner-occupied dwellings"
+          },
+          {
+            "field": "known_tenure_dwellings",
+            "type": "quantitative",
+            "format": ",.0f",
+            "title": "Dwellings with stated tenure"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "font": "Roboto",
+    "view": {
+      "stroke": null
+    },
+    "legend": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto"
+    }
+  },
+  "params": [
+    {
+      "name": "mapZoom",
+      "value": 1,
+      "bind": {
+        "input": "range",
+        "min": 0.65,
+        "max": 1.8,
+        "step": 0.05,
+        "name": "Map zoom: "
+      }
+    }
+  ]
+}
