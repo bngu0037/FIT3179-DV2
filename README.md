@@ -38,7 +38,7 @@ Investigate how Australians live by comparing home ownership, renting and other 
     - Section 5
     - Section 6
 
-9. Natural Earth, 1:10m Admin 0 - Countries. [Natural Earth Data] (https://www.naturalearthdata.com).
+9. Natural Earth, 1:10m Admin 0 - Countries. [Natural Earth Data](https://www.naturalearthdata.com).
     - Section 5
 
 10. Australian Bureau of Statistics, 2021 Census of Population and Housing, TableBuilder - SA2 (EN) by Tenure Type (TEND), counting dwelling records. [ABS TableBuilder](https://www.abs.gov.au/statistics/microdata-tablebuilder/tablebuilder).
