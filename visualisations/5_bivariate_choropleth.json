@@ -1,0 +1,1008 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "2021 bivariate SA2 choropleth of renter share and median weekly rent across seven ABS greater capital-city regions; pooled thresholds for direct comparison. The map and colour key share one layered view for reliable container sizing. The map and colour key share one layered view for reliable container sizing.",
+  "background": null,
+  "padding": 0,
+  "title": {
+    "text": {
+      "expr": "width < 400 ? ['Where Do High Renting', 'and High Rent Overlap?'] : 'Where Do High Renting and High Rent Overlap?'"
+    },
+    "subtitle": "SA2 renter share and median weekly rent, 2021.",
+    "anchor": "start",
+    "align": "left",
+    "font": "Roboto",
+    "fontSize": 20,
+    "fontWeight": 700,
+    "color": "#03045e",
+    "subtitleFont": "Roboto",
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": 400,
+    "subtitleColor": "#4f6f7f",
+    "offset": 10,
+    "frame": "group",
+    "limit": {
+      "expr": "width - 4"
+    }
+  },
+  "params": [
+    {
+      "name": "metroArea",
+      "value": "2GMEL",
+      "bind": {
+        "input": "select",
+        "name": "Metro area: ",
+        "options": [
+          "2GMEL",
+          "1GSYD",
+          "3GBRI",
+          "4GADE",
+          "5GPER",
+          "6GHOB",
+          "7GDAR"
+        ],
+        "labels": [
+          "Greater Melbourne",
+          "Greater Sydney",
+          "Greater Brisbane",
+          "Greater Adelaide",
+          "Greater Perth",
+          "Greater Hobart",
+          "Greater Darwin"
+        ]
+      }
+    },
+    {
+      "name": "mapZoom",
+      "value": 1,
+      "bind": {
+        "input": "range",
+        "name": "Metro zoom: ",
+        "min": 0.65,
+        "max": 1.8,
+        "step": 0.05
+      }
+    },
+    {
+      "name": "metroSpanX",
+      "expr": "metroArea == '2GMEL' ? 0.021051 : metroArea == '1GSYD' ? 0.025890 : metroArea == '3GBRI' ? 0.020615 : metroArea == '4GADE' ? 0.009033 : metroArea == '5GPER' ? 0.013932 : metroArea == '6GHOB' ? 0.012005 : 0.010092"
+    },
+    {
+      "name": "metroSpanY",
+      "expr": "metroArea == '2GMEL' ? 0.023186 : metroArea == '1GSYD' ? 0.022922 : metroArea == '3GBRI' ? 0.034714 : metroArea == '4GADE' ? 0.014644 : metroArea == '5GPER' ? 0.023568 : metroArea == '6GHOB' ? 0.007635 : 0.014752"
+    },
+    {
+      "name": "metroCenterX",
+      "expr": "metroArea == '2GMEL' ? 0.1816595 : metroArea == '1GSYD' ? 0.270715 : metroArea == '3GBRI' ? 0.3178095 : metroArea == '4GADE' ? 0.0960325 : metroArea == '5GPER' ? -0.235077 : metroArea == '6GHOB' ? 0.2040135 : -0.01551"
+    },
+    {
+      "name": "metroCenterY",
+      "expr": "metroArea == '2GMEL' ? 0.234612 : metroArea == '1GSYD' ? 0.172412 : metroArea == '3GBRI' ? 0.067802 : metroArea == '4GADE' ? 0.1774 : metroArea == '5GPER' ? 0.14113 : metroArea == '6GHOB' ? 0.3243185 : -0.219341"
+    },
+    {
+      "name": "metroFitScale",
+      "expr": "min(width * 0.9 / metroSpanX, (height - 190) * 0.9 / metroSpanY)"
+    }
+  ],
+  "config": {
+    "font": "Roboto",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto"
+    },
+    "legend": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto"
+    }
+  },
+  "width": "container",
+  "height": 800,
+  "projection": {
+    "type": "albers",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ],
+    "center": [
+      0,
+      -25
+    ],
+    "scale": {
+      "expr": "mapZoom * metroFitScale"
+    },
+    "translate": {
+      "expr": "[width / 2 - mapZoom * metroFitScale * metroCenterX, (height - 190) / 2 - mapZoom * metroFitScale * metroCenterY]"
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#009DC4"
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "x2": {
+          "value": {
+            "expr": "width"
+          }
+        },
+        "y": {
+          "value": {
+            "expr": "0"
+          }
+        },
+        "y2": {
+          "value": {
+            "expr": "height - 190"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/sa2_2021_metros.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "metros"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.sa2_code",
+          "from": {
+            "data": {
+              "url": "data/sa2_renter_share_median_rent_2021.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "sa2_code": "string",
+                  "renter_share_pct": "number",
+                  "median_weekly_rent_aud": "number",
+                  "renter_dwellings": "number",
+                  "known_tenure_dwellings": "number"
+                }
+              }
+            },
+            "key": "sa2_code",
+            "fields": [
+              "renter_dwellings",
+              "known_tenure_dwellings",
+              "renter_share_pct",
+              "median_weekly_rent_aud",
+              "renter_band",
+              "rent_band",
+              "bi_class",
+              "coverage"
+            ]
+          }
+        },
+        {
+          "filter": "datum.properties.metro_code == metroArea"
+        },
+        {
+          "filter": "datum.bi_class == null || datum.bi_class == \"\""
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#C2BFB8",
+        "stroke": "#F5FCFF",
+        "strokeWidth": 0.22,
+        "clip": true
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "properties.sa2_name",
+            "type": "nominal",
+            "title": "SA2"
+          },
+          {
+            "field": "properties.metro_name",
+            "type": "nominal",
+            "title": "Metro area"
+          },
+          {
+            "field": "coverage",
+            "type": "nominal",
+            "title": "Data"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/sa2_2021_metros.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "metros"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.sa2_code",
+          "from": {
+            "data": {
+              "url": "data/sa2_renter_share_median_rent_2021.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "sa2_code": "string",
+                  "renter_share_pct": "number",
+                  "median_weekly_rent_aud": "number",
+                  "renter_dwellings": "number",
+                  "known_tenure_dwellings": "number"
+                }
+              }
+            },
+            "key": "sa2_code",
+            "fields": [
+              "renter_dwellings",
+              "known_tenure_dwellings",
+              "renter_share_pct",
+              "median_weekly_rent_aud",
+              "renter_band",
+              "rent_band",
+              "bi_class",
+              "coverage"
+            ]
+          }
+        },
+        {
+          "filter": "datum.properties.metro_code == metroArea"
+        },
+        {
+          "filter": "datum.bi_class != null && datum.bi_class != \"\""
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#F5FCFF",
+        "strokeWidth": 0.22,
+        "clip": true
+      },
+      "encoding": {
+        "color": {
+          "field": "bi_class",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "low_low",
+              "mid_low",
+              "high_low",
+              "low_mid",
+              "mid_mid",
+              "high_mid",
+              "low_high",
+              "mid_high",
+              "high_high"
+            ],
+            "range": [
+              "#F8F1E4",
+              "#E3D3E5",
+              "#AA83BF",
+              "#F6D296",
+              "#D8ACB6",
+              "#92578F",
+              "#EEA56A",
+              "#C4797F",
+              "#62355E"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.sa2_name",
+            "type": "nominal",
+            "title": "SA2"
+          },
+          {
+            "field": "properties.metro_name",
+            "type": "nominal",
+            "title": "Metro area"
+          },
+          {
+            "field": "renter_share_pct",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Renter share (%)"
+          },
+          {
+            "field": "median_weekly_rent_aud",
+            "type": "quantitative",
+            "format": ",.0f",
+            "title": "Median rent ($/week)"
+          },
+          {
+            "field": "renter_dwellings",
+            "type": "quantitative",
+            "format": ",.0f",
+            "title": "Rented dwellings"
+          },
+          {
+            "field": "known_tenure_dwellings",
+            "type": "quantitative",
+            "format": ",.0f",
+            "title": "Dwellings with stated tenure"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#f5fcff"
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "x2": {
+          "value": {
+            "expr": "width"
+          }
+        },
+        "y": {
+          "value": {
+            "expr": "height - 190"
+          }
+        },
+        "y2": {
+          "value": {
+            "expr": "height"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "Renter share × median weekly rent",
+        "font": "Roboto",
+        "fontSize": 12,
+        "fontWeight": 500,
+        "color": "#03045e",
+        "align": "left",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "y": {
+          "value": {
+            "expr": "height - 174"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "Cutoffs: 23%, 36% · $370, $425/week",
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 400,
+        "color": "#4f6f7f",
+        "align": "left",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "y": {
+          "value": {
+            "expr": "height - 157"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "description": "Low renter share / high median rent"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#EEA56A",
+        "stroke": "#f5fcff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "x2": {
+          "value": 55
+        },
+        "y": {
+          "value": {
+            "expr": "height - 130"
+          }
+        },
+        "y2": {
+          "value": {
+            "expr": "height - 102"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "description",
+            "type": "nominal",
+            "title": "Combination"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "description": "Low renter share / mid median rent"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#F6D296",
+        "stroke": "#f5fcff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "x2": {
+          "value": 55
+        },
+        "y": {
+          "value": {
+            "expr": "height - 102"
+          }
+        },
+        "y2": {
+          "value": {
+            "expr": "height - 74"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "description",
+            "type": "nominal",
+            "title": "Combination"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "description": "Low renter share / low median rent"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#F8F1E4",
+        "stroke": "#f5fcff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "x2": {
+          "value": 55
+        },
+        "y": {
+          "value": {
+            "expr": "height - 74"
+          }
+        },
+        "y2": {
+          "value": {
+            "expr": "height - 46"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "description",
+            "type": "nominal",
+            "title": "Combination"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "description": "Mid renter share / high median rent"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#C4797F",
+        "stroke": "#f5fcff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "value": 55
+        },
+        "x2": {
+          "value": 110
+        },
+        "y": {
+          "value": {
+            "expr": "height - 130"
+          }
+        },
+        "y2": {
+          "value": {
+            "expr": "height - 102"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "description",
+            "type": "nominal",
+            "title": "Combination"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "description": "Mid renter share / mid median rent"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#D8ACB6",
+        "stroke": "#f5fcff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "value": 55
+        },
+        "x2": {
+          "value": 110
+        },
+        "y": {
+          "value": {
+            "expr": "height - 102"
+          }
+        },
+        "y2": {
+          "value": {
+            "expr": "height - 74"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "description",
+            "type": "nominal",
+            "title": "Combination"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "description": "Mid renter share / low median rent"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#E3D3E5",
+        "stroke": "#f5fcff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "value": 55
+        },
+        "x2": {
+          "value": 110
+        },
+        "y": {
+          "value": {
+            "expr": "height - 74"
+          }
+        },
+        "y2": {
+          "value": {
+            "expr": "height - 46"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "description",
+            "type": "nominal",
+            "title": "Combination"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "description": "High renter share / high median rent"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#62355E",
+        "stroke": "#f5fcff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "value": 110
+        },
+        "x2": {
+          "value": 165
+        },
+        "y": {
+          "value": {
+            "expr": "height - 130"
+          }
+        },
+        "y2": {
+          "value": {
+            "expr": "height - 102"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "description",
+            "type": "nominal",
+            "title": "Combination"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "description": "High renter share / mid median rent"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#92578F",
+        "stroke": "#f5fcff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "value": 110
+        },
+        "x2": {
+          "value": 165
+        },
+        "y": {
+          "value": {
+            "expr": "height - 102"
+          }
+        },
+        "y2": {
+          "value": {
+            "expr": "height - 74"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "description",
+            "type": "nominal",
+            "title": "Combination"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "description": "High renter share / low median rent"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#AA83BF",
+        "stroke": "#f5fcff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "value": 110
+        },
+        "x2": {
+          "value": 165
+        },
+        "y": {
+          "value": {
+            "expr": "height - 74"
+          }
+        },
+        "y2": {
+          "value": {
+            "expr": "height - 46"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "description",
+            "type": "nominal",
+            "title": "Combination"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "Low",
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 400,
+        "color": "#03045e",
+        "align": "center",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "value": 27.5
+        },
+        "y": {
+          "value": {
+            "expr": "height - 30"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "Mid",
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 400,
+        "color": "#03045e",
+        "align": "center",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "value": 82.5
+        },
+        "y": {
+          "value": {
+            "expr": "height - 30"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "High",
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 400,
+        "color": "#03045e",
+        "align": "center",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "value": 137.5
+        },
+        "y": {
+          "value": {
+            "expr": "height - 30"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "High",
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 400,
+        "color": "#03045e",
+        "align": "left",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "value": 173
+        },
+        "y": {
+          "value": {
+            "expr": "height - 116"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "Mid",
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 400,
+        "color": "#03045e",
+        "align": "left",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "value": 173
+        },
+        "y": {
+          "value": {
+            "expr": "height - 88"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "Low",
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 400,
+        "color": "#03045e",
+        "align": "left",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "value": 173
+        },
+        "y": {
+          "value": {
+            "expr": "height - 60"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "Rent ↑",
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 500,
+        "color": "#03045e",
+        "align": "left",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "value": 173
+        },
+        "y": {
+          "value": {
+            "expr": "height - 141"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "text": "Renter share →",
+        "font": "Roboto",
+        "fontSize": 11,
+        "fontWeight": 500,
+        "color": "#03045e",
+        "align": "center",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "value": 82.5
+        },
+        "y": {
+          "value": {
+            "expr": "height - 13"
+          }
+        }
+      }
+    }
+  ]
+}

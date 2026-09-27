@@ -34,15 +34,18 @@ Investigate how Australians live by comparing home ownership, renting and other 
     - Chart 4.2
     - Chart 4.3
 
-8. Australian Bureau of Statistics, 2021 Census of Population and Housing, TableBuilder — SA2 (EN) by Tenure Type (TEND), counting dwelling records. [ABS TableBuilder](https://www.abs.gov.au/statistics/microdata-tablebuilder/tablebuilder).
+8. Australian Bureau of Statistics, Australian Statistical Geography Standard, Edition 3, 2021 Statistical Area Level 2 digital boundaries (GDA2020). [ABS Digital Boundary Files](https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs/edition-3-july-2021-june-2026/access-and-downloads/digital-boundary-files).
+    - Section 5
+
+9. Natural Earth, 1:10m Admin 0 - Countries. [Natural Earth Data] (https://www.naturalearthdata.com).
+    - Section 5
+
+10. Australian Bureau of Statistics, 2021 Census of Population and Housing, TableBuilder - SA2 (EN) by Tenure Type (TEND), counting dwelling records. [ABS TableBuilder](https://www.abs.gov.au/statistics/microdata-tablebuilder/tablebuilder).
     - Chart 5.1
     - Chart 5.2
     - Chart 5.3 
 
-9. Australian Bureau of Statistics, Australian Statistical Geography Standard, Edition 3, 2021 Statistical Area Level 2 digital boundaries (GDA2020). [ABS Digital Boundary Files](https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs/edition-3-july-2021-june-2026/access-and-downloads/digital-boundary-files).
-    - Section 5
-
-10. Natural Earth, 1:10m Admin 0 — Countries. [Natural Earth Data] (https://www.naturalearthdata.com).
-    - Section 5
+11. Australian Bureau of Statistics, 2021 Census General Community Profile, SA2 DataPack, Table G02 - Median weekly rent. [ABS DataPacks](https://www.abs.gov.au/census/find-census-data/datapacks).  
+    - Chart 5.3
 
 **Note:** ABS TableBuilder cells are randomly adjusted to protect confidentiality, so small cells and totals may differ slightly.
