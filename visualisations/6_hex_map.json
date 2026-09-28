@@ -1,0 +1,284 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Geographically positioned hex bins of 2021 SA2 dwelling tenure relative to each state or territory owner-occupation rate.",
+  "padding": 0,
+  "background": null,
+  "title": {
+    "text": "Ownership Differs Even Within States",
+    "subtitle": [
+      "Hexes group SA2 dwelling counts by location; colour shows the ownership gap from each state rate, 2021.",
+      "Grey land has no SA2 centre in that bin; it does not indicate zero dwellings.",
+      "SA2s with fewer than 50 dwellings with stated tenure are excluded."
+    ],
+    "anchor": "start",
+    "align": "left",
+    "font": "Roboto",
+    "fontSize": 20,
+    "fontWeight": 700,
+    "color": "#03045e",
+    "subtitleFont": "Roboto",
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": 400,
+    "subtitleColor": "#4f6f7f",
+    "offset": 10
+  },
+  "width": "container",
+  "height": 610,
+  "data": {
+    "url": "data/sa2_ownership_spatial_hexbins_2021.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "hex_lon": "number",
+        "hex_lat": "number",
+        "label_lon": "number",
+        "label_lat": "number",
+        "owner_dwellings": "number",
+        "known_tenure_dwellings": "number",
+        "sa2_count": "number",
+        "ownership_pct": "number",
+        "state_ownership_pct": "number",
+        "difference_pp": "number"
+      }
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#009DC4"
+      }
+    },
+    {
+      "data": {
+        "url": "data/australia_natural_earth.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "australia"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#E9EFF0",
+        "stroke": "#B5C7CC",
+        "strokeWidth": 0.8,
+        "clip": true
+      }
+    },
+    {
+      "data": {
+        "url": "data/state_boundaries_2021.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "filled": false,
+        "stroke": "#B5C7CC",
+        "strokeWidth": 0.8,
+        "strokeOpacity": 1,
+        "clip": true
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "shape": "M-1,0 L-0.5,-0.866 L0.5,-0.866 L1,0 L0.5,0.866 L-0.5,0.866 Z",
+        "size": 310,
+        "stroke": "#f5fcff",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "longitude": {
+          "field": "hex_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "hex_lat",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "difference_pp",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -30,
+              -15,
+              0,
+              15,
+              30
+            ],
+            "range": [
+              "#A95020",
+              "#D99A69",
+              "#D3D0D0",
+              "#D486AA",
+              "#9C246B"
+            ],
+            "clamp": true
+          },
+          "legend": {
+            "title": "Difference from state (pp)",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 240,
+            "gradientThickness": 12,
+            "values": [
+              -30,
+              -15,
+              0,
+              15,
+              30
+            ],
+            "labelExpr": "datum.value === 0 ? '0' : datum.value > 0 ? '+' + datum.value : '' + datum.value",
+            "titleFont": "Roboto",
+            "titleFontSize": 12,
+            "titleFontWeight": 500,
+            "titleColor": "#03045e",
+            "labelFont": "Roboto",
+            "labelFontSize": 11,
+            "labelColor": "#03045e",
+            "offset": 10
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state_name",
+            "type": "nominal",
+            "title": "State / territory"
+          },
+          {
+            "field": "ownership_pct",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Hex ownership rate (%)"
+          },
+          {
+            "field": "state_ownership_pct",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "State ownership rate (%)"
+          },
+          {
+            "field": "difference_pp",
+            "type": "quantitative",
+            "format": "+.1f",
+            "title": "Difference (pp)"
+          },
+          {
+            "field": "sa2_count",
+            "type": "quantitative",
+            "format": ".0f",
+            "title": "Included SA2s"
+          },
+          {
+            "field": "owner_dwellings",
+            "type": "quantitative",
+            "format": ",.0f",
+            "title": "Owner-occupied dwellings"
+          },
+          {
+            "field": "known_tenure_dwellings",
+            "type": "quantitative",
+            "format": ",.0f",
+            "title": "Dwellings with stated tenure"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "label_lon",
+              "as": "label_lon"
+            },
+            {
+              "op": "min",
+              "field": "label_lat",
+              "as": "label_lat"
+            },
+            {
+              "op": "min",
+              "field": "state_ownership_pct",
+              "as": "state_rate"
+            }
+          ],
+          "groupby": [
+            "state"
+          ]
+        },
+        {
+          "calculate": "datum.state + '  ' + format(datum.state_rate, '.0f') + '%'",
+          "as": "state_label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "font": "Roboto",
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#03045e",
+        "align": "center",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "label_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "label_lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "state_label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Roboto",
+    "legend": {
+      "labelFont": "Roboto",
+      "titleFont": "Roboto",
+      "labelColor": "#03045e",
+      "titleColor": "#03045e"
+    }
+  },
+  "projection": {
+    "type": "albers",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ],
+    "center": [
+      0,
+      -25
+    ],
+    "scale": {
+      "expr": "min(width * 1.35, height * 1.52)"
+    },
+    "translate": {
+      "expr": "[width * 0.48, height * 0.43]"
+    }
+  }
+}
