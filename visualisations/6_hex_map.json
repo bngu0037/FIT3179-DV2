@@ -6,9 +6,7 @@
   "title": {
     "text": "Local Ownership Difference From State Average",
     "subtitle": [
-      "Hexes group SA2 dwelling counts by location; colour shows the ownership gap from each state rate, 2021.",
-      "Grey land has no SA2 centre in that bin; it does not indicate zero dwellings.",
-      "SA2s with fewer than 50 dwellings with stated tenure are excluded."
+      "Difference between local ownership and each state's rate, 2021"
     ],
     "anchor": "start",
     "align": "left",
