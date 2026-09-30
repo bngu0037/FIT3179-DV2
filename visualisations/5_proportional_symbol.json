@@ -79,7 +79,7 @@
   "description": "2021 Census rented-dwelling counts per SA2 across seven greater capital cities. Circle area is proportional to dwelling count. Same seven-area metro selection and Albers projection as the bivariate map.",
   "title": {
     "text": {
-      "expr": "width < 480 ? ['Where Are Renter Households', 'Concentrated?'] : 'Where Are Renter Households Concentrated?'"
+      "expr": "width < 480 ? ['Renter Households Across Metro', 'Areas'] : 'Renter Households Across Metro Areas'"
     },
     "subtitle": "Rented dwellings by SA2, 2021.",
     "anchor": "start",

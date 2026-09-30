@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
 
   "title": {
-    "text": "Mortgage Becomes Dominant at Higher Incomes",
+    "text": "Tenure Ranking by Household Income",
     "subtitle": "Rank of housing tenure types across weekly household income bands, 2021.",
     "anchor": "start",
     "align": "left",

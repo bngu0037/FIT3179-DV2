@@ -5,7 +5,7 @@
   "padding": 0,
   "title": {
     "text": {
-      "expr": "width < 400 ? ['Where Do High Renting', 'and High Rent Overlap?'] : 'Where Do High Renting and High Rent Overlap?'"
+      "expr": "width < 400 ? ['Renting and Median Rent', 'Across Metro Areas'] : 'Renting and Median Rent Across Metro Areas'"
     },
     "subtitle": "SA2 renter share and median weekly rent, 2021.",
     "anchor": "start",

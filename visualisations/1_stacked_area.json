@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "description": "Streamgraph showing how the composition of Australian housing tenure changed over time.",
+  "description": "Stacked area chart showing how the composition of Australian housing tenure changed over time.",
   "padding": 0,
 
   "title": {
-    "text": "Australia's Housing Tenure Mix Has Shifted",
+    "text": "Housing Tenure Over Time",
     "subtitle": "Share of households by tenure, 1994-95 to 2019-20",
     "anchor": "start",
     "align": "left",

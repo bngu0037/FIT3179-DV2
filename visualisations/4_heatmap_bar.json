@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
 
   "title": {
-    "text": "Income Changes the Ownership Picture",
+    "text": "Home Ownership by Household Type and Income",
     "subtitle": "Home ownership rate by household type and weekly household income, 2021.",
     "anchor": "start",
     "align": "left",

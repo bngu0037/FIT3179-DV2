@@ -4,7 +4,7 @@
   "padding": 0,
   "background": null,
   "title": {
-    "text": "State Averages Conceal Wide Local Differences",
+    "text": "Local Home Ownership by State",
     "subtitle": [
       "Each purple dot is an SA2 ownership rate; the orange diamond is its state's pooled rate, 2021.",
       "SA2s with fewer than 50 dwellings with stated tenure are excluded."
