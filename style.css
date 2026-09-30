@@ -86,12 +86,12 @@ body {
 
 .section-heading {
   margin-bottom: 20px;
-
-  max-width: 80%;
 }
 
 .section-heading h2 {
   margin: 0 0 6px;
+
+  max-width: 80%;
 
   color: var(--heading);
 
@@ -104,6 +104,8 @@ body {
 
 .section-subheading {
   margin: 0;
+
+  max-width: calc((100% - var(--column-gap)) / 2);
 
   color: var(--muted);
 
@@ -198,6 +200,10 @@ body {
 
   .section-heading {
     margin-bottom: 16px;
+  }
+
+  .section-subheading {
+    max-width: 100%;
   }
 
   .viz-grid {

@@ -55,6 +55,11 @@
           "axis": {
             "title": "Age group",
             "labelFont": "Roboto",
+            "titleFont": "Roboto",
+            "titleFontSize": 12,
+            "titleFontWeight": 500,
+            "titleColor": "#03045e",
+            "titlePadding": 10,
             "labelFontSize": 12,
             "labelColor": "#03045e",
             "labelPadding": 8,
