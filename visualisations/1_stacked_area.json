@@ -77,7 +77,23 @@
       "scale": {
         "nice": false
       },
-      "axis": null
+      "axis": {
+        "title": "Share of households (%)",
+        "titleFont": "Roboto",
+        "titlePadding": 12,
+        "titleFontSize": 12,
+        "titleFontWeight": 500,
+        "titleColor": "#03045e",
+        "labelFont": "Roboto",
+        "labelFontSize": 11,
+        "labelColor": "#03045e",
+        "labelAngle": 0,
+        "labelPadding": 6,
+        "labels": false,
+        "ticks": false,
+        "domain": false,
+        "grid": false
+      }
     },
 
     "color": {

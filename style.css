@@ -87,7 +87,7 @@ body {
 .section-heading {
   margin-bottom: 20px;
 
-  max-width: 850px;
+  max-width: 80%;
 }
 
 .section-heading h2 {
@@ -126,7 +126,8 @@ body {
 .viz-slot {
   width: 100%;
   min-width: 0;
-
+  display: grid;
+  grid-template-rows: 1fr auto;
   background: transparent;
 
   overflow: hidden;
@@ -134,6 +135,19 @@ body {
 
 .viz-slot--full {
   grid-column: 1 / -1;
+}
+
+.annotation-grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--column-gap);
+  width: 100%;
+  min-width: 0;
+}
+
+.annotation-grid .chart-annotation {
+  margin: 0;
 }
 
 .viz-slot .vega-embed {
@@ -194,6 +208,12 @@ body {
 
   .viz-slot--full {
     grid-column: auto;
+  }
+
+  .annotation-grid {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 }
 
@@ -289,4 +309,13 @@ body {
 
 #vis13 .vega-bindings {
   margin-top: -45px;
+}
+
+.chart-annotation {
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.chart-annotation strong {
+  font-weight: 700;
 }
