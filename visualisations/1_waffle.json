@@ -103,7 +103,7 @@
       "legend": {
         "title": null,
         "orient": "bottom",
-        "columns": 2,
+        "columns": 4,
 
         "labelFont": "Roboto",
         "labelFontSize": 12,
