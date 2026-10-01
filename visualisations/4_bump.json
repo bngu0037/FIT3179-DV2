@@ -124,20 +124,7 @@
             ]
           },
 
-          "legend": {
-            "orient": "top",
-            "direction": "horizontal",
-
-            "title": null,
-
-            "labelFont": "Roboto",
-            "labelFontSize": 12,
-            "labelFontWeight": 400,
-            "labelColor": "#03045e",
-
-            "symbolStrokeWidth": 3,
-            "symbolSize": 120
-          }
+          "legend": null
         },
 
         "detail": {

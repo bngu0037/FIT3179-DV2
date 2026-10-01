@@ -233,7 +233,7 @@ body {
 
 .chart-note {
   margin-top: 0px;
-  margin-bottom: 0;
+  margin-bottom: 8px;
   font-family: "Roboto", sans-serif;
   font-size: 11px;
   line-height: 1.4;

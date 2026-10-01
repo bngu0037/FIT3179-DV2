@@ -220,7 +220,7 @@
           },
           "legend": {
             "title": null,
-            "orient": "bottom",
+            "orient": "bottom-left",
             "direction": "horizontal",
             "columns": 2,
             "labelFont": "Roboto",

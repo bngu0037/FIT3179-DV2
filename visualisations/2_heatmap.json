@@ -156,10 +156,13 @@
             ]
           },
           "legend": {
-            "orient": "bottom",
+            "orient": "bottom-left",
             "direction": "horizontal",
             "gradientLength": 220,
             "gradientThickness": 12,
+            "fillColor": "#ffffff",
+            "padding": 8,
+            "fillOpacity": 0.5,
 
             "titleFont": "Roboto",
             "titleFontSize": 12,
