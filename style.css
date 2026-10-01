@@ -62,11 +62,13 @@ body {
 
   color: var(--heading);
 
+  font-family: "DM Serif Display", Georgia, serif;
+
   font-size: clamp(3rem, 7vw, 5.5rem);
   line-height: 0.98;
 
   letter-spacing: -0.04em;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .hero-subtitle {
@@ -95,11 +97,17 @@ body {
 
   color: var(--heading);
 
+  font-family: "DM Serif Display", Georgia, serif;
+
   font-size: clamp(1.9rem, 4vw, 2.7rem);
   line-height: 1.1;
 
   letter-spacing: -0.02em;
-  font-weight: 700;
+  font-weight: 400;
+}
+
+.conclusion-pull-quote {
+  font-family: "DM Serif Display", Georgia, serif;
 }
 
 .section-subheading {
