@@ -252,6 +252,70 @@
           }
         ]
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "longitude": 116.5,
+            "latitude": -49.5
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "width": 212,
+        "height": 42,
+        "cornerRadius": 3,
+        "fill": "#f5fcff",
+        "fillOpacity": 0.92,
+        "stroke": "#d9eaf1"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "longitude": 116.5,
+            "latitude": -49
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "font": "Roboto",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#03045e"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": [
+            "SA2s are small areas used to report",
+            "local Census data."
+          ]
+        }
+      }
     }
   ],
   "config": {

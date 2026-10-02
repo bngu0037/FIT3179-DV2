@@ -196,6 +196,71 @@
       }
     },
     {
+      "data": {
+        "values": [
+          {
+            "longitude": 156.1,
+            "latitude": -13.8
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "width": 244,
+        "height": 62,
+        "cornerRadius": 3,
+        "fill": "#f5fcff",
+        "fillOpacity": 0.92,
+        "stroke": "#d9eaf1"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "longitude": 156,
+            "latitude": -13
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "font": "Roboto",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#03045e"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": [
+            "Most areas are close to their state average:",
+            "69% of hexes fall within \u00b110 pp,",
+            "but some differ by over 20 pp."
+          ]
+        }
+      }
+    },
+    {
       "transform": [
         {
           "aggregate": [
