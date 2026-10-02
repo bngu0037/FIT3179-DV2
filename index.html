@@ -308,6 +308,36 @@
       var vis14 = "./visualisations/6_jitter.json"
       var vis15 = "./visualisations/6_hex_map.json"
 
+      function formatZoomReadout(container, view) {
+        const slider = container.querySelector('.vega-bind input[type="range"]');
+
+        if (!slider) {
+          return;
+        }
+
+        const readout = document.createElement('span');
+        readout.className = 'vega-bind-value';
+        slider.insertAdjacentElement('afterend', readout);
+
+        const hideDefaultReadout = () => {
+          const defaultReadout = [...slider.parentElement.querySelectorAll('span')]
+            .find(span => span !== readout && !span.classList.contains('vega-bind-name'));
+
+          if (defaultReadout) {
+            defaultReadout.hidden = true;
+          }
+        };
+
+        requestAnimationFrame(hideDefaultReadout);
+
+        const updateReadout = (_, zoom) => {
+          readout.textContent = Number(zoom).toFixed(2);
+        };
+
+        updateReadout(null, view.signal("mapZoom"));
+        view.addSignalListener("mapZoom", updateReadout);
+      }
+
       vegaEmbed('#vis1', vis1, { "actions": false }).then(function (result) {}).catch(console.error);
       vegaEmbed('#vis2', vis2, { "actions": false }).then(function (result) {}).catch(console.error);
       vegaEmbed('#vis3', vis3, { "actions": false }).then(function (result) {}).catch(console.error);
@@ -360,10 +390,18 @@
 
         vegaEmbed('#vis8', vis8, { "actions": false }).then(function (result) {}).catch(console.error);
         vegaEmbed('#vis9', vis9, { "actions": false }).then(function (result) {}).catch(console.error);
-        vegaEmbed('#vis10', vis10, { "actions": false }).then(function (result) {}).catch(console.error);
-        vegaEmbed('#vis11', vis11, { "actions": false }).then(function (result) {}).catch(console.error);
-        vegaEmbed('#vis12', vis12, { "actions": false }).then(function (result) {}).catch(console.error);
-        vegaEmbed('#vis13', vis13, { "actions": false }).then(function (result) {}).catch(console.error);
+        vegaEmbed('#vis10', vis10, { "actions": false }).then(function (result) {
+          formatZoomReadout(document.querySelector('#vis10'), result.view);
+        }).catch(console.error);
+        vegaEmbed('#vis11', vis11, { "actions": false }).then(function (result) {
+          formatZoomReadout(document.querySelector('#vis11'), result.view);
+        }).catch(console.error);
+        vegaEmbed('#vis12', vis12, { "actions": false }).then(function (result) {
+          formatZoomReadout(document.querySelector('#vis12'), result.view);
+        }).catch(console.error);
+        vegaEmbed('#vis13', vis13, { "actions": false }).then(function (result) {
+          formatZoomReadout(document.querySelector('#vis13'), result.view);
+        }).catch(console.error);
         vegaEmbed('#vis14', vis14, { "actions": false }).then(function (result) {}).catch(console.error);
         vegaEmbed('#vis15', vis15, { "actions": false }).then(function (result) {}).catch(console.error);
 

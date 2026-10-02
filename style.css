@@ -345,7 +345,7 @@ body {
 
 #vis10 .vega-bindings {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 0.45fr) minmax(0, 0.55fr);
   height: 45px;
   align-items: center;
   margin-top: -45px;
@@ -361,37 +361,137 @@ body {
 
 #vis10 .vega-bind label {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-rows: auto auto;
+  grid-template-columns: auto minmax(0, 1fr) 4ch;
   align-items: center;
+  column-gap: 6px;
   width: 100%;
 }
 
 #vis10 .vega-bind-name {
   grid-column: 1;
-  grid-row: 1;
 }
 
 #vis10 .vega-bind input[type="range"] {
-  grid-column: 1;
-  grid-row: 2;
+  grid-column: 2;
   min-width: 0;
   width: 100%;
   margin-right: 0;
 }
 
 #vis10 .vega-bind-value {
-  grid-column: 2;
-  grid-row: 2;
+  grid-column: 3;
   align-self: center;
-  min-width: 4ch;
-  padding-left: 6px;
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
+/* Overlay metro controls beside the legend, keeping each control on one line. */
+#vis11 .vega-bindings {
+  display: grid;
+  grid-template-columns: minmax(0, 0.45fr) minmax(0, 0.55fr);
+  grid-template-rows: repeat(2, auto);
+  align-items: center;
+  height: 62px;
+  margin-top: -51px;
+}
+
+#vis11 .vega-bind {
+  grid-column: 2;
+  width: 100%;
+  white-space: nowrap;
+}
+
+#vis11 .vega-bind label {
+  display: grid;
+  align-items: center;
+  width: 100%;
+}
+
+#vis11 .vega-bind:first-child label {
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 6px;
+}
+
+#vis11 .vega-bind:nth-child(2) label {
+  grid-template-columns: auto minmax(0, 1fr) 4ch;
+  column-gap: 6px;
+}
+
+#vis11 .vega-bind input[type="range"] {
+  min-width: 0;
+  width: 100%;
+  margin-right: 0;
+}
+
+#vis11 .vega-bind-value {
+  min-width: 4ch;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Place each metro map's controls beside its in-chart legend. */
+#vis12,
+#vis13 {
+  min-height: 859px;
+}
+
+#vis12 .vega-bindings,
 #vis13 .vega-bindings {
-  margin-top: -45px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.45fr) minmax(0, 0.55fr);
+  grid-template-rows: repeat(2, auto);
+  column-gap: 12px;
+  align-items: center;
+  height: 62px;
+}
+
+#vis12 .vega-bindings {
+  margin-top: -187px;
+}
+
+#vis13 .vega-bindings {
+  margin-top: -152px;
+}
+
+#vis12 .vega-bind,
+#vis13 .vega-bind {
+  grid-column: 2;
+  margin-left: 12px;
+  width: calc(100% - 12px);
+  white-space: nowrap;
+}
+
+#vis12 .vega-bind label,
+#vis13 .vega-bind label {
+  display: grid;
+  align-items: center;
+  width: 100%;
+}
+
+#vis12 .vega-bind:first-child label,
+#vis13 .vega-bind:first-child label {
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 6px;
+}
+
+#vis12 .vega-bind:nth-child(2) label,
+#vis13 .vega-bind:nth-child(2) label {
+  grid-template-columns: auto minmax(0, 1fr) 4ch;
+  column-gap: 6px;
+}
+
+#vis12 .vega-bind input[type="range"],
+#vis13 .vega-bind input[type="range"] {
+  min-width: 0;
+  width: 100%;
+  margin-right: 0;
+}
+
+#vis12 .vega-bind-value,
+#vis13 .vega-bind-value {
+  min-width: 4ch;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
 .chart-annotation {

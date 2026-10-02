@@ -226,8 +226,11 @@
           },
           "legend": {
             "orient": "bottom",
+            "anchor": "start",
             "direction": "horizontal",
-            "gradientLength": 330,
+            "gradientLength": {
+              "expr": "width * 0.45 - 12"
+            },
             "gradientThickness": 12,
             "values": [
               0,
@@ -318,7 +321,7 @@
       "value": "2GMEL",
       "bind": {
         "input": "select",
-        "name": "Metro area: ",
+        "name": "Metro area ",
         "options": [
           "2GMEL",
           "1GSYD",
@@ -344,10 +347,11 @@
       "value": 1,
       "bind": {
         "input": "range",
-        "name": "Zoom: ",
+        "name": "Zoom ",
         "min": 0.65,
         "max": 1.8,
-        "step": 0.05
+        "step": 0.05,
+        "format": ".2f"
       }
     },
     {

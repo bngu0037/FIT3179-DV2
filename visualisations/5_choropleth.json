@@ -200,7 +200,7 @@
             "anchor": "start",
             "direction": "horizontal",
             "gradientLength": {
-              "expr": "width / 2 - 12"
+              "expr": "width * 0.45 - 12"
             },
             "gradientThickness": 12,
             "values": [
@@ -274,7 +274,7 @@
         "max": 1.8,
         "step": 0.05,
         "format": ".2f",
-        "name": "Zoom: "
+        "name": "Zoom "
       }
     }
   ]

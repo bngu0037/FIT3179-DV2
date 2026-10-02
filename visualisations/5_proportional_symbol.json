@@ -8,7 +8,7 @@
       "value": "2GMEL",
       "bind": {
         "input": "select",
-        "name": "Metro area: ",
+        "name": "Metro area ",
         "options": [
           "2GMEL",
           "1GSYD",
@@ -34,10 +34,11 @@
       "value": 1,
       "bind": {
         "input": "range",
-        "name": "Zoom: ",
+        "name": "Zoom ",
         "min": 0.65,
         "max": 1.8,
-        "step": 0.05
+        "step": 0.05,
+        "format": ".2f"
       }
     },
     {
@@ -58,7 +59,7 @@
     },
     {
       "name": "metroFitScale",
-      "expr": "min(width * 0.9 / metroSpanX, (height - 150) * 0.9 / metroSpanY)"
+      "expr": "min(width * 0.9 / metroSpanX, (height - 165) * 0.9 / metroSpanY)"
     }
   ],
   "config": {
@@ -98,7 +99,7 @@
       "expr": "width - 4"
     }
   },
-  "height": 760,
+  "height": 775,
   "projection": {
     "type": "albers",
     "parallels": [
@@ -117,7 +118,7 @@
       "expr": "mapZoom * metroFitScale"
     },
     "translate": {
-      "expr": "[width / 2 - mapZoom * metroFitScale * metroCenterX, (height - 150) / 2 - mapZoom * metroFitScale * metroCenterY]"
+      "expr": "[width / 2 - mapZoom * metroFitScale * metroCenterX, (height - 165) / 2 - mapZoom * metroFitScale * metroCenterY]"
     }
   },
   "layer": [
@@ -145,7 +146,7 @@
         },
         "y2": {
           "value": {
-            "expr": "height - 150"
+            "expr": "height - 165"
           }
         }
       }
@@ -336,7 +337,7 @@
         },
         "y": {
           "value": {
-            "expr": "height - 150"
+            "expr": "height - 165"
           }
         },
         "y2": {
@@ -417,7 +418,7 @@
       },
       "encoding": {
         "x": {
-          "value": 50
+          "value": 12
         },
         "y": {
           "value": {
@@ -459,7 +460,7 @@
       },
       "encoding": {
         "x": {
-          "value": 50
+          "value": 12
         },
         "y": {
           "value": {
@@ -485,7 +486,7 @@
       },
       "encoding": {
         "x": {
-          "value": 120
+          "value": 82
         },
         "y": {
           "value": {
@@ -527,7 +528,7 @@
       },
       "encoding": {
         "x": {
-          "value": 120
+          "value": 82
         },
         "y": {
           "value": {
@@ -553,7 +554,7 @@
       },
       "encoding": {
         "x": {
-          "value": 190
+          "value": 152
         },
         "y": {
           "value": {
@@ -595,7 +596,7 @@
       },
       "encoding": {
         "x": {
-          "value": 190
+          "value": 152
         },
         "y": {
           "value": {

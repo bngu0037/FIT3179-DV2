@@ -30,7 +30,7 @@
       "value": "2GMEL",
       "bind": {
         "input": "select",
-        "name": "Metro area: ",
+        "name": "Metro area ",
         "options": [
           "2GMEL",
           "1GSYD",
@@ -56,10 +56,11 @@
       "value": 1,
       "bind": {
         "input": "range",
-        "name": "Zoom: ",
+        "name": "Zoom ",
         "min": 0.65,
         "max": 1.8,
-        "step": 0.05
+        "step": 0.05,
+        "format": ".2f"
       }
     },
     {
@@ -80,7 +81,7 @@
     },
     {
       "name": "metroFitScale",
-      "expr": "min(width * 0.9 / metroSpanX, (height - 190) * 0.9 / metroSpanY)"
+      "expr": "min(width * 0.9 / metroSpanX, (height - 205) * 0.9 / metroSpanY)"
     }
   ],
   "config": {
@@ -98,7 +99,7 @@
     }
   },
   "width": "container",
-  "height": 800,
+  "height": 815,
   "projection": {
     "type": "albers",
     "parallels": [
@@ -117,7 +118,7 @@
       "expr": "mapZoom * metroFitScale"
     },
     "translate": {
-      "expr": "[width / 2 - mapZoom * metroFitScale * metroCenterX, (height - 190) / 2 - mapZoom * metroFitScale * metroCenterY]"
+      "expr": "[width / 2 - mapZoom * metroFitScale * metroCenterX, (height - 205) / 2 - mapZoom * metroFitScale * metroCenterY]"
     }
   },
   "layer": [
@@ -147,7 +148,7 @@
         },
         "y2": {
           "value": {
-            "expr": "height - 190"
+            "expr": "height - 205"
           }
         }
       }
@@ -424,7 +425,7 @@
         },
         "y": {
           "value": {
-            "expr": "height - 190"
+            "expr": "height - 205"
           }
         },
         "y2": {
@@ -504,10 +505,10 @@
       },
       "encoding": {
         "x": {
-          "value": 0
+          "value": 35
         },
         "x2": {
-          "value": 55
+          "value": 90
         },
         "y": {
           "value": {
@@ -544,10 +545,10 @@
       },
       "encoding": {
         "x": {
-          "value": 0
+          "value": 35
         },
         "x2": {
-          "value": 55
+          "value": 90
         },
         "y": {
           "value": {
@@ -584,10 +585,10 @@
       },
       "encoding": {
         "x": {
-          "value": 0
+          "value": 35
         },
         "x2": {
-          "value": 55
+          "value": 90
         },
         "y": {
           "value": {
@@ -624,10 +625,10 @@
       },
       "encoding": {
         "x": {
-          "value": 55
+          "value": 90
         },
         "x2": {
-          "value": 110
+          "value": 145
         },
         "y": {
           "value": {
@@ -664,10 +665,10 @@
       },
       "encoding": {
         "x": {
-          "value": 55
+          "value": 90
         },
         "x2": {
-          "value": 110
+          "value": 145
         },
         "y": {
           "value": {
@@ -704,10 +705,10 @@
       },
       "encoding": {
         "x": {
-          "value": 55
+          "value": 90
         },
         "x2": {
-          "value": 110
+          "value": 145
         },
         "y": {
           "value": {
@@ -744,10 +745,10 @@
       },
       "encoding": {
         "x": {
-          "value": 110
+          "value": 145
         },
         "x2": {
-          "value": 165
+          "value": 200
         },
         "y": {
           "value": {
@@ -784,10 +785,10 @@
       },
       "encoding": {
         "x": {
-          "value": 110
+          "value": 145
         },
         "x2": {
-          "value": 165
+          "value": 200
         },
         "y": {
           "value": {
@@ -824,10 +825,10 @@
       },
       "encoding": {
         "x": {
-          "value": 110
+          "value": 145
         },
         "x2": {
-          "value": 165
+          "value": 200
         },
         "y": {
           "value": {
@@ -866,7 +867,7 @@
       },
       "encoding": {
         "x": {
-          "value": 27.5
+          "value": 62.5
         },
         "y": {
           "value": {
@@ -893,7 +894,7 @@
       },
       "encoding": {
         "x": {
-          "value": 82.5
+          "value": 117.5
         },
         "y": {
           "value": {
@@ -920,7 +921,7 @@
       },
       "encoding": {
         "x": {
-          "value": 137.5
+          "value": 172.5
         },
         "y": {
           "value": {
@@ -947,7 +948,7 @@
       },
       "encoding": {
         "x": {
-          "value": 173
+          "value": 0
         },
         "y": {
           "value": {
@@ -974,7 +975,7 @@
       },
       "encoding": {
         "x": {
-          "value": 173
+          "value": 0
         },
         "y": {
           "value": {
@@ -1001,7 +1002,7 @@
       },
       "encoding": {
         "x": {
-          "value": 173
+          "value": 0
         },
         "y": {
           "value": {
@@ -1028,7 +1029,7 @@
       },
       "encoding": {
         "x": {
-          "value": 173
+          "value": 0
         },
         "y": {
           "value": {
@@ -1055,7 +1056,7 @@
       },
       "encoding": {
         "x": {
-          "value": 82.5
+          "value": 117.5
         },
         "y": {
           "value": {
