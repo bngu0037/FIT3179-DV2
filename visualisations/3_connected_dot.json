@@ -249,9 +249,7 @@
 
             "labelFont": "Roboto",
             "labelFontSize": 12,
-            "labelFontWeight": 500,
             "labelColor": "#03045e",
-            "labelPadding": 10,
 
             "labels": true,
             "ticks": false,

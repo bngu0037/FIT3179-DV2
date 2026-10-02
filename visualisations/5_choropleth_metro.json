@@ -55,22 +55,6 @@
     },
     {
       "data": {
-        "url": "data/australia_natural_earth_metro.topojson",
-        "format": {
-          "type": "topojson",
-          "feature": "australia"
-        }
-      },
-      "mark": {
-        "type": "geoshape",
-        "fill": "#E9EFF0",
-        "stroke": null,
-        "clip": true,
-        "tooltip": null
-      }
-    },
-    {
-      "data": {
         "url": "data/sa2_2021_metro_context.topojson",
         "format": {
           "type": "topojson",
@@ -280,28 +264,6 @@
             "title": "Dwellings with stated tenure"
           }
         ]
-      }
-    },
-    {
-      "data": {
-        "url": "data/sa2_2021_metro_outlines.geojson",
-        "format": {
-          "type": "json",
-          "property": "features"
-        }
-      },
-      "transform": [
-        {
-          "filter": "datum.properties.metro_code == metroArea"
-        }
-      ],
-      "mark": {
-        "type": "geoshape",
-        "fill": null,
-        "stroke": "#25536A",
-        "strokeWidth": 1.6,
-        "clip": true,
-        "tooltip": null
       }
     }
   ],

@@ -157,22 +157,6 @@
     },
     {
       "data": {
-        "url": "data/australia_natural_earth_metro.topojson",
-        "format": {
-          "type": "topojson",
-          "feature": "australia"
-        }
-      },
-      "mark": {
-        "type": "geoshape",
-        "fill": "#E9EFF0",
-        "stroke": null,
-        "clip": true,
-        "tooltip": null
-      }
-    },
-    {
-      "data": {
         "url": "data/sa2_2021_metro_context.topojson",
         "format": {
           "type": "topojson",
@@ -226,28 +210,6 @@
             "title": "Metro area"
           }
         ]
-      }
-    },
-    {
-      "data": {
-        "url": "data/sa2_2021_metro_outlines.geojson",
-        "format": {
-          "type": "json",
-          "property": "features"
-        }
-      },
-      "transform": [
-        {
-          "filter": "datum.properties.metro_code == metroArea"
-        }
-      ],
-      "mark": {
-        "type": "geoshape",
-        "fill": null,
-        "stroke": "#25536A",
-        "strokeWidth": 1.6,
-        "clip": true,
-        "tooltip": null
       }
     },
     {
@@ -426,7 +388,7 @@
       },
       "encoding": {
         "x": {
-          "value": { "expr": "width - 140" }
+          "value": { "expr": "width - 146.5" }
         },
         "y": {
           "value": 70
@@ -441,7 +403,7 @@
             ],
             "range": [
               0,
-              300
+              440
             ]
           },
           "legend": null
@@ -467,7 +429,7 @@
       },
       "encoding": {
         "x": {
-          "value": { "expr": "width - 140" }
+          "value": { "expr": "width - 146.5" }
         },
         "y": {
           "value": 96
@@ -492,7 +454,7 @@
       },
       "encoding": {
         "x": {
-          "value": { "expr": "width - 87" }
+          "value": { "expr": "width - 93.5" }
         },
         "y": {
           "value": 70
@@ -507,7 +469,7 @@
             ],
             "range": [
               0,
-              300
+              440
             ]
           },
           "legend": null
@@ -533,7 +495,7 @@
       },
       "encoding": {
         "x": {
-          "value": { "expr": "width - 87" }
+          "value": { "expr": "width - 93.5" }
         },
         "y": {
           "value": 96
@@ -558,7 +520,7 @@
       },
       "encoding": {
         "x": {
-          "value": { "expr": "width - 32" }
+          "value": { "expr": "width - 38.5" }
         },
         "y": {
           "value": 70
@@ -573,7 +535,7 @@
             ],
             "range": [
               0,
-              300
+              440
             ]
           },
           "legend": null
@@ -599,7 +561,7 @@
       },
       "encoding": {
         "x": {
-          "value": { "expr": "width - 32" }
+          "value": { "expr": "width - 38.5" }
         },
         "y": {
           "value": 96
