@@ -271,6 +271,27 @@ body {
   min-height: 52px;
 }
 
+/* Keep the paired Section 4 charts aligned at their title and plot edges. */
+.viz-slot--section4 {
+  margin-top: 0;
+  margin-bottom: 0;
+  align-self: start;
+}
+
+.viz-slot--section4.viz-slot--with-heading {
+  display: flex;
+  flex-direction: column;
+  grid-template-rows: none;
+}
+
+.viz-slot--section4 .chart-heading--vega-match {
+  flex: 0 0 52px;
+}
+
+.viz-slot--section4 #vis7 {
+  flex: 0 0 auto;
+}
+
 #vis7 {
   width: 100%;
   min-width: 0;

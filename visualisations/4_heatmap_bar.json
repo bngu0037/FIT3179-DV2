@@ -125,8 +125,9 @@
               "legend": {
                 "orient": "bottom",
                 "direction": "horizontal",
-                "gradientLength": 180,
+                "gradientLength": 395,
                 "gradientThickness": 10,
+                "offset": 12,
                 "titleFont": "Roboto",
                 "titleFontSize": 14,
                 "titleFontWeight": 500,
