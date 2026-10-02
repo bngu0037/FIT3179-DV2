@@ -144,7 +144,10 @@
             "labelFont": "Roboto",
             "labelFontSize": 11,
             "labelColor": "#03045e",
-            "offset": 10
+            "offset": 10,
+            "fillColor": "#ffffff",
+            "padding": 8,
+            "fillOpacity": 0.5
           }
         },
         "tooltip": [
