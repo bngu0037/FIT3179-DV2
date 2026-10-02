@@ -117,6 +117,117 @@
     },
 
     {
+      "transform": [
+        {
+          "filter": "datum.country == 'Australia' && datum.period == 'Recent year'"
+        }
+      ],
+
+      "mark": {
+        "type": "rect",
+        "height": 20,
+        "cornerRadius": 3,
+        "fill": "#f5fcff",
+        "fillOpacity": 0.92,
+        "stroke": "#d9eaf1"
+      },
+
+      "encoding": {
+        "y": {
+          "field": "country",
+          "type": "ordinal",
+          "sort": {
+            "field": "change_pp",
+            "order": "ascending"
+          }
+        },
+
+        "x": {
+          "datum": 75.6,
+          "type": "quantitative"
+        },
+
+        "x2": {
+          "datum": 79.3
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.country == 'United Kingdom' && datum.period == 'Recent year'"
+        }
+      ],
+
+      "mark": {
+        "type": "rect",
+        "height": 20,
+        "cornerRadius": 3,
+        "fill": "#f5fcff",
+        "fillOpacity": 0.92,
+        "stroke": "#d9eaf1"
+      },
+
+      "encoding": {
+        "y": {
+          "field": "country",
+          "type": "ordinal",
+          "sort": {
+            "field": "change_pp",
+            "order": "ascending"
+          }
+        },
+
+        "x": {
+          "datum": 75.8,
+          "type": "quantitative"
+        },
+
+        "x2": {
+          "datum": 79
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.country == 'Netherlands' && datum.period == 'Recent year'"
+        }
+      ],
+
+      "mark": {
+        "type": "rect",
+        "height": 20,
+        "cornerRadius": 3,
+        "fill": "#f5fcff",
+        "fillOpacity": 0.92,
+        "stroke": "#d9eaf1"
+      },
+
+      "encoding": {
+        "y": {
+          "field": "country",
+          "type": "ordinal",
+          "sort": {
+            "field": "change_pp",
+            "order": "ascending"
+          }
+        },
+
+        "x": {
+          "datum": 72.8,
+          "type": "quantitative"
+        },
+
+        "x2": {
+          "datum": 76.7
+        }
+      }
+    },
+
+    {
       "mark": {
         "type": "point",
         "filled": true,
@@ -212,6 +323,120 @@
             "title": "Change"
           }
         ]
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.country == 'Australia' && datum.period == 'Recent year'"
+        }
+      ],
+
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "font": "Roboto",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#03045e"
+      },
+
+      "encoding": {
+        "y": {
+          "field": "country",
+          "type": "ordinal",
+          "sort": {
+            "field": "change_pp",
+            "order": "ascending"
+          }
+        },
+
+        "x": {
+          "datum": 77.45,
+          "type": "quantitative"
+        },
+
+        "text": {
+          "value": "Australia: -15 pp"
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.country == 'United Kingdom' && datum.period == 'Recent year'"
+        }
+      ],
+
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "font": "Roboto",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#03045e"
+      },
+
+      "encoding": {
+        "y": {
+          "field": "country",
+          "type": "ordinal",
+          "sort": {
+            "field": "change_pp",
+            "order": "ascending"
+          }
+        },
+
+        "x": {
+          "datum": 77.4,
+          "type": "quantitative"
+        },
+
+        "text": {
+          "value": "UK: -18 pp"
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.country == 'Netherlands' && datum.period == 'Recent year'"
+        }
+      ],
+
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "font": "Roboto",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#03045e"
+      },
+
+      "encoding": {
+        "y": {
+          "field": "country",
+          "type": "ordinal",
+          "sort": {
+            "field": "change_pp",
+            "order": "ascending"
+          }
+        },
+
+        "x": {
+          "datum": 74.75,
+          "type": "quantitative"
+        },
+
+        "text": {
+          "value": "Netherlands improved"
+        }
       }
     },
 

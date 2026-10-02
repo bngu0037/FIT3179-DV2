@@ -134,6 +134,51 @@
     },
 
     {
+      "transform": [
+        {
+          "filter": "datum.tenure == 'Mortgage' && datum.income_band == '$1,500-2,499'"
+        }
+      ],
+
+      "mark": {
+        "type": "rect",
+        "width": 152,
+        "height": 22,
+        "cornerRadius": 3,
+        "fill": "#f5fcff",
+        "fillOpacity": 0.92,
+        "stroke": "#d9eaf1"
+      },
+
+      "encoding": {
+        "x": {
+          "field": "income_band",
+          "type": "ordinal",
+          "sort": [
+            "Under $800",
+            "$800-1,499",
+            "$1,500-2,499",
+            "$2,500-3,499",
+            "$3,500+"
+          ]
+        },
+
+        "xOffset": {
+          "value": 180
+        },
+
+        "y": {
+          "datum": 1.3,
+          "type": "quantitative",
+          "scale": {
+            "domain": [4.35, 0.65],
+            "nice": false
+          }
+        }
+      }
+    },
+
+    {
       "mark": {
         "type": "point",
         "filled": true,
@@ -218,6 +263,55 @@
             "format": ","
           }
         ]
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.tenure == 'Mortgage' && datum.income_band == '$1,500-2,499'"
+        }
+      ],
+
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "font": "Roboto",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#03045e"
+      },
+
+      "encoding": {
+        "x": {
+          "field": "income_band",
+          "type": "ordinal",
+          "sort": [
+            "Under $800",
+            "$800-1,499",
+            "$1,500-2,499",
+            "$2,500-3,499",
+            "$3,500+"
+          ]
+        },
+
+        "xOffset": {
+          "value": 180
+        },
+
+        "y": {
+          "datum": 1.3,
+          "type": "quantitative",
+          "scale": {
+            "domain": [4.35, 0.65],
+            "nice": false
+          }
+        },
+
+        "text": {
+          "value": "Mortgage becomes #1"
+        }
       }
     },
 

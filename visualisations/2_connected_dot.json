@@ -346,6 +346,73 @@
           "type": "nominal"
         }
       }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.age_group == '30-34'"
+        },
+        {
+          "filter": "datum.cohort_type == 'Oldest generation'"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "height": 20,
+        "cornerRadius": 3,
+        "fill": "#f5fcff",
+        "fillOpacity": 0.92,
+        "stroke": "#d9eaf1"
+      },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "ordinal",
+          "sort": ["25-29", "30-34", "35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69"]
+        },
+        "x": {
+          "datum": 79,
+          "type": "quantitative"
+        },
+        "x2": {
+          "datum": 95
+        }
+      }
+    },
+
+    {
+      "transform": [
+        {
+          "filter": "datum.age_group == '30-34'"
+        },
+        {
+          "filter": "datum.cohort_type == 'Oldest generation'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "font": "Roboto",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#03045e"
+      },
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "ordinal",
+          "sort": ["25-29", "30-34", "35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69"]
+        },
+        "x": {
+          "datum": 87,
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "18.3 pp gap"
+        }
+      }
     }
   ],
 

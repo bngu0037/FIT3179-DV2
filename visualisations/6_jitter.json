@@ -146,6 +146,32 @@
     },
     {
       "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "width": 148,
+        "height": 40,
+        "cornerRadius": 3,
+        "fill": "#f5fcff",
+        "fillOpacity": 0.92,
+        "stroke": "#d9eaf1"
+      },
+      "encoding": {
+        "x": {
+          "datum": 10,
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 6.5,
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
         "url": "data/state_ownership_summary_2021.csv",
         "format": {
           "type": "csv",
@@ -201,6 +227,70 @@
             "title": "Dwellings with stated tenure"
           }
         ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "font": "Roboto",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#03045e"
+      },
+      "encoding": {
+        "x": {
+          "datum": 10,
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 6.5,
+          "type": "quantitative"
+        },
+        "yOffset": {
+          "value": -8
+        },
+        "text": {
+          "value": "State averages cluster"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "font": "Roboto",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#03045e"
+      },
+      "encoding": {
+        "x": {
+          "datum": 10,
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 6.5,
+          "type": "quantitative"
+        },
+        "yOffset": {
+          "value": 6.5
+        },
+        "text": {
+          "value": "SA2 rates vary"
+        }
       }
     },
     {
