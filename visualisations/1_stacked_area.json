@@ -59,7 +59,7 @@
         "labelExpr": "datum.value == 1 ? '1994-95' : datum.value == 4 ? '1999-00' : datum.value == 7 ? '2003-04' : datum.value == 10 ? '2009-10' : datum.value == 13 ? '2015-16' : datum.value == 16 ? '2019-20' : ''",
 
         "labelFont": "Roboto",
-        "labelFontSize": 11,
+        "labelFontSize": 12,
         "labelColor": "#4f6f7f",
 
         "tickColor": "#b8cbd5",
@@ -85,7 +85,7 @@
         "titleFontWeight": 500,
         "titleColor": "#03045e",
         "labelFont": "Roboto",
-        "labelFontSize": 11,
+        "labelFontSize": 12,
         "labelColor": "#03045e",
         "labelAngle": 0,
         "labelPadding": 6,

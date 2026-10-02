@@ -340,7 +340,7 @@
       "encoding": {
         "x": {
           "value": {
-            "expr": "width - 160"
+            "expr": "width - 175"
           }
         },
         "x2": {
@@ -352,7 +352,7 @@
           "value": 14
         },
         "y2": {
-          "value": 108
+          "value": 114
         }
       }
     },
@@ -375,7 +375,7 @@
       },
       "encoding": {
         "x": {
-          "value": { "expr": "width - 152" }
+          "value": { "expr": "width - 167" }
         },
         "y": {
           "value": 25
@@ -393,7 +393,7 @@
         "type": "text",
         "text": "Circle area represents count",
         "font": "Roboto",
-        "fontSize": 11,
+        "fontSize": 12,
         "fontWeight": 400,
         "color": "#4f6f7f",
         "align": "left",
@@ -401,7 +401,7 @@
       },
       "encoding": {
         "x": {
-          "value": { "expr": "width - 152" }
+          "value": { "expr": "width - 167" }
         },
         "y": {
           "value": 42
@@ -459,7 +459,7 @@
         "type": "text",
         "text": "500",
         "font": "Roboto",
-        "fontSize": 11,
+        "fontSize": 12,
         "fontWeight": 400,
         "color": "#03045e",
         "align": "center",
@@ -525,7 +525,7 @@
         "type": "text",
         "text": "2,000",
         "font": "Roboto",
-        "fontSize": 11,
+        "fontSize": 12,
         "fontWeight": 400,
         "color": "#03045e",
         "align": "center",
@@ -591,7 +591,7 @@
         "type": "text",
         "text": "6,000",
         "font": "Roboto",
-        "fontSize": 11,
+        "fontSize": 12,
         "fontWeight": 400,
         "color": "#03045e",
         "align": "center",

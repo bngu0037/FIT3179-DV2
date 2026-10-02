@@ -144,7 +144,7 @@
             "titleFontWeight": 500,
             "titleColor": "#03045e",
             "labelFont": "Roboto",
-            "labelFontSize": 11,
+            "labelFontSize": 12,
             "labelColor": "#4f6f7f",
             "tickColor": "#b8cbd5",
             "domainColor": "#b8cbd5",
@@ -274,7 +274,7 @@
         "baseline": "middle",
         "dx": 40,
         "font": "Roboto",
-        "fontSize": 11,
+        "fontSize": 12,
         "fontWeight": 500,
         "color": "#03045e"
       },
@@ -317,7 +317,7 @@
         "baseline": "middle",
         "dx": -40,
         "font": "Roboto",
-        "fontSize": 11,
+        "fontSize": 12,
         "fontWeight": 500,
         "color": "#03045e"
       },

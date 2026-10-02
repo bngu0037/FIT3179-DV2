@@ -53,7 +53,7 @@
           "axis": {
             "labelAngle": 0,
             "labelFont": "Roboto",
-            "labelFontSize": 11,
+            "labelFontSize": 12,
             "labelColor": "#4f6f7f",
             "labelPadding": 8,
 
@@ -85,7 +85,7 @@
             "labelExpr": "'Rank ' + datum.value",
 
             "labelFont": "Roboto",
-            "labelFontSize": 11,
+            "labelFontSize": 12,
             "labelColor": "#4f6f7f",
 
             "titleFont": "Roboto",
@@ -235,7 +235,7 @@
         "dx": 10,
 
         "font": "Roboto",
-        "fontSize": 11,
+        "fontSize": 12,
         "fontWeight": 500
       },
 

@@ -217,7 +217,7 @@
             "titleFontWeight": 500,
             "titleColor": "#03045e",
             "labelFont": "Roboto",
-            "labelFontSize": 11,
+            "labelFontSize": 12,
             "labelColor": "#4f6f7f"
           }
         },

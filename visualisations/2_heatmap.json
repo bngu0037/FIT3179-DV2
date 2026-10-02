@@ -94,7 +94,7 @@
             "titlePadding": 12,
 
             "labelFont": "Roboto",
-            "labelFontSize": 11,
+            "labelFontSize": 12,
             "labelColor": "#03045e",
             "labelAngle": 0,
             "labelPadding": 6,
@@ -170,7 +170,7 @@
             "titleColor": "#03045e",
 
             "labelFont": "Roboto",
-            "labelFontSize": 11,
+            "labelFontSize": 12,
             "labelColor": "#03045e",
 
             "format": ".0f",
@@ -207,7 +207,7 @@
       "mark": {
         "type": "text",
         "font": "Roboto",
-        "fontSize": 10,
+        "fontSize": 12,
         "fontWeight": 500
       },
 
@@ -236,7 +236,7 @@
             "titlePadding": 12,
 
             "labelFont": "Roboto",
-            "labelFontSize": 11,
+            "labelFontSize": 12,
             "labelColor": "#03045e",
             "labelAngle": 0,
             "labelPadding": 6,
