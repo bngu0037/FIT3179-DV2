@@ -34,15 +34,17 @@
     }
   ],
 
-  "mark": {
-    "type": "area",
-    "interpolate": "monotone",
-    "opacity": 0.96,
-    "stroke": "#f5fcff",
-    "strokeWidth": 1
-  },
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone",
+        "opacity": 0.96,
+        "stroke": "#f5fcff",
+        "strokeWidth": 1
+      },
 
-  "encoding": {
+      "encoding": {
     "x": {
       "field": "year_order",
       "type": "quantitative",
@@ -138,24 +140,76 @@
       ]
     },
 
-    "tooltip": [
-      {
-        "field": "year",
-        "type": "nominal",
-        "title": "Year"
-      },
-      {
-        "field": "tenure",
-        "type": "nominal",
-        "title": "Tenure"
-      },
-      {
-        "field": "pct_label",
-        "type": "nominal",
-        "title": "Share"
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "nominal",
+            "title": "Year"
+          },
+          {
+            "field": "tenure",
+            "type": "nominal",
+            "title": "Tenure"
+          },
+          {
+            "field": "pct_label",
+            "type": "nominal",
+            "title": "Share"
+          }
+        ]
       }
-    ]
-  },
+    },
+    {
+      "data": {
+        "values": [{ "year_order": 8 }]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#03045e",
+        "strokeWidth": 1.25,
+        "strokeDash": [4, 4],
+        "opacity": 0.5
+      },
+      "encoding": {
+        "x": {
+          "field": "year_order",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [{ "year_order": 8, "annotation_y": 46 }]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "dx": 7,
+        "dy": -10,
+        "font": "Roboto",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "color": "#03045e"
+      },
+      "encoding": {
+        "x": {
+          "field": "year_order",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "annotation_y",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": [
+            "Mortgages overtake",
+            "outright ownership"
+          ]
+        }
+      }
+    }
+  ],
 
   "config": {
     "view": {
