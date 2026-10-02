@@ -64,6 +64,10 @@
       }
     },
     {
+      "name": "showLegend",
+      "value": true
+    },
+    {
       "name": "metroSpanX",
       "expr": "metroArea == '2GMEL' ? 0.021051 : metroArea == '1GSYD' ? 0.025890 : metroArea == '3GBRI' ? 0.020615 : metroArea == '4GADE' ? 0.009033 : metroArea == '5GPER' ? 0.013932 : metroArea == '6GHOB' ? 0.012005 : 0.010092"
     },
@@ -81,7 +85,7 @@
     },
     {
       "name": "metroFitScale",
-      "expr": "min(width * 0.9 / metroSpanX, (height - 205) * 0.9 / metroSpanY)"
+      "expr": "min(width * 0.9 / metroSpanX, height * 0.9 / metroSpanY)"
     }
   ],
   "config": {
@@ -99,7 +103,7 @@
     }
   },
   "width": "container",
-  "height": 815,
+  "height": 650,
   "projection": {
     "type": "albers",
     "parallels": [
@@ -118,7 +122,7 @@
       "expr": "mapZoom * metroFitScale"
     },
     "translate": {
-      "expr": "[width / 2 - mapZoom * metroFitScale * metroCenterX, (height - 205) / 2 - mapZoom * metroFitScale * metroCenterY]"
+      "expr": "[width / 2 - mapZoom * metroFitScale * metroCenterX, height / 2 - mapZoom * metroFitScale * metroCenterY]"
     }
   },
   "layer": [
@@ -148,7 +152,7 @@
         },
         "y2": {
           "value": {
-            "expr": "height - 205"
+            "expr": "height"
           }
         }
       }
@@ -405,33 +409,38 @@
       }
     },
     {
+      "name": "legend-panel",
       "data": {
         "values": [
           {}
         ]
       },
+      "transform": [
+        {
+          "filter": "showLegend"
+        }
+      ],
       "mark": {
         "type": "rect",
-        "fill": "#f5fcff"
+        "fill": "#f5fcff",
+        "opacity": 0.84
       },
       "encoding": {
         "x": {
-          "value": 0
+          "value": {
+            "expr": "width - 175"
+          }
         },
         "x2": {
           "value": {
-            "expr": "width"
+            "expr": "width - 10"
           }
         },
         "y": {
-          "value": {
-            "expr": "height - 205"
-          }
+          "value": 14
         },
         "y2": {
-          "value": {
-            "expr": "height"
-          }
+          "value": 135
         }
       }
     },
@@ -441,9 +450,10 @@
           {}
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "text",
-        "text": "Renter share x Median weekly rent",
+        "text": "Renter share x Rent",
         "font": "Roboto",
         "fontSize": 12,
         "fontWeight": 500,
@@ -453,12 +463,10 @@
       },
       "encoding": {
         "x": {
-          "value": 0
+          "value": { "expr": "width - 167" }
         },
         "y": {
-          "value": {
-            "expr": "height - 174"
-          }
+          "value": 25
         }
       }
     },
@@ -468,9 +476,10 @@
           {}
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "text",
-        "text": "Cutoffs: 23%, 36% · $370, $425/week",
+        "text": "Cutoffs: 23/36% · $370/$425",
         "font": "Roboto",
         "fontSize": 11,
         "fontWeight": 400,
@@ -480,12 +489,10 @@
       },
       "encoding": {
         "x": {
-          "value": 0
+          "value": { "expr": "width - 167" }
         },
         "y": {
-          "value": {
-            "expr": "height - 157"
-          }
+          "value": 41
         }
       }
     },
@@ -497,6 +504,7 @@
           }
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "rect",
         "fill": "#EEA56A",
@@ -505,20 +513,16 @@
       },
       "encoding": {
         "x": {
-          "value": 35
+          "value": { "expr": "width - 122" }
         },
         "x2": {
-          "value": 90
+          "value": { "expr": "width - 86" }
         },
         "y": {
-          "value": {
-            "expr": "height - 130"
-          }
+          "value": 49
         },
         "y2": {
-          "value": {
-            "expr": "height - 102"
-          }
+          "value": 67
         },
         "tooltip": [
           {
@@ -537,6 +541,7 @@
           }
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "rect",
         "fill": "#F6D296",
@@ -545,20 +550,16 @@
       },
       "encoding": {
         "x": {
-          "value": 35
+          "value": { "expr": "width - 122" }
         },
         "x2": {
-          "value": 90
+          "value": { "expr": "width - 86" }
         },
         "y": {
-          "value": {
-            "expr": "height - 102"
-          }
+          "value": 67
         },
         "y2": {
-          "value": {
-            "expr": "height - 74"
-          }
+          "value": 85
         },
         "tooltip": [
           {
@@ -577,6 +578,7 @@
           }
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "rect",
         "fill": "#F8F1E4",
@@ -585,20 +587,16 @@
       },
       "encoding": {
         "x": {
-          "value": 35
+          "value": { "expr": "width - 122" }
         },
         "x2": {
-          "value": 90
+          "value": { "expr": "width - 86" }
         },
         "y": {
-          "value": {
-            "expr": "height - 74"
-          }
+          "value": 85
         },
         "y2": {
-          "value": {
-            "expr": "height - 46"
-          }
+          "value": 103
         },
         "tooltip": [
           {
@@ -617,6 +615,7 @@
           }
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "rect",
         "fill": "#C4797F",
@@ -625,20 +624,16 @@
       },
       "encoding": {
         "x": {
-          "value": 90
+          "value": { "expr": "width - 86" }
         },
         "x2": {
-          "value": 145
+          "value": { "expr": "width - 50" }
         },
         "y": {
-          "value": {
-            "expr": "height - 130"
-          }
+          "value": 49
         },
         "y2": {
-          "value": {
-            "expr": "height - 102"
-          }
+          "value": 67
         },
         "tooltip": [
           {
@@ -657,6 +652,7 @@
           }
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "rect",
         "fill": "#D8ACB6",
@@ -665,20 +661,16 @@
       },
       "encoding": {
         "x": {
-          "value": 90
+          "value": { "expr": "width - 86" }
         },
         "x2": {
-          "value": 145
+          "value": { "expr": "width - 50" }
         },
         "y": {
-          "value": {
-            "expr": "height - 102"
-          }
+          "value": 67
         },
         "y2": {
-          "value": {
-            "expr": "height - 74"
-          }
+          "value": 85
         },
         "tooltip": [
           {
@@ -697,6 +689,7 @@
           }
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "rect",
         "fill": "#E3D3E5",
@@ -705,20 +698,16 @@
       },
       "encoding": {
         "x": {
-          "value": 90
+          "value": { "expr": "width - 86" }
         },
         "x2": {
-          "value": 145
+          "value": { "expr": "width - 50" }
         },
         "y": {
-          "value": {
-            "expr": "height - 74"
-          }
+          "value": 85
         },
         "y2": {
-          "value": {
-            "expr": "height - 46"
-          }
+          "value": 103
         },
         "tooltip": [
           {
@@ -737,6 +726,7 @@
           }
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "rect",
         "fill": "#62355E",
@@ -745,20 +735,16 @@
       },
       "encoding": {
         "x": {
-          "value": 145
+          "value": { "expr": "width - 50" }
         },
         "x2": {
-          "value": 200
+          "value": { "expr": "width - 14" }
         },
         "y": {
-          "value": {
-            "expr": "height - 130"
-          }
+          "value": 49
         },
         "y2": {
-          "value": {
-            "expr": "height - 102"
-          }
+          "value": 67
         },
         "tooltip": [
           {
@@ -777,6 +763,7 @@
           }
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "rect",
         "fill": "#92578F",
@@ -785,20 +772,16 @@
       },
       "encoding": {
         "x": {
-          "value": 145
+          "value": { "expr": "width - 50" }
         },
         "x2": {
-          "value": 200
+          "value": { "expr": "width - 14" }
         },
         "y": {
-          "value": {
-            "expr": "height - 102"
-          }
+          "value": 67
         },
         "y2": {
-          "value": {
-            "expr": "height - 74"
-          }
+          "value": 85
         },
         "tooltip": [
           {
@@ -817,6 +800,7 @@
           }
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "rect",
         "fill": "#AA83BF",
@@ -825,20 +809,16 @@
       },
       "encoding": {
         "x": {
-          "value": 145
+          "value": { "expr": "width - 50" }
         },
         "x2": {
-          "value": 200
+          "value": { "expr": "width - 14" }
         },
         "y": {
-          "value": {
-            "expr": "height - 74"
-          }
+          "value": 85
         },
         "y2": {
-          "value": {
-            "expr": "height - 46"
-          }
+          "value": 103
         },
         "tooltip": [
           {
@@ -855,6 +835,7 @@
           {}
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "text",
         "text": "Low",
@@ -867,12 +848,10 @@
       },
       "encoding": {
         "x": {
-          "value": 62.5
+          "value": { "expr": "width - 104" }
         },
         "y": {
-          "value": {
-            "expr": "height - 30"
-          }
+          "value": 111
         }
       }
     },
@@ -882,6 +861,7 @@
           {}
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "text",
         "text": "Mid",
@@ -894,12 +874,10 @@
       },
       "encoding": {
         "x": {
-          "value": 117.5
+          "value": { "expr": "width - 68" }
         },
         "y": {
-          "value": {
-            "expr": "height - 30"
-          }
+          "value": 111
         }
       }
     },
@@ -909,6 +887,7 @@
           {}
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "text",
         "text": "High",
@@ -921,12 +900,10 @@
       },
       "encoding": {
         "x": {
-          "value": 172.5
+          "value": { "expr": "width - 32" }
         },
         "y": {
-          "value": {
-            "expr": "height - 30"
-          }
+          "value": 111
         }
       }
     },
@@ -936,6 +913,7 @@
           {}
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "text",
         "text": "High",
@@ -948,12 +926,10 @@
       },
       "encoding": {
         "x": {
-          "value": 0
+          "value": { "expr": "width - 169" }
         },
         "y": {
-          "value": {
-            "expr": "height - 116"
-          }
+          "value": 58
         }
       }
     },
@@ -963,6 +939,7 @@
           {}
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "text",
         "text": "Mid",
@@ -975,12 +952,10 @@
       },
       "encoding": {
         "x": {
-          "value": 0
+          "value": { "expr": "width - 169" }
         },
         "y": {
-          "value": {
-            "expr": "height - 88"
-          }
+          "value": 76
         }
       }
     },
@@ -990,6 +965,7 @@
           {}
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "text",
         "text": "Low",
@@ -1002,12 +978,10 @@
       },
       "encoding": {
         "x": {
-          "value": 0
+          "value": { "expr": "width - 169" }
         },
         "y": {
-          "value": {
-            "expr": "height - 60"
-          }
+          "value": 94
         }
       }
     },
@@ -1017,33 +991,7 @@
           {}
         ]
       },
-      "mark": {
-        "type": "text",
-        "text": "Rent ↑",
-        "font": "Roboto",
-        "fontSize": 11,
-        "fontWeight": 500,
-        "color": "#03045e",
-        "align": "left",
-        "baseline": "middle"
-      },
-      "encoding": {
-        "x": {
-          "value": 0
-        },
-        "y": {
-          "value": {
-            "expr": "height - 141"
-          }
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {}
-        ]
-      },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "text",
         "text": "Renter share →",
@@ -1056,12 +1004,10 @@
       },
       "encoding": {
         "x": {
-          "value": 117.5
+          "value": { "expr": "width - 68" }
         },
         "y": {
-          "value": {
-            "expr": "height - 13"
-          }
+          "value": 125
         }
       }
     }

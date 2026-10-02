@@ -42,6 +42,10 @@
       }
     },
     {
+      "name": "showLegend",
+      "value": true
+    },
+    {
       "name": "metroSpanX",
       "expr": "metroArea == '2GMEL' ? 0.021051 : metroArea == '1GSYD' ? 0.025890 : metroArea == '3GBRI' ? 0.020615 : metroArea == '4GADE' ? 0.009033 : metroArea == '5GPER' ? 0.013932 : metroArea == '6GHOB' ? 0.012005 : 0.010092"
     },
@@ -59,7 +63,7 @@
     },
     {
       "name": "metroFitScale",
-      "expr": "min(width * 0.9 / metroSpanX, (height - 165) * 0.9 / metroSpanY)"
+      "expr": "min(width * 0.9 / metroSpanX, height * 0.9 / metroSpanY)"
     }
   ],
   "config": {
@@ -99,7 +103,7 @@
       "expr": "width - 4"
     }
   },
-  "height": 775,
+  "height": 650,
   "projection": {
     "type": "albers",
     "parallels": [
@@ -118,7 +122,7 @@
       "expr": "mapZoom * metroFitScale"
     },
     "translate": {
-      "expr": "[width / 2 - mapZoom * metroFitScale * metroCenterX, (height - 165) / 2 - mapZoom * metroFitScale * metroCenterY]"
+      "expr": "[width / 2 - mapZoom * metroFitScale * metroCenterX, height / 2 - mapZoom * metroFitScale * metroCenterY]"
     }
   },
   "layer": [
@@ -146,7 +150,7 @@
         },
         "y2": {
           "value": {
-            "expr": "height - 165"
+            "expr": "height"
           }
         }
       }
@@ -317,33 +321,38 @@
       }
     },
     {
+      "name": "legend-panel",
       "data": {
         "values": [
           {}
         ]
       },
+      "transform": [
+        {
+          "filter": "showLegend"
+        }
+      ],
       "mark": {
         "type": "rect",
-        "fill": "#f5fcff"
+        "fill": "#f5fcff",
+        "opacity": 0.84
       },
       "encoding": {
         "x": {
-          "value": 0
+          "value": {
+            "expr": "width - 160"
+          }
         },
         "x2": {
           "value": {
-            "expr": "width"
+            "expr": "width - 10"
           }
         },
         "y": {
-          "value": {
-            "expr": "height - 165"
-          }
+          "value": 14
         },
         "y2": {
-          "value": {
-            "expr": "height"
-          }
+          "value": 108
         }
       }
     },
@@ -353,6 +362,7 @@
           {}
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "text",
         "text": "Rented dwellings per SA2",
@@ -365,12 +375,10 @@
       },
       "encoding": {
         "x": {
-          "value": 0
+          "value": { "expr": "width - 152" }
         },
         "y": {
-          "value": {
-            "expr": "height - 138"
-          }
+          "value": 25
         }
       }
     },
@@ -380,6 +388,7 @@
           {}
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "text",
         "text": "Circle area represents count",
@@ -392,12 +401,10 @@
       },
       "encoding": {
         "x": {
-          "value": 0
+          "value": { "expr": "width - 152" }
         },
         "y": {
-          "value": {
-            "expr": "height - 125"
-          }
+          "value": 42
         }
       }
     },
@@ -409,6 +416,7 @@
           }
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "circle",
         "fill": "#E9A35C",
@@ -418,12 +426,10 @@
       },
       "encoding": {
         "x": {
-          "value": 12
+          "value": { "expr": "width - 140" }
         },
         "y": {
-          "value": {
-            "expr": "height - 90"
-          }
+          "value": 70
         },
         "size": {
           "field": "count",
@@ -435,7 +441,7 @@
             ],
             "range": [
               0,
-              440
+              300
             ]
           },
           "legend": null
@@ -448,6 +454,7 @@
           {}
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "text",
         "text": "500",
@@ -460,12 +467,10 @@
       },
       "encoding": {
         "x": {
-          "value": 12
+          "value": { "expr": "width - 140" }
         },
         "y": {
-          "value": {
-            "expr": "height - 60"
-          }
+          "value": 96
         }
       }
     },
@@ -477,6 +482,7 @@
           }
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "circle",
         "fill": "#E9A35C",
@@ -486,12 +492,10 @@
       },
       "encoding": {
         "x": {
-          "value": 82
+          "value": { "expr": "width - 87" }
         },
         "y": {
-          "value": {
-            "expr": "height - 90"
-          }
+          "value": 70
         },
         "size": {
           "field": "count",
@@ -503,7 +507,7 @@
             ],
             "range": [
               0,
-              440
+              300
             ]
           },
           "legend": null
@@ -516,6 +520,7 @@
           {}
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "text",
         "text": "2,000",
@@ -528,12 +533,10 @@
       },
       "encoding": {
         "x": {
-          "value": 82
+          "value": { "expr": "width - 87" }
         },
         "y": {
-          "value": {
-            "expr": "height - 60"
-          }
+          "value": 96
         }
       }
     },
@@ -545,6 +548,7 @@
           }
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "circle",
         "fill": "#E9A35C",
@@ -554,12 +558,10 @@
       },
       "encoding": {
         "x": {
-          "value": 152
+          "value": { "expr": "width - 32" }
         },
         "y": {
-          "value": {
-            "expr": "height - 90"
-          }
+          "value": 70
         },
         "size": {
           "field": "count",
@@ -571,7 +573,7 @@
             ],
             "range": [
               0,
-              440
+              300
             ]
           },
           "legend": null
@@ -584,6 +586,7 @@
           {}
         ]
       },
+      "transform": [{ "filter": "showLegend" }],
       "mark": {
         "type": "text",
         "text": "6,000",
@@ -596,12 +599,10 @@
       },
       "encoding": {
         "x": {
-          "value": 152
+          "value": { "expr": "width - 32" }
         },
         "y": {
-          "value": {
-            "expr": "height - 60"
-          }
+          "value": 96
         }
       }
     }

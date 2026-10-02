@@ -429,35 +429,19 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* Place each metro map's controls beside its in-chart legend. */
-#vis12,
-#vis13 {
-  min-height: 859px;
-}
-
+/* Keep each map's compact legend in the chart and its tools below it. */
 #vis12 .vega-bindings,
 #vis13 .vega-bindings {
   display: grid;
-  grid-template-columns: minmax(0, 0.45fr) minmax(0, 0.55fr);
-  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: 12px;
   align-items: center;
-  height: 62px;
-}
-
-#vis12 .vega-bindings {
-  margin-top: -187px;
-}
-
-#vis13 .vega-bindings {
-  margin-top: -152px;
+  margin-top: 8px;
 }
 
 #vis12 .vega-bind,
 #vis13 .vega-bind {
-  grid-column: 2;
-  margin-left: 12px;
-  width: calc(100% - 12px);
+  width: 100%;
   white-space: nowrap;
 }
 
