@@ -128,7 +128,7 @@ body {
     repeat(2, minmax(0, 1fr));
 
   gap: var(--column-gap);
-
+  row-gap: 12px;
   width: 100%;
   min-width: 0;
 }
@@ -139,7 +139,8 @@ body {
   display: grid;
   grid-template-rows: 1fr auto;
   background: transparent;
-
+  margin-top: 5px;
+  margin-bottom: 5px;
   overflow: hidden;
 }
 
@@ -321,6 +322,53 @@ body {
   margin-bottom: 3px;
 }
 
+#vis10 .vega-bindings {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  height: 45px;
+  align-items: center;
+  margin-top: -45px;
+}
+
+#vis10 .vega-bind {
+  grid-column: 2;
+  display: grid;
+  align-items: center;
+  width: 100%;
+  white-space: nowrap;
+}
+
+#vis10 .vega-bind label {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  width: 100%;
+}
+
+#vis10 .vega-bind-name {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+#vis10 .vega-bind input[type="range"] {
+  grid-column: 1;
+  grid-row: 2;
+  min-width: 0;
+  width: 100%;
+  margin-right: 0;
+}
+
+#vis10 .vega-bind-value {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+  min-width: 4ch;
+  padding-left: 6px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
 #vis13 .vega-bindings {
   margin-top: -45px;
 }
@@ -332,4 +380,8 @@ body {
 
 .chart-annotation strong {
   font-weight: 700;
+}
+
+.chart-annotation.conclusion-pull-quote {
+  font-size: 20px;
 }

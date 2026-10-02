@@ -125,7 +125,7 @@
           },
           "legend": {
             "title": "Difference from state (pp)",
-            "orient": "bottom",
+            "orient": "bottom-left",
             "direction": "horizontal",
             "gradientLength": 240,
             "gradientThickness": 12,
