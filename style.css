@@ -21,7 +21,11 @@
   box-sizing: border-box;
 }
 
-html,
+html {
+    background-color:  #e8f1f5;
+}
+
+
 body {
   margin: 0;
   padding: 0;
@@ -40,6 +44,11 @@ body {
 
   font-size: 16px;
   line-height: 1.5;
+  width: min(
+    calc(100% - 48px),
+    var(--page-width)
+  );
+  margin: 0 auto;
 }
 
 .page-shell {
@@ -89,7 +98,7 @@ body {
 }
 
 .hero {
-  padding: 48px 0 16px;
+  padding: 20px 0 16px;
 }
 
 .hero h1 {
@@ -261,7 +270,7 @@ body {
   }
 
   .hero {
-    padding: 40px 0 16px;
+    padding: 24px 0 16px;
   }
 
   .story-section {
