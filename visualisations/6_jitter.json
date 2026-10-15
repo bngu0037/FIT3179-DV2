@@ -177,6 +177,43 @@
           "type": "csv",
           "parse": {
             "state_y": "number",
+            "ownership_pct": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "rect",
+        "width": 57,
+        "height": 20,
+        "cornerRadius": 3,
+        "fill": "#f5fcff",
+        "fillOpacity": 0.8,
+        "stroke": "#b8cbd5",
+        "strokeWidth": 0.7,
+        "tooltip": null,
+        "align": "left"
+      },
+      "encoding": {
+        "x": {
+          "field": "ownership_pct",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "state_y",
+          "type": "quantitative"
+        },
+        "xOffset": {
+          "value": -10
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/state_ownership_summary_2021.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "state_y": "number",
             "ownership_pct": "number",
             "owner_dwellings": "number",
             "known_tenure_dwellings": "number",
@@ -290,43 +327,6 @@
         },
         "text": {
           "value": "SA2 rates vary"
-        }
-      }
-    },
-    {
-      "data": {
-        "url": "data/state_ownership_summary_2021.csv",
-        "format": {
-          "type": "csv",
-          "parse": {
-            "state_y": "number",
-            "ownership_pct": "number"
-          }
-        }
-      },
-      "mark": {
-        "type": "rect",
-        "width": 35,
-        "height": 19,
-        "cornerRadius": 3,
-        "fill": "#f5fcff",
-        "fillOpacity": 0.8,
-        "stroke": "#b8cbd5",
-        "strokeWidth": 0.7,
-        "tooltip": null,
-        "align": "left"
-      },
-      "encoding": {
-        "x": {
-          "field": "ownership_pct",
-          "type": "quantitative"
-        },
-        "y": {
-          "field": "state_y",
-          "type": "quantitative"
-        },
-        "xOffset": {
-          "value": 10
         }
       }
     },
